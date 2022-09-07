@@ -1,0 +1,3 @@
+DROP DATABASE IF EXISTS pawFect_db;
+
+CREATE DATABASE pawFect_db;
