@@ -81,7 +81,7 @@ router.post("/", (req, res) => {
 
 // POST api/pet/login
 router.post("/login", (req, res) => {
-  // get single pet
+  // get single pet with requested email
   Pet.findOne({
     where: {
       email: req.body.email,
@@ -100,8 +100,8 @@ router.post("/login", (req, res) => {
     }
     // create session
     req.session.save(() => {
-      req.session.Pet_id = dbPetData.id;
-      req.session.Petname = dbPetData.Petname;
+      req.session.id = dbPetData.id;
+      req.session.pet_name = dbPetData.pet_name;
       req.session.loggedIn = true;
 
       res.json({ Pet: dbPetData, message: "You are now logged in!" });
@@ -109,15 +109,17 @@ router.post("/login", (req, res) => {
   });
 });
 
-// router.post("/logout", (req, res) => {
-//   if (req.session.loggedIn) {
-//     req.session.destroy(() => {
-//       res.status(204).end();
-//     });
-//   } else {
-//     res.status(404).end();
-//   }
-// });
+// POST api/pet/logout
+router.post("/logout", (req, res) => {
+  if (req.session.loggedIn) {
+    // end session
+    req.session.destroy(() => {
+      res.status(204).end();
+    });
+  } else {
+    res.status(404).end();
+  }
+});
 
 // router.put("/:id", (req, res) => {
 //   // expects {Petname: 'Lernantino', email: 'lernantino@gmail.com', password: 'password1234'}
