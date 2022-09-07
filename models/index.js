@@ -36,12 +36,12 @@ Post.hasMany(Comment, {
 })
 
 Pet.hasMany(Pet, {
-    foreignKey: friend_id,
+    foreignKey: 'friend_id',
     onDelete: 'SET NULL'
 })
 
 Pet.hasMany(Pet, {
-    foreignKey: friend_id,
+    foreignKey: 'friend_id',
     onDelete: 'SET NULL'
 })
 
