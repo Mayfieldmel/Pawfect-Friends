@@ -18,7 +18,7 @@ Comment.init(
         len: [1]
       }
     },
-    user_id: {
+    pet_id: {
       type: DataTypes.INTEGER,
       references: {
         model: 'pet',
