@@ -27,7 +27,7 @@ router.get("/:id", (req, res) => {
     include: [
       {
         model: Pet,
-        attributes: ["pet_name"],
+        attributes: ["id", "pet_name"],
       },
       {
         model: Post,
@@ -140,6 +140,34 @@ router.put("/:id", (req, res) => {
     .catch((err) => {
       console.log(err);
       res.status(500).json(err);
+    });
+});
+
+// PUT api/pets/friend/1
+router.put("/friend/:id", (req, res) => {
+  // edit pet info
+  Pet.update(req.body, {
+    individualHooks: true,
+    where: {
+      id: req.params.id,
+    },
+  })
+    .then((dbPetData) => {
+      if (req.body.friend_id.length) {
+        const friendsArr = req.body.friend_id.map((friend) => {
+          return {
+            friend,
+          };
+        });
+        return Friend.bulkCreate(friendsArr);
+      }
+      // if no product tags, just respond
+      res.status(200).json(product);
+    })
+    .then((petData) => res.status(200).json(petData))
+    .catch((err) => {
+      console.log(err);
+      res.status(400).json(err);
     });
 });
 
