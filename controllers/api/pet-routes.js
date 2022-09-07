@@ -56,27 +56,28 @@ router.get("/:id", (req, res) => {
     });
 });
 
-// router.post("/", (req, res) => {
-//   // expects {Petname: 'Lernantino', email: 'lernantino@gmail.com', password: 'password1234'}
-//   Pet.create({
-//     Petname: req.body.Petname,
-//     email: req.body.email,
-//     password: req.body.password,
-//   })
-//     .then((dbPetData) => {
-//       req.session.save(() => {
-//         req.session.Pet_id = dbPetData.id;
-//         req.session.Petname = dbPetData.Petname;
-//         req.session.loggedIn = true;
+// POST api/pet
+router.post("/", (req, res) => {
+  // create pet account
+  Pet.create({
+    pet_name: req.body.Petname,
+    email: req.body.email,
+    password: req.body.password,
+  })
+    .then((dbPetData) => {
+      req.session.save(() => {
+        req.session.Pet_id = dbPetData.id;
+        req.session.pet_name = dbPetData.pet_name;
+        req.session.loggedIn = true;
 
-//         res.json(dbPetData);
-//       });
-//     })
-//     .catch((err) => {
-//       console.log(err);
-//       res.status(500).json(err);
-//     });
-// });
+        res.json(dbPetData);
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
 
 // router.post("/login", (req, res) => {
 //   // expects {email: 'lernantino@gmail.com', password: 'password1234'}
