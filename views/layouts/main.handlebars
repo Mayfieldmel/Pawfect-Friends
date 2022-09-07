@@ -1,1 +1,46 @@
-main
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pawfect Friends</title>
+  <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+
+<body>
+  <header>
+      <h1>Pawfect Friends</h1>
+  </header>
+  
+  <nav>
+      <h2>
+        <a href="/">Home</a>
+        <a href="/">Dashboard</a>
+         {{#if loggedIn}}
+        <button id="logout" class="btn-no-style">logout</button>
+        {{else}}
+        <a href="/login">login</a>
+        {{/if}}
+      </h2>
+  </nav>
+
+  <div class="wrapper">
+  
+    
+    <main>
+      {{{ body }}}
+    </main>
+    <footer>
+      <h3>Thanks for visiting!</h3>
+      <h4>Designed by Melissa, Morgan, Rodolfo & Brian, 2022</h4>
+    </footer>
+  </div>
+
+</body>
+
+{{#if loggedIn}}
+<script src="/javascript/logout.js"></script>
+{{/if}}
+
+</html>
