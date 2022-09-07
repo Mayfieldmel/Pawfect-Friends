@@ -37,6 +37,9 @@ Pet.init(
         validate: {
           len: [4]
         }
+      },
+      friend_id: {
+        type: DataTypes.INTEGER
       }
     },
     {

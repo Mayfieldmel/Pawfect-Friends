@@ -15,19 +15,19 @@ Post.belongsTo(Pet, {
   onDelete: 'SET NULL'
 });
 
-Pet.belongsToMany(Pet, {
-  through: Friends,
-  as: 'follow',
-  foreignKey: 'friend_id',
-  onDelete: 'SET NULL'
-});
+// Pet.belongsToMany(Pet, {
+//   through: Friends,
+//   as: 'follow',
+//   foreignKey: 'friend_id',
+//   onDelete: 'SET NULL'
+// });
 
-Pet.belongsToMany(Pet, {
-    through: Friends,
-    as: 'follow',
-    foreignKey: 'pet_id',
-    onDelete: 'SET NULL'
-});
+// Pet.belongsToMany(Pet, {
+//     through: Friends,
+//     as: 'follow',
+//     foreignKey: 'pet_id',
+//     onDelete: 'SET NULL'
+// });
 
 Pet.hasMany(Comment, {
   foreignKey: 'pet_id',
