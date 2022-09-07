@@ -121,28 +121,27 @@ router.post("/logout", (req, res) => {
   }
 });
 
-// router.put("/:id", (req, res) => {
-//   // expects {Petname: 'Lernantino', email: 'lernantino@gmail.com', password: 'password1234'}
-
-//   // pass in req.body instead to only update what's passed through
-//   Pet.update(req.body, {
-//     individualHooks: true,
-//     where: {
-//       id: req.params.id,
-//     },
-//   })
-//     .then((dbPetData) => {
-//       if (!dbPetData) {
-//         res.status(404).json({ message: "No Pet found with this id" });
-//         return;
-//       }
-//       res.json(dbPetData);
-//     })
-//     .catch((err) => {
-//       console.log(err);
-//       res.status(500).json(err);
-//     });
-// });
+// PUT api/pet/1
+router.put("/:id", (req, res) => {
+  // edit pet info
+  Pet.update(req.body, {
+    individualHooks: true,
+    where: {
+      id: req.params.id,
+    },
+  })
+    .then((dbPetData) => {
+      if (!dbPetData) {
+        res.status(404).json({ message: "No Pet found with this id" });
+        return;
+      }
+      res.json(dbPetData);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
 
 // router.delete("/:id", withAuth, (req, res) => {
 //   Pet.destroy({
