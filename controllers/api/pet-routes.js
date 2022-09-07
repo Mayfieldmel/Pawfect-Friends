@@ -79,34 +79,35 @@ router.post("/", (req, res) => {
     });
 });
 
-// router.post("/login", (req, res) => {
-//   // expects {email: 'lernantino@gmail.com', password: 'password1234'}
-//   Pet.findOne({
-//     where: {
-//       email: req.body.email,
-//     },
-//   }).then((dbPetData) => {
-//     if (!dbPetData) {
-//       res.status(400).json({ message: "No Pet with that email address!" });
-//       return;
-//     }
+// POST api/pet/login
+router.post("/login", (req, res) => {
+  // get single pet
+  Pet.findOne({
+    where: {
+      email: req.body.email,
+    },
+  }).then((dbPetData) => {
+    if (!dbPetData) {
+      res.status(400).json({ message: "No Pet with that email address!" });
+      return;
+    }
+    // check for correct password
+    const validPassword = dbPetData.checkPassword(req.body.password);
 
-//     const validPassword = dbPetData.checkPassword(req.body.password);
+    if (!validPassword) {
+      res.status(400).json({ message: "Incorrect password!" });
+      return;
+    }
+    // create session
+    req.session.save(() => {
+      req.session.Pet_id = dbPetData.id;
+      req.session.Petname = dbPetData.Petname;
+      req.session.loggedIn = true;
 
-//     if (!validPassword) {
-//       res.status(400).json({ message: "Incorrect password!" });
-//       return;
-//     }
-
-//     req.session.save(() => {
-//       req.session.Pet_id = dbPetData.id;
-//       req.session.Petname = dbPetData.Petname;
-//       req.session.loggedIn = true;
-
-//       res.json({ Pet: dbPetData, message: "You are now logged in!" });
-//     });
-//   });
-// });
+      res.json({ Pet: dbPetData, message: "You are now logged in!" });
+    });
+  });
+});
 
 // router.post("/logout", (req, res) => {
 //   if (req.session.loggedIn) {
