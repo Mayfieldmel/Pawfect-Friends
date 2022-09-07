@@ -66,7 +66,7 @@ router.post("/", (req, res) => {
   })
     .then((dbPetData) => {
       req.session.save(() => {
-        req.session.Pet_id = dbPetData.id;
+        req.session.id = dbPetData.id;
         req.session.pet_name = dbPetData.pet_name;
         req.session.loggedIn = true;
 
