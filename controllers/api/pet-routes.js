@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const { Pet, Post, Comment } = require("../../models");
+const Friend = require("../../models/Friend");
 const withAuth = require("../../utils/auth");
 
 
@@ -7,7 +8,7 @@ const withAuth = require("../../utils/auth");
 router.get("/", (req, res) => {
   // get all Pets
   Pet.findAll({
-    attributes: { exclude: ["password"] },
+    attributes: { exclude: ["password"] }
   })
     .then((dbPetData) => res.json(dbPetData))
     .catch((err) => {
@@ -28,6 +29,8 @@ router.get("/:id", (req, res) => {
       {
         model: Pet,
         attributes: ["id", "pet_name"],
+        through: Friend,
+        as: "friend_id"
       },
       {
         model: Post,
@@ -143,33 +146,33 @@ router.put("/:id", (req, res) => {
     });
 });
 
-// PUT api/pets/friend/1
-router.put("/friend/:id", (req, res) => {
-  // edit pet info
-  Pet.update(req.body, {
-    individualHooks: true,
-    where: {
-      id: req.params.id,
-    },
-  })
-    .then((dbPetData) => {
-      if (req.body.friend_id.length) {
-        const friendsArr = req.body.friend_id.map((friend) => {
-          return {
-            friend,
-          };
-        });
-        return Friend.bulkCreate(friendsArr);
-      }
-      // if no product tags, just respond
-      res.status(200).json(product);
-    })
-    .then((petData) => res.status(200).json(petData))
-    .catch((err) => {
-      console.log(err);
-      res.status(400).json(err);
-    });
-});
+// // PUT api/pets/friend/1
+// router.put("/friend/:id", (req, res) => {
+//   // edit pet info
+//   Pet.update(req.body, {
+//     individualHooks: true,
+//     where: {
+//       id: req.params.id,
+//     },
+//   })
+//     .then((dbPetData) => {
+//       if (req.body.friend_id.length) {
+//         const friendsArr = req.body.friend_id.map((friend) => {
+//           return {
+//             friend,
+//           };
+//         });
+//         return Friend.bulkCreate(friendsArr);
+//       }
+//       // if no product tags, just respond
+//       res.status(200).json(product);
+//     })
+//     .then((petData) => res.status(200).json(petData))
+//     .catch((err) => {
+//       console.log(err);
+//       res.status(400).json(err);
+//     });
+// });
 
 // DELETE api/pets/1
 router.delete("/:id", (req, res) => {

@@ -2,6 +2,7 @@
 const Post = require('./Post');
 const Pet = require('./Pet');
 const Comment = require('./Comment');
+const Friend = require('./Friend');
 
 // create associations
 Pet.hasMany(Post, {
@@ -34,13 +35,17 @@ Post.hasMany(Comment, {
     onDelete: 'SET NULL'
 })
 
-Pet.hasMany(Pet, {
+Pet.belongsToMany(Pet, {
+    through: Friend,
+    as: 'following',
     foreignKey: 'friend_id',
     onDelete: 'SET NULL'
 })
 
-Pet.hasMany(Pet, {
-    foreignKey: 'friend_id',
+Pet.belongsToMany(Pet, {
+    through: Friend,
+    as: 'following',
+    foreignKey: 'pet_id',
     onDelete: 'SET NULL'
 })
 
