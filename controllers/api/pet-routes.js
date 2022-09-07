@@ -60,7 +60,7 @@ router.get("/:id", (req, res) => {
 router.post("/", (req, res) => {
   // create pet account
   Pet.create({
-    pet_name: req.body.Petname,
+    pet_name: req.body.pet_name,
     email: req.body.email,
     password: req.body.password,
   })
