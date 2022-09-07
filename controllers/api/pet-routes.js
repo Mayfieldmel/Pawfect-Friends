@@ -144,7 +144,7 @@ router.put("/:id", (req, res) => {
 });
 
 // DELETE api/pets/1
-router.delete("/:id", withAuth, (req, res) => {
+router.delete("/:id", (req, res) => {
   // remove pet info
   Pet.destroy({
     where: {
