@@ -44,7 +44,7 @@ Pet.belongsToMany(Pet, {
 
 Pet.belongsToMany(Pet, {
     through: Friend,
-    as: 'following',
+    as: 'followed',
     foreignKey: 'pet_id',
     onDelete: 'SET NULL'
 })

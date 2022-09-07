@@ -1,6 +1,7 @@
-const {Model, DataTypes} = require('sequelize');
+const {Model, DataTypes, Sequelize} = require('sequelize');
 const bcrypt = require('bcrypt');
 const sequelize = require('../config/connection');
+
 
 // create our User model
 class Pet extends Model {
@@ -39,10 +40,8 @@ Pet.init(
         }
       },
       friend_id: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        primaryKey: true,
-        autoIncrement: true
+        type: Sequelize.UUID,
+        unique: true,
       }
     },
     {
