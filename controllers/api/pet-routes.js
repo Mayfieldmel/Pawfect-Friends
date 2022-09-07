@@ -28,9 +28,9 @@ router.get("/:id", (req, res) => {
     include: [
       {
         model: Pet,
-        attributes: ["id", "pet_name"],
+        attributes: ["pet_name"],
         through: Friend,
-        as: "friend_id"
+        as: "friends"
       },
       {
         model: Post,
