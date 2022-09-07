@@ -3,7 +3,7 @@ const { Pet, Post, Comment } = require("../../models");
 const withAuth = require("../../utils/auth");
 
 
-// GET api/pet
+// GET api/pets
 router.get("/", (req, res) => {
   // get all Pets
   Pet.findAll({
@@ -16,7 +16,7 @@ router.get("/", (req, res) => {
     });
 });
 
-// GET api/pet/1
+// GET api/pets/1
 router.get("/:id", (req, res) => {
   // get single pet
   Pet.findOne({
@@ -56,7 +56,7 @@ router.get("/:id", (req, res) => {
     });
 });
 
-// POST api/pet
+// POST api/pets
 router.post("/", (req, res) => {
   // create pet account
   Pet.create({
@@ -79,7 +79,7 @@ router.post("/", (req, res) => {
     });
 });
 
-// POST api/pet/login
+// POST api/pets/login
 router.post("/login", (req, res) => {
   // get single pet with requested email
   Pet.findOne({
@@ -109,7 +109,7 @@ router.post("/login", (req, res) => {
   });
 });
 
-// POST api/pet/logout
+// POST api/pets/logout
 router.post("/logout", (req, res) => {
   if (req.session.loggedIn) {
     // end session
@@ -121,7 +121,7 @@ router.post("/logout", (req, res) => {
   }
 });
 
-// PUT api/pet/1
+// PUT api/pets/1
 router.put("/:id", (req, res) => {
   // edit pet info
   Pet.update(req.body, {
@@ -143,7 +143,7 @@ router.put("/:id", (req, res) => {
     });
 });
 
-// DELETE api/pet/1
+// DELETE api/pets/1
 router.delete("/:id", withAuth, (req, res) => {
   // remove pet info
   Pet.destroy({
