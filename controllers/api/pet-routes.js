@@ -143,23 +143,25 @@ router.put("/:id", (req, res) => {
     });
 });
 
-// router.delete("/:id", withAuth, (req, res) => {
-//   Pet.destroy({
-//     where: {
-//       id: req.params.id,
-//     },
-//   })
-//     .then((dbPetData) => {
-//       if (!dbPetData) {
-//         res.status(404).json({ message: "No Pet found with this id" });
-//         return;
-//       }
-//       res.json(dbPetData);
-//     })
-//     .catch((err) => {
-//       console.log(err);
-//       res.status(500).json(err);
-//     });
-// });
+// DELETE api/pet/1
+router.delete("/:id", withAuth, (req, res) => {
+  // remove pet info
+  Pet.destroy({
+    where: {
+      id: req.params.id,
+    },
+  })
+    .then((dbPetData) => {
+      if (!dbPetData) {
+        res.status(404).json({ message: "No Pet found with this id" });
+        return;
+      }
+      res.json(dbPetData);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
 
 module.exports = router;
