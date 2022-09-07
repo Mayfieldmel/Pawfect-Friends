@@ -8,7 +8,7 @@ router.get('/', (req, res) => {
   Post.findAll({
     attributes: [
       'id',
-      'post_url',
+      // 'post_url',
       'title',
       'created_at',
     //   [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id)'), 'vote_count']
@@ -16,15 +16,15 @@ router.get('/', (req, res) => {
     include: [
       {
         model: Comment,
-        attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
+        attributes: ['id', 'comment_text', 'post_id', 'pet_id', 'created_at'],
         include: {
-          model: User,
-          attributes: ['username']
+          model: Pet,
+          attributes: ['pet_name']
         }
       },
       {
-        model: User,
-        attributes: ['username']
+        model: Pet,
+        attributes: ['pet_name']
       }
     ]
   })
@@ -57,7 +57,7 @@ router.get('/post/:id', (req, res) => {
     },
     attributes: [
       'id',
-      'post_url',
+      // 'post_url',
       'title',
       'created_at',
     //   [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id)'), 'vote_count']
@@ -65,15 +65,15 @@ router.get('/post/:id', (req, res) => {
     include: [
       {
         model: Comment,
-        attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
+        attributes: ['id', 'comment_text', 'post_id', 'pet_id', 'created_at'],
         include: {
-          model: User,
-          attributes: ['username']
+          model: Pet,
+          attributes: ['pet_name']
         }
       },
       {
-        model: User,
-        attributes: ['username']
+        model: Pet,
+        attributes: ['pet_name']
       }
     ]
   })
