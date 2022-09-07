@@ -2,7 +2,7 @@
     "scripts": {
         "start": "node server.js",
         "watch": "nodemon server.js",
-        "seed": "need to add"
+        "seed": "node seeds/index.js"
     },
     "dependencies": {
         "bcrypt": "^5.0.1",

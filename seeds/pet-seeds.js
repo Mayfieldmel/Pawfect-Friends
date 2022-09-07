@@ -1,5 +1,5 @@
 const sequelize = require('../config/connection');
-const { Pet, Post } = require('../models');
+const { Pet } = require('../models');
 
 const petData = [
   {
@@ -56,4 +56,4 @@ const petData = [
 
 const seedPets = () => Pet.bulkCreate(petData, {individualHooks: true});
 
-module.exports = seedUsers;
+module.exports = seedPets;
