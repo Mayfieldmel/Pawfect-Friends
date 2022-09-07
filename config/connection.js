@@ -9,5 +9,5 @@ const sequelize = new Sequelize('pawFect_db', 'root', '', {
   dialect: 'mysql',
   port: 3306
 });
-
+ 
 module.exports = sequelize;
