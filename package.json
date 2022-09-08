@@ -1,1 +1,21 @@
-{"scripts":{"start":"node server.js","watch":"nodemon server.js","seed":"need to add"},"dependencies":{"bcrypt":"^5.0.1","connect-session-sequelize":"^7.1.5","dotenv":"^16.0.2","express":"^4.18.1","express-handlebars":"^6.0.6","express-session":"^1.17.3","mysql2":"^2.3.3","sequelize":"^6.21.4"}}
+{
+  "scripts": {
+    "start": "node server.js",
+    "watch": "nodemon server.js",
+    "seed": "need to add",
+    "build-css": "tailwindcss build src/styles.css -o public/styles.css"
+  },
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "connect-session-sequelize": "^7.1.5",
+    "dotenv": "^16.0.2",
+    "express": "^4.18.1",
+    "express-handlebars": "^6.0.6",
+    "express-session": "^1.17.3",
+    "mysql2": "^2.3.3",
+    "sequelize": "^6.21.4"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.1.8"
+  }
+}

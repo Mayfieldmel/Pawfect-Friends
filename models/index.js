@@ -20,6 +20,15 @@ Pet.hasMany(Comment, {
   onDelete: 'SET NULL'
 });
 
+// Pet.hasMany(Pet, {
+//   foreignKey: friend_id,
+//   onDelete: 'SET NULL'
+// })
+// Pet.hasMany(Pet, {
+//   foreignKey: friend_id,
+//   onDelete: 'SET NULL'
+// })
+
 Comment.belongsTo(Pet, {
   foreignKey: 'pet_id',
   onDelete: 'SET NULL'
