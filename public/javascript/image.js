@@ -6,9 +6,9 @@ function displayImg(event) {
     console.log(event.target)
     console.log(event.target.value)
     console.log(image)
-    
+    console.log(image.files)
         if (image.files) {
-
+            
             var reader = new FileReader();
             reader.onload = function(event) {
             document.createElement("img");
