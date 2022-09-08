@@ -6,6 +6,7 @@
     <title>Pawfect Friends</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <link rel="stylesheet" href="./styles.css" />
+    <script src="https://kit.fontawesome.com/083b13e5ba.js" crossorigin="anonymous"></script>
 
   </head>
 
@@ -54,15 +55,12 @@
           <a class="navbar-item">
             About
           </a>
-          <a class="navbar-item">
-            Jobs
-          </a>
-          <a class="navbar-item">
-            Contact
+          <a class="navbar-item"
+            <a href="https://github.com/Mayfieldmel/Pawfect-Friends" target="_blank">GitHub</a>
           </a>
           <hr class="navbar-divider">
-          <a class="navbar-item">
-            Report an issue
+          <a class="navbar-item" 
+            <a href="mailto:support@pawfectpets.com">Report an issue</a> 
           </a>
         </div>
       </div>
@@ -74,8 +72,12 @@
           <a class="button is-primary">
             <strong>Sign up</strong>
           </a>
-          <a class="button is-light">
-            Log in
+          <a class="button is-light"
+            {{#if loggedIn}}
+                <button id="logout" class="btn-no-style">logout</button>
+              {{else}}
+                <a href="/login">login</a>
+              {{/if}}
           </a>
         </div>
       </div>
@@ -84,35 +86,16 @@
 </nav>
 
 
-      {{!-- <nav>
-        <div class="container is-primary">
-          <ul>
-            <li>
-              <a href="/" class="flex items-center">Home</a>
-            </li>
-            <li>
-              <a href="/">Dashboard</a>
-            </li>
-            <li>
-              {{#if loggedIn}}
-                <button id="logout" class="btn-no-style">logout</button>
-              {{else}}
-                <a href="/login">login</a>
-              {{/if}}
-            </li>
-          </ul>
-        </div>
-      </nav> --}}
 
 
-      {{!-- <main>
-      {{!-- {{{ body }}} --}}
-      {{! </main> }}
+      <main>
+      {{{ body }}}
+      </main>
 
 <footer class="footer">
   <div class="content has-text-centered">
     <p>
-      <strong>Thanks for visiting!</strong> </br> <strong>Pawfect Friends</strong> designed by <a href="https://github.com/Mayfieldmel/Pawfect-Friends">Melissa, Morgan, Rodolfo & Brian, 2022</a>.
+      <strong>Thanks for visiting!</strong> </br> <strong>Pawfect Friends, </strong> The only social network for pets. </br> Designed by Melissa, Morgan, Rodolfo & Brian, 2022 </a> <p> <a href="https://github.com/Mayfieldmel/Pawfect-Friends" target="_blank"> <i class="fa fa-github" aria-hidden="true"></i></a></p> 
     </p>
   </div>
 </footer>
