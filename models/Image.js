@@ -50,9 +50,9 @@ Image.init(
     size: {
       type: DataTypes.INTEGER,
     },
-    post_id: {
+    user_id: {
       type: DataTypes.INTEGER,
-    }
+    },
   }
 )
 

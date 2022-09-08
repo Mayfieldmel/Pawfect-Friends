@@ -36,7 +36,6 @@ router.post('/', (req, res) => {
         size: req.body.size
     })
     .then((dbPetData) => {
-        upload.single("file"), uploadController.uploadFiles;
         res.json(dbPetData);
     })
     .catch((err) => {

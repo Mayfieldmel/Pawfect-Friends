@@ -1,10 +1,12 @@
-const image = document.querySelector('#input-files')
-const previewImage = document.querySelector('#preview-images')
+const image = document.querySelector('#input-files');
+const previewImage = document.querySelector('#preview-images');
+const submitImage = document.querySelector('#upload-image');
 
 function displayImg(event) {
     console.log(event.target.value)
     console.log(image)
     console.log(image.files)
+    console.log(image.files[0].type)
         if (image.files) {
             
             var reader = new FileReader();
@@ -20,8 +22,30 @@ function displayImg(event) {
         }
 }
 
+function saveImg(event) {
+    event.preventDefault();
+    if (image.files) {
+         const image = image.files[0];
+         const type = image.files[0].type;
+         const name = image.files[0].name;
+         const size = image.files[0].size;
+         const user_id = 3; // req.session.id
+    //      
+    //     name: {
+    //       type: DataTypes.STRING,
+    //     },
+    //     size: {
+    //       type: DataTypes.INTEGER,
+    //     },
+    //     post_id: {
+    //       type: DataTypes.INTEGER,
+      
+    }
+}
+
 
 image.addEventListener ("change", displayImg)
+submitImage.addEventListener ("submit", saveImg)
 
 // reader = new FileReader();
 // reader.readAsDataURL();
