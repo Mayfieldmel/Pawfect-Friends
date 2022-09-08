@@ -39,10 +39,6 @@ Pet.init(
           len: [4]
         }
       },
-      friend_id: {
-        type: Sequelize.UUID,
-        unique: true,
-      }
     },
     {
       hooks: {

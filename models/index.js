@@ -37,16 +37,16 @@ Post.hasMany(Comment, {
 
 Pet.belongsToMany(Pet, {
     through: Friend,
-    as: 'following',
+    as: 'friends',
     foreignKey: 'friend_id',
     onDelete: 'SET NULL'
 })
 
 Pet.belongsToMany(Pet, {
     through: Friend,
-    as: 'followed',
+    as: 'follows',
     foreignKey: 'pet_id',
     onDelete: 'SET NULL'
 })
 
-module.exports = { Pet, Post, Comment };
+module.exports = { Pet, Post, Comment, Friend};
