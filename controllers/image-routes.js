@@ -31,7 +31,9 @@ router.get("/", (req, res) => {
 router.post('/', (req, res) => {
     Image.create({
         image: req.body.image,
-        image_name: req.body.image_name
+        name: req.body.name,
+        type: req.body.type,
+        size: req.body.size
     })
     .then((dbPetData) => {
         upload.single("file"), uploadController.uploadFiles;
