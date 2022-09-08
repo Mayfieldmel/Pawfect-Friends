@@ -145,42 +145,11 @@ router.put("/:id", (req, res) => {
     });
 });
 
-// // // PUT api/pets/friend/1
-// router.put("/friend/:id", (req, res) => {
-//   // edit pet info
-//   Pet.update({
-//     individualHooks: true,
-//     attributes: ['friends'],
-//     where: {
-//       id: req.params.id,
-//     },
-//   })
-//     .then((dbPetData) => {
-//       if (req.body.friends.length) {
-//         const friendsArr = req.body.friend_id.map((friend) => {
-//           return {
-//             pet_id: req.params.id,
-//             friend_id: friend
-//           };
-//         });
-//         return Friend.bulkCreate(friendsArr);
-//       }
-//       // if no friends, just respond
-//       res.status(200).json(product);
-//     })
-//     .then((petData) => res.status(200).json(petData))
-//     .catch((err) => {
-//       console.log(err);
-//       res.status(400).json(err);
-//     });
-// });
-
 // // PUT api/pets/friend/1
 router.put("/friend/:id", (req, res) => {
   // edit pet info
-  Pet.update({
+  Pet.update(req.body, {
     individualHooks: true,
-    attributes: ['friends'],
     where: {
       id: req.params.id,
     },
@@ -219,6 +188,18 @@ router.put("/friend/:id", (req, res) => {
   });
 });
 
+// // // PUT api/pets/friend/1
+// router.put("/friend/:id", (req, res) => {
+//   // edit pet info
+//   Pet.update({
+//     individualHooks: true,
+//     attributes: ['friends'],
+//     where: {
+//       id: req.params.id,
+//     },
+//   })
+
+// })
 
 // DELETE api/pets/1
 router.delete("/:id", (req, res) => {

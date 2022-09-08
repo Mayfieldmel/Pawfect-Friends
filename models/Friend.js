@@ -23,7 +23,7 @@ Friend.init(
       type: DataTypes.INTEGER,
       references: {
         model: "pet",
-        key: "friend_id"
+        key: "id"
       }
     }
   },
