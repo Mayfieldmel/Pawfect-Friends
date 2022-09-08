@@ -26,6 +26,19 @@ router.get("/", (req, res) => {
 
     
   });
+ 
+// GET /img/display  
+router.get("/display", (req, res) => {
+    // get all images
+    Image.findAll({})
+        .then((dbImageData) => res.json(dbImageData))
+        .catch((err) => {
+          console.log(err);
+          res.status(500).json(err);
+        });
+        
+    
+  });
 
 // POST /img
 router.post('/', (req, res) => {

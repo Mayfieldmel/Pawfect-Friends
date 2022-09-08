@@ -1,4 +1,4 @@
-const {Model, DataTypes, Sequelize} = require('sequelize');
+const {Model, DataTypes} = require('sequelize');
 const bcrypt = require('bcrypt');
 const sequelize = require('../config/connection');
 
@@ -50,9 +50,15 @@ Image.init(
     size: {
       type: DataTypes.INTEGER,
     },
-    user_id: {
+    pet_id: {
       type: DataTypes.INTEGER,
     },
+  },
+  {
+    sequelize,
+    freezeTableName: true,
+    underscored: true,
+    modelName: 'image'
   }
 )
 
