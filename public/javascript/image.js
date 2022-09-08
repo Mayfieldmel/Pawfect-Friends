@@ -2,8 +2,6 @@ const image = document.querySelector('#input-files')
 const previewImage = document.querySelector('#preview-images')
 
 function displayImg(event) {
-    console.log("click");
-    console.log(event.target)
     console.log(event.target.value)
     console.log(image)
     console.log(image.files)
@@ -16,7 +14,7 @@ function displayImg(event) {
             img.setAttribute('src', event.target.result)
             previewImage.appendChild(img);
             };
-            reader.readAsDataURL(image.files);
+            reader.readAsDataURL(image.files[0]);
             console.log(reader)
           
         }
