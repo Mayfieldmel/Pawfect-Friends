@@ -27,7 +27,7 @@ router.get("/:id", (req, res) => {
     include: [
       {
         model: Pet,
-        attributes: ["pet_name"],
+        attributes: ["id", "pet_name"],
         through: Friend,
         as: "friends"
       },
@@ -188,18 +188,27 @@ router.put("/friend/:id", (req, res) => {
   });
 });
 
-// // // PUT api/pets/friend/1
-// router.put("/friend/:id", (req, res) => {
-//   // edit pet info
-//   Pet.update({
-//     individualHooks: true,
-//     attributes: ['friends'],
-//     where: {
-//       id: req.params.id,
-//     },
-//   })
+// POST api/pets
+router.post("/friend/", (req, res) => {
+  // create pet account
+  Friend.create({
+    pet_id: req.body.pet_id,
+    friend_id: req.body.friend_id,
+  })
+    .then((dbPetData) => {
+      req.session.save(() => {
+        req.session.id = dbPetData.pet_id;
+        req.session.friend_id = dbPetData.friend_id;
+        req.session.loggedIn = true;
 
-// })
+        res.json(dbPetData);
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
 
 // DELETE api/pets/1
 router.delete("/:id", (req, res) => {
