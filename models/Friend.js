@@ -1,9 +1,10 @@
 const { Model, DataTypes } = require('sequelize');
+
 const sequelize = require('../config/connection');
 
-class Comment extends Model {}
+class Friend extends Model {}
 
-Comment.init(
+Friend.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -11,34 +12,28 @@ Comment.init(
       primaryKey: true,
       autoIncrement: true
     },
-    comment_text: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        len: [1]
-      }
-    },
     pet_id: {
       type: DataTypes.INTEGER,
       references: {
-        model: 'pet',
-        key: 'id'
+        model: "pet",
+        key: "id"
       }
     },
-    post_id: {
+    friend_id: {
       type: DataTypes.INTEGER,
       references: {
-        model: 'post',
-        key: 'id'
+        model: "pet",
+        key: "id"
       }
     }
   },
   {
     sequelize,
+    timestamps: true,
     freezeTableName: true,
     underscored: true,
-    modelName: 'comment'
+    modelName: 'friend',
   }
 );
 
-module.exports = Comment;
+module.exports = Friend;

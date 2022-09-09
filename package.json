@@ -1,8 +1,7 @@
 {
   "scripts": {
     "start": "node server.js",
-    "watch": "nodemon server.js",
-    "seed": "need to add"
+    "watch": "nodemon server.js"
   },
   "dependencies": {
     "bcrypt": "^5.0.1",
@@ -12,7 +11,7 @@
     "express-handlebars": "^6.0.6",
     "express-session": "^1.17.3",
     "mysql2": "^2.3.3",
-    "sequelize": "^6.21.5"
+    "sequelize": "^6.21.4"
   },
   "name": "pawfect-friends",
   "description": "",

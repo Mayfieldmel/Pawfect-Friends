@@ -1,47 +1,126 @@
-<!DOCTYPE html>
 <html lang="en">
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pawfect Friends</title>
-  <link rel="stylesheet" href="/stylesheets/style.css">
-</head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pawfect Friends</title>
+    <link rel="icon" type="image/x-icon" href="/images/Pawfect-brand.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" href="./styles.css" />
+    <script src="https://kit.fontawesome.com/083b13e5ba.js" crossorigin="anonymous"></script>
 
-<body>
-  <header>
-      <h1>Pawfect Friends</h1>
-  </header>
-  
-  <nav>
-      <h2>
-        <a href="/">Home</a>
-        <a href="/">Dashboard</a>
-         {{#if loggedIn}}
-        <button id="logout" class="btn-no-style">logout</button>
-        {{else}}
-        <a href="/login">login</a>
-        {{/if}}
-      </h2>
-  </nav>
+  </head>
 
-  <div class="wrapper">
-  
-    
-    {{!-- <main>
-      {{!-- {{{ body }}} --}}
-    {{!-- </main> --}} 
+  <body>
+    <div class="wrapper">
 
-    <footer>
-      <h3>Thanks for visiting!</h3>
-      <h4>Designed by Melissa, Morgan, Rodolfo & Brian, 2022</h4>
-    </footer>
+      <header>
+        {{!-- <div class="logo">
+          <img
+            src="/images/Pawfect-long.png"
+            class="top-img"
+            alt="Pawfect logo"
+          />
+        </div> --}}
+      </header>
+
+      <nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="/">
+      <img src="/images/Pawfect-long.png" width="140" height="35">
+    </a>
+
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasic">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
   </div>
 
-</body>
+  <div id="navbarBasic" class="navbar-menu">
+    <div class="navbar-start">
+      <a class="navbar-item">
+        Profile
+      </a>
 
-{{#if loggedIn}}
-<script src="/javascript/logout.js"></script>
-{{/if}}
+      <a class="navbar-item">
+        Friends
+      </a>
+
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          More
+        </a>
+
+        <div class="navbar-dropdown">
+          <a class="navbar-item">
+            About
+          </a>
+          <a class="navbar-item"
+            href="https://github.com/Mayfieldmel/Pawfect-Friends" target="_blank">GitHub
+          </a>
+          <hr class="navbar-divider">
+          <a class="navbar-item" href="mailto:support@pawfectpets.com">Report an issue
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="navbar-end">
+      <div class="navbar-item">
+        <div class="buttons">
+          <a class="button is-info" href="/signup">
+            <strong>Sign up</strong>
+          </a>
+    
+            {{#if loggedIn}}
+                <button id="logout" class="button is-light">logout</button>
+              {{else}}
+                <a class="button is-light" href="/login">login</a>
+              {{/if}}
+    
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+
+      <main>
+        <div class="has-text-centered pt-4 is-size-5">
+          <h1><strong>Welcome to the world's first and only social networking site for pets!</strong></h1>
+          {{!-- <div>
+              </br>
+              <img class="placeholder is-justify-content-centered" src="/images/under-construction-dog.jpeg" alt="Under Contruction Dog">
+              </br>
+              </br>
+              <p class="is-size-6 px-5 mx-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam semper diam at erat pulvinar, at pulvinar felis blandit. Vestibulum volutpat tellus diam, consequat gravida libero rhoncus ut. Morbi maximus, leo sit amet vehicula eleifend, nunc dui porta orci, quis semper odio felis ut quam.</p>
+              </br>
+              </br>
+              </br>
+            </p>
+          </div>
+        </div> --}}
+      
+      
+      
+      {{{ body }}}
+      </main>
+
+<footer class="footer has-background-grey-lighter py-3">
+  <div class="content has-text-centered is-size-7">
+    <p>
+      <strong>Pawfect Friends, </strong> The only social network for pets. </br> Designed by Melissa, Morgan, Rodolfo & Brian, 2022 </a> 
+    </p>
+    <p><a href="https://github.com/Mayfieldmel/Pawfect-Friends" target="_blank"> <i class="fa fa-github is-size-5" aria-hidden="true"></i></a></p>
+  </div>
+</footer>
+
+    </div>
+  </body>
+
+  {{#if loggedIn}}
+    <script src="/javascript/logout.js"></script>
+  {{/if}}
 
 </html>
