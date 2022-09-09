@@ -7,20 +7,26 @@
         <button class="delete" aria-label="close"></button>
       </header>
       <section class="modal-card-body">
-        <div>
+        <div class="tile">
       <label for="post-title">Title</label>
       <input type="text" id="post-title" name="post-title" class="text-box" />
     </div>
+    <div class="tile">
     <label for="file">Image</label>
-    <input
-    type="file"
-    name="file"
-    id="input-files"
-    action="/upload"
-    method="POST"
-    enctype="multipart/form-data"
-    />
-    <div id="preview-images"></div>
+    <div class="file has-name is-boxed">
+    <label class="file-label">
+    <input class="file-input" type="file" name="image" id="input-files" action="/upload" method="POST" enctype="multipart/form-data">
+    <span class="file-cta">
+      <span class="file-icon">
+        <i class="fas fa-upload"></i>
+      </span>
+      <span class="file-label">
+        Choose a file…
+      </span>
+    </span>
+    </div>
+</div>
+<div class="tile">
     <label for="post-content">Text</label>
     <textarea name="post-content" class="text-box"></textarea>
       </section>

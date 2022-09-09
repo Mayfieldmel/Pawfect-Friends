@@ -1,4 +1,6 @@
 var modalEl = document.querySelector("#modal");
+const imageInput = document.querySelector("#input-files");
+const previewImage = document.querySelector("#preview-images");
 
 function modal(event) {
   console.log("click");
@@ -8,7 +10,7 @@ function modal(event) {
   document
     .querySelector("#add-post-form")
     .addEventListener("submit", postFormHandler);
-  document.querySelector("#input-files").addEventListener("change", displayImg)
+  document.querySelector("#input-files").addEventListener("change", displayImg);
 }
 
 // Functions to open and close a modal
@@ -27,6 +29,7 @@ async function postFormHandler(event) {
   const post_text = document.querySelector(
     'textarea[name="post-content"]'
   ).value;
+  const post_img = imageInput.files[0];
 
   const response = await fetch(`/api/posts`, {
     method: "POST",
@@ -34,7 +37,7 @@ async function postFormHandler(event) {
       title,
       post_img,
       post_text,
-      pet_id: req.session.id
+      pet_id: req.session.id,
     }),
     headers: {
       "Content-Type": "application/json",
@@ -48,25 +51,19 @@ async function postFormHandler(event) {
   }
 }
 
-
-const imageInput = document.querySelector('#input-files');
-const previewImage = document.querySelector('#preview-images');
-const submitImage = document.querySelector('#upload-image');
-
 async function displayImg(event) {
-        if (imageInput.files) {
-            console.log(imageInput.files)
-            var reader = new FileReader();
-            reader.onload =  function(event) {
-            document.createElement("img");
-            let img = document.createElement('img')
-            img.setAttribute('src', event.target.result)
-            previewImage.appendChild(img);
-            };
-            reader.readAsDataURL(imageInput.files[0]);
-        }
+  if (imageInput.files) {
+    console.log(imageInput.files);
+    var reader = new FileReader();
+    reader.onload = function (event) {
+      previewImage.textContent = "preview image"
+      document.createElement("img");
+      let img = document.createElement("img");
+      img.setAttribute("src", event.target.result);
+      previewImage.appendChild(img);
+    };
+    reader.readAsDataURL(imageInput.files[0]);
+  }
 }
-
-
 
 document.querySelector("#add-post-btn").addEventListener("click", modal);
