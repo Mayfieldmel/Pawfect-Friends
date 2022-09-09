@@ -10,7 +10,7 @@ async function displayImg(event) {
     // console.log(imageInput.files)
     // console.log(imageInput.files[0].type)
         if (imageInput.files) {
-            
+            console.log(imageInput.files)
             var reader = new FileReader();
             reader.onload =  function(event) {
             document.createElement("img");
@@ -20,7 +20,6 @@ async function displayImg(event) {
             };
             reader.readAsDataURL(imageInput.files[0]);
             console.log(reader)
-            console.log(reader.result)
           
         }
 }

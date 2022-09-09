@@ -58,7 +58,6 @@ router.get("/:id", (req, res) => {
 
 // POST api/pets
 router.post("/", (req, res) => {
-  console.log("line 63", req.body)
   // create pet account
   Pet.create({
     pet_name: req.body.pet_name,
@@ -87,7 +86,7 @@ router.post("/", (req, res) => {
         
       // });
     })
-    .then((productTagIds) => res.status(200).json(productTagIds))
+    .then((friends) => res.status(200).json(friends))
     .catch((err) => {
       console.log(err);
       res.status(500).json(err);
@@ -158,70 +157,6 @@ router.put("/:id", (req, res) => {
     });
 });
 
-// // PUT api/pets/friend/1
-router.put("/friend/:id", (req, res) => {
-  // edit pet info
-  Pet.update(req.body, {
-    individualHooks: true,
-    where: {
-      id: req.params.id,
-    },
-  })
-  .then((pet) => {
-    // find all associated friends from Friend
-    return Friend.findAll({ where: { pet_id: req.params.id } });
-  })
-  .then((friendsIds) => {
-    // get list of current friend_ids
-    const friendIds = friendsIds.map(({ friend_id }) => friend_id);
-    // create filtered list of new friend_ids
-    const newFriends = req.body.friends
-      .filter((friend_id) => !friendIds.includes(friend_id))
-      .map((friend_id) => {
-        return {
-          pet_id: req.params.id,
-          friend_id,
-        };
-      });
-    // figure out which ones to remove
-    const friendsToRemove = friendsIds
-      .filter(({ friend_id }) => !req.body.friends.includes(friend_id))
-      .map(({ id }) => id);
-
-    // run both actions
-    return Promise.all([
-      Friend.destroy({ where: { id: friendsToRemove } }),
-      Friend.bulkCreate(newFriends),
-    ]);
-  })
-  .then((updatedFriends) => res.json(updatedFriends))
-  .catch((err) => {
-    // console.log(err);
-    res.status(400).json(err);
-  });
-});
-
-// POST api/pets
-router.post("/friend/", (req, res) => {
-  // create pet account
-  Friend.create({
-    pet_id: req.body.pet_id,
-    friend_id: req.body.friend_id,
-  })
-    .then((dbPetData) => {
-      req.session.save(() => {
-        req.session.id = dbPetData.pet_id;
-        req.session.friend_id = dbPetData.friend_id;
-        req.session.loggedIn = true;
-
-        res.json(dbPetData);
-      });
-    })
-    .catch((err) => {
-      console.log(err);
-      res.status(500).json(err);
-    });
-});
 
 // DELETE api/pets/1
 router.delete("/:id", (req, res) => {
