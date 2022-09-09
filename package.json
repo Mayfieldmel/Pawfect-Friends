@@ -1,9 +1,7 @@
 {
   "scripts": {
     "start": "node server.js",
-    "watch": "nodemon server.js",
-    "seed": "need to add",
-    "build-css": "tailwindcss build src/styles.css -o public/styles.css"
+    "watch": "nodemon server.js"
   },
   "dependencies": {
     "bcrypt": "^5.0.1",
@@ -15,7 +13,19 @@
     "mysql2": "^2.3.3",
     "sequelize": "^6.21.4"
   },
-  "devDependencies": {
-    "tailwindcss": "^3.1.8"
-  }
+  "name": "pawfect-friends",
+  "description": "",
+  "version": "1.0.0",
+  "main": "server.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mayfieldmel/Pawfect-Friends.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Mayfieldmel/Pawfect-Friends/issues"
+  },
+  "homepage": "https://github.com/Mayfieldmel/Pawfect-Friends#readme"
 }
