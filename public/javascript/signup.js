@@ -6,7 +6,7 @@ async function signupFormHandler(event) {
     const password = document.querySelector('#password-signup').value.trim();
     
     console.log(
-      "pet_name", petname,
+      "pet_name", pet_name,
       "email", email,
       "password", password,
     )

@@ -65,18 +65,6 @@ router.post("/", (req, res) => {
     password: req.body.password,
   })
     .then((dbPetData) => {
-      // console.log("line 72", dbPetData)
-      // if (req.body.friends && req.body.friends.length) {
-      //   const friendsArr = req.body.friends.map((friend_id) => {
-      //     return {
-      //       pet_id: dbPetData.id,
-      //       friend_id,
-      //     };
-      //   });
-      //   console.log("pre-bulkCreate", friendsArr)
-      //   return Friend.bulkCreate(friendsArr)
-      // }
-      // res.status(200).json(dbPetData);
       req.session.save(() => {
         console.log("in req.session.save")
         req.session.id = dbPetData.id;
@@ -84,10 +72,8 @@ router.post("/", (req, res) => {
         req.session.loggedIn = true;
 
         res.json(dbPetData);
-        
-    });
+       });
     })
-    .then((friends) => res.status(200).json(friends))
     .catch((err) => {
       console.log(err);
       res.status(500).json(err);
