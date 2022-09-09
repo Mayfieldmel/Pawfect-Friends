@@ -1,6 +1,7 @@
-const {Model, DataTypes} = require('sequelize');
+const {Model, DataTypes, Sequelize} = require('sequelize');
 const bcrypt = require('bcrypt');
 const sequelize = require('../config/connection');
+
 
 // create our User model
 class Pet extends Model {
@@ -37,7 +38,7 @@ Pet.init(
         validate: {
           len: [4]
         }
-      }
+      },
     },
     {
       hooks: {
