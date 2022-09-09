@@ -11,6 +11,16 @@
       <label for="post-title">Title</label>
       <input type="text" id="post-title" name="post-title" class="text-box" />
     </div>
+    <label for="file">Image</label>
+    <input
+    type="file"
+    name="file"
+    id="input-files"
+    action="/upload"
+    method="POST"
+    enctype="multipart/form-data"
+    />
+    <div id="preview-images"></div>
     <label for="post-content">Text</label>
     <textarea name="post-content" class="text-box"></textarea>
       </section>
