@@ -23,7 +23,7 @@ async function postFormHandler(event) {
   event.preventDefault();
 
   const title = document.querySelector('input[name="post-title"]').value;
-  const post_content = document.querySelector(
+  const post_text = document.querySelector(
     'textarea[name="post-content"]'
   ).value;
 
