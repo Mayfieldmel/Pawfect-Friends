@@ -1,8 +1,9 @@
 // import all models
 const Post = require('./Post');
 const Pet = require('./Pet');
-// const Vote = require('./Vote');
 const Comment = require('./Comment');
+const Friend = require('./Friend');
+// const Image = require('./Image');
 
 // create associations
 Pet.hasMany(Post, {
@@ -44,4 +45,35 @@ Post.hasMany(Comment, {
     onDelete: 'SET NULL'
 })
 
-module.exports = { Pet, Post, Comment };
+// Pet.belongsToMany(Pet, {
+//     through: Friend,
+//     as: 'friends',
+//     foreignKey: 'friend_id',
+//     onDelete: 'SET NULL'
+// })
+
+Friend.belongsToMany(Pet, {
+    through: Friend,
+    as: 'friends',
+    foreignKey: 'friend_id',
+    onDelete: 'SET NULL'
+})
+
+Pet.belongsToMany(Friend, {
+  through: Friend,
+  as: 'follows',
+  foreignKey: 'pet_id',
+  onDelete: 'SET NULL'
+})
+
+// Image.belongsTo(Pet, {
+//     foreignKey: 'pet_id',
+//     onDelete: 'SET NULL'
+// })
+
+// Pet.hasMany(Image, {
+//     foreignKey: 'pet_id',
+//     onDelete: 'SET NULL'
+// })
+
+module.exports = { Pet, Post, Comment, Friend};
