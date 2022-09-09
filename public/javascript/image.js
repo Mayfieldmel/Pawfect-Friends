@@ -4,15 +4,15 @@ const submitImage = document.querySelector('#upload-image');
 const getImages = document.querySelector('#getAll');
 const display = document.querySelector('#displayAll');
 
-function displayImg(event) {
-    console.log(event.target.value)
-    console.log(imageInput)
-    console.log(imageInput.files)
-    console.log(imageInput.files[0].type)
+async function displayImg(event) {
+    // console.log(event.target.value)
+    // console.log(imageInput)
+    // console.log(imageInput.files)
+    // console.log(imageInput.files[0].type)
         if (imageInput.files) {
             
             var reader = new FileReader();
-            reader.onload = function(event) {
+            reader.onload =  function(event) {
             document.createElement("img");
             let img = document.createElement('img')
             img.setAttribute('src', event.target.result)
@@ -20,6 +20,7 @@ function displayImg(event) {
             };
             reader.readAsDataURL(imageInput.files[0]);
             console.log(reader)
+            console.log(reader.result)
           
         }
 }
@@ -67,10 +68,13 @@ function getAllImages(event) {
 
     })
     .then(content => {
-        console.log(content)
+        console.log(typeof content[0].image.data)
+    content.forEach(element => {
+        console.log("line 73", element)
+    });
       
     reader = new FileReader();
-    imageContent = reader.readAsDataURL(content);
+    imageContent = reader.readAsArrayBuffer(content[0].image.data);
     display.appendChild(imageContent)
     })
     

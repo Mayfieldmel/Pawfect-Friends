@@ -36,18 +36,25 @@ Post.hasMany(Comment, {
     onDelete: 'SET NULL'
 })
 
-Pet.belongsToMany(Pet, {
+// Pet.belongsToMany(Pet, {
+//     through: Friend,
+//     as: 'friends',
+//     foreignKey: 'friend_id',
+//     onDelete: 'SET NULL'
+// })
+
+Friend.belongsToMany(Pet, {
     through: Friend,
     as: 'friends',
     foreignKey: 'friend_id',
     onDelete: 'SET NULL'
 })
 
-Pet.belongsToMany(Pet, {
-    through: Friend,
-    as: 'follows',
-    foreignKey: 'pet_id',
-    onDelete: 'SET NULL'
+Pet.belongsToMany(Friend, {
+  through: Friend,
+  as: 'follows',
+  foreignKey: 'pet_id',
+  onDelete: 'SET NULL'
 })
 
 Image.belongsTo(Pet, {
