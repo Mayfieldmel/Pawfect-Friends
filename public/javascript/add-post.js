@@ -37,7 +37,7 @@ async function postFormHandler(event) {
       title,
       post_img,
       post_text,
-      pet_id: req.session.id,
+    //   pet_id: req.session.id --- add on backend
     }),
     headers: {
       "Content-Type": "application/json",
