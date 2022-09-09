@@ -44,4 +44,14 @@ Post.hasMany(Comment, {
     onDelete: 'SET NULL'
 })
 
+Pet.hasMany(Pet, {
+    foreignKey: 'friend_id',
+    onDelete: 'SET NULL'
+})
+
+Pet.hasMany(Pet, {
+    foreignKey: 'friend_id',
+    onDelete: 'SET NULL'
+})
+
 module.exports = { Pet, Post, Comment };
