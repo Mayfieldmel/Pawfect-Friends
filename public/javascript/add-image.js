@@ -1,8 +1,8 @@
 const imageInput = document.querySelector("#input-files");
 const previewImage = document.querySelector("#preview-images");
 const submitImage = document.querySelector("#upload-image");
-const getImages = document.querySelector("#getAll");
-const display = document.querySelector("#displayAll");
+// const getImages = document.querySelector("#getAll");
+// const display = document.querySelector("#displayAll");
 const reader = new FileReader();
 
 async function displayImg(event) {
