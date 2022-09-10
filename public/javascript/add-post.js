@@ -1,6 +1,5 @@
 var modalEl = document.querySelector("#modal");
-const imageInput = document.querySelector("#input-files");
-const previewImage = document.querySelector("#preview-images");
+
 
 function modal(event) {
   console.log("click");
@@ -29,12 +28,11 @@ async function postFormHandler(event) {
   const post_text = document.querySelector(
     'textarea[name="post-content"]'
   ).value;
-  //   const post_img = imageInput.files[0];
+
   const response = await fetch(`/api/posts`, {
     method: "POST",
     body: JSON.stringify({
       title,
-      //   post_img,
       post_text,
       //   pet_id: req.session.id --- add on backend
     }),
