@@ -19,7 +19,6 @@ async function displayImg(event) {
 
 async function saveImg(event) {
   event.preventDefault();
-  console.log("submit")
   if (imageInput.files) {
     const image = reader.result;
     const type = imageInput.files[0].type;
@@ -42,24 +41,47 @@ async function saveImg(event) {
     });
     if (response.ok) {
       console.log("success");
-      // document.location.replace('/');
+      document.location.replace('/');
     } else {
       alert(response.statusText);
     }
   }
 }
 
-function getAllImages(event) {
-  fetch("/img/display").then((response) => {
-    var content = response.json();
-    content.then((result) => {
-      let img = document.createElement("img");
-      img.setAttribute("src", result[0].image);
-      display.appendChild(img);
-    });
-  });
+// function getAllImages(event) {
+//   fetch("/img/display").then((response) => {
+//     var content = response.json();
+//     content.then((result) => {
+//       let img = document.createElement("img");
+//       img.setAttribute("src", result[0].image);
+//       display.appendChild(img);
+//     });
+//   });
+// }
+
+
+var modalEl = document.querySelector("#imgModal");
+
+
+function modal(event) {
+  console.log("click");
+  openModal();
+  document.querySelector("#close").addEventListener("click", closeModal);
+  document.querySelector(".delete").addEventListener("click", closeModal);
+  document
+    .querySelector("#add-img-form")
+    .addEventListener("submit", saveImg);
+  document.querySelector("#input-files").addEventListener("change", displayImg);
 }
 
-imageInput.addEventListener("change", displayImg);
-submitImage.addEventListener("submit", saveImg);
-getImages.addEventListener("click", getAllImages);
+// Functions to open and close a modal
+function openModal() {
+  modalEl.classList.add("is-active");
+}
+function closeModal($el) {
+  modalEl.classList.remove("is-active");
+}
+
+
+
+document.querySelector("#add-img-btn").addEventListener("click", modal);
