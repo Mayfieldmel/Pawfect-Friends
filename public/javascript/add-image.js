@@ -66,8 +66,8 @@ var modalEl = document.querySelector("#imgModal");
 function modal(event) {
   console.log("click");
   openModal();
-  document.querySelector("#close").addEventListener("click", closeModal);
-  document.querySelector(".delete").addEventListener("click", closeModal);
+  document.querySelector("#exit").addEventListener("click", closeModal);
+  document.querySelector("#end").addEventListener("click", closeModal);
   document
     .querySelector("#add-img-form")
     .addEventListener("submit", saveImg);
@@ -77,9 +77,11 @@ function modal(event) {
 // Functions to open and close a modal
 function openModal() {
   modalEl.classList.add("is-active");
+  return;
 }
 function closeModal() {
   modalEl.classList.remove("is-active");
+  return;
 }
 
 
