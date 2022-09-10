@@ -8,32 +8,33 @@
       </header>
       <section class="modal-card-body">
         <div>
-      <label for="post-title">Title</label>
-      <input type="text" id="post-title" name="post-title" class="text-box" />
-    </div>
-    <label for="file">Image</label>
-    <div class="file has-name is-boxed">
-  <label class="file-label">
-    <input class="file-input" type="file" name="image" id="input-files" action="/upload" method="POST" enctype="multipart/form-data">
-    <span class="file-cta">
-      <span class="file-icon">
-        <i class="fas fa-upload"></i>
-      </span>
-      <span class="file-label">
-        Choose a file…
-      </span>
-    </span>
-  </label>
-   <div id="preview-images"></div>
-</div>
-    <label for="post-content">Text</label>
-    <textarea name="post-content" class="text-box"></textarea>
+          <label for="post-title">Title</label>
+          <input type="text" id="post-title" name="post-title" class="text-box" />
+        </div>
+        <label for="file">Image</label>
+        <div class="file has-name is-boxed">
+          <label class="file-label">
+            <input class="file-input" type="file" name="image" id="input-files" action="/upload" method="POST"
+              enctype="multipart/form-data">
+            <span class="file-cta">
+              <span class="file-icon">
+                <i class="fas fa-upload"></i>
+              </span>
+              <span class="file-label">
+                Choose a file…
+              </span>
+            </span>
+          </label>
+          <div id="preview-images"></div>
+        </div>
+        <label for="post-content">Text</label>
+        <textarea name="post-content" class="text-box"></textarea>
       </section>
       <footer class="modal-card-foot">
         <button class="button is-success">Save changes</button>
         <button id="close" class="button">Cancel</button>
       </footer>
-      </form>
+    </form>
   </div>
 </div>
 
