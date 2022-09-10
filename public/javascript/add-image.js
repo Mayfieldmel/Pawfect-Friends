@@ -78,7 +78,7 @@ function modal(event) {
 function openModal() {
   modalEl.classList.add("is-active");
 }
-function closeModal($el) {
+function closeModal() {
   modalEl.classList.remove("is-active");
 }
 
