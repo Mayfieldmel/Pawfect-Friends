@@ -16,3 +16,17 @@
     </p>
   </div>
 </div>
+
+<div class="has-text-centered pt-4 is-size-5">
+          <h1><strong>Welcome to the world's ONLY social networking site for pets!</strong></h1>
+
+<div class="one-image">            
+  <a href="">             
+    <img id="imgRand" src="" class="giThumbnail" alt="random pet image">
+  </a>         
+</div> 
+
+<script language="javascript">
+  var numRand = Math.floor(Math.random()*(7));
+  document.getElementById("imgRand").src = "./images/"+numRand+".jpeg";
+</script>
