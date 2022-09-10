@@ -1,0 +1,26 @@
+<div class="navbar-end">
+      <div class="navbar-item">
+        <div class="buttons">
+
+          {{#if loggedIn}} 
+          <a class="button is-info hide" id="signup-button hide" href="/signup">
+            <strong>Sign up</strong>
+          </a>
+          {{else}}
+           <a class="button is-info" id="signup-button hide" href="/signup">
+            <strong>Sign up</strong>
+          </a>
+           {{/if}}
+          
+
+
+            {{#if loggedIn}}
+                <button id="logout" class="button is-light">logout</button>
+              {{else}}
+                <a class="button is-light" href="/login">login</a>
+              {{/if}}
+    
+        </div>
+      </div>
+    </div>
+  </div>
