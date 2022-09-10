@@ -70,7 +70,7 @@ router.post("/", (req, res) => {
     title: req.body.title,
     post_text: req.body.post_text,
     post_img: req.body.post_img,
-    pet_id: req.body.pet_id,
+    pet_id: req.session.pet_id,
   })
     .then((dbPostData) => res.json(dbPostData))
     .catch((err) => {
