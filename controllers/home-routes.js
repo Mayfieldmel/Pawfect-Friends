@@ -50,7 +50,13 @@ router.get('/signup', withAuthSign, (req, res) => {
   res.render('signup')
 });
 
+router.get('/profile', withAuthSign, (req, res) => {
+  res.render('profile')
+});
 
+router.get('/friend', withAuthSign, (req, res) => {
+  res.render('friend')
+});
 
 router.get('/post/:id', (req, res) => {
   Post.findOne({
