@@ -21,7 +21,7 @@ Post.init(
         type: DataTypes.TEXT,
       },
       post_img: {
-        type: DataTypes.BLOB("long"),
+        type: DataTypes.TEXT,
       },
       pet_id: {
         type: DataTypes.INTEGER,

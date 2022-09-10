@@ -39,7 +39,7 @@ Image.init(
         autoIncrement: true
     },
     image: {
-        type: DataTypes.BLOB("long"),
+        type: DataTypes.TEXT,
       },
     type: {
       type: DataTypes.STRING,
