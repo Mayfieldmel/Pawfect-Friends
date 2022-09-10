@@ -43,7 +43,9 @@ router.get('/', (req, res) => {
 });
 
 router.get('/login', withAuthSign, (req, res) => {
-  res.render('login');
+  res.render('login', {
+    loggedIn: req.session.loggedIn
+  })
 });
 
 router.get('/signup', withAuthSign, (req, res) => {
@@ -51,11 +53,15 @@ router.get('/signup', withAuthSign, (req, res) => {
 });
 
 router.get('/profile', withAuthSign, (req, res) => {
-  res.render('profile')
+  res.render('profile', {
+    loggedIn: req.session.loggedIn
+  })
 });
 
 router.get('/friend', withAuthSign, (req, res) => {
-  res.render('friend')
+  res.render('friend', {
+    loggedIn: req.session.loggedIn
+  })
 });
 
 router.get('/post/:id', (req, res) => {
