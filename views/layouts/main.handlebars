@@ -26,7 +26,7 @@
 
       <nav class="navbar" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
-    <a class="navbar-item" href="#">
+    <a class="navbar-item" href="/">
       <img src="/images/Pawfect-long.png" width="140" height="35">
     </a>
 
@@ -57,11 +57,10 @@
             About
           </a>
           <a class="navbar-item"
-            <a href="https://github.com/Mayfieldmel/Pawfect-Friends" target="_blank">GitHub</a>
+            href="https://github.com/Mayfieldmel/Pawfect-Friends" target="_blank">GitHub
           </a>
           <hr class="navbar-divider">
-          <a class="navbar-item" 
-            <a href="mailto:support@pawfectpets.com">Report an issue</a> 
+          <a class="navbar-item" href="mailto:support@pawfectpets.com">Report an issue
           </a>
         </div>
       </div>
@@ -70,16 +69,16 @@
     <div class="navbar-end">
       <div class="navbar-item">
         <div class="buttons">
-          <a class="button is-info">
+          <a class="button is-info" href="/signup">
             <strong>Sign up</strong>
           </a>
-          <a class="button is-light"
+    
             {{#if loggedIn}}
-                <button id="logout" class="btn-no-style">logout</button>
+                <button id="logout" class="button is-light">logout</button>
               {{else}}
-                <a href="/login">login</a>
+                <a class="button is-light" href="/login">login</a>
               {{/if}}
-          </a>
+    
         </div>
       </div>
     </div>
@@ -90,7 +89,7 @@
       <main>
         <div class="has-text-centered pt-4 is-size-5">
           <h1><strong>Welcome to the world's first and only social networking site for pets!</strong></h1>
-          <div>
+          {{!-- <div>
               </br>
               <img class="placeholder is-justify-content-centered" src="/images/under-construction-dog.jpeg" alt="Under Contruction Dog">
               </br>
@@ -101,7 +100,7 @@
               </br>
             </p>
           </div>
-        </div>
+        </div> --}}
       
       
       
