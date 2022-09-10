@@ -144,7 +144,7 @@ router.put("/:id", (req, res) => {
     });
 });
 
-// // PUT api/friend/1
+// // PUT api/pets/friend/1
 router.put("/friend/:id", (req, res) => {
     // edit pet info
     Pet.update(req.body, {
@@ -157,6 +157,7 @@ router.put("/friend/:id", (req, res) => {
       return Friend.findAll({ where: { pet_id: req.params.id } });
     })
     .then((friendsIds) => {
+      console.log(friendsIds)
       // get list of current friend_ids
       const friendIds = friendsIds.map(({ friend_id }) => friend_id);
       // create filtered list of new friend_ids
@@ -174,12 +175,15 @@ router.put("/friend/:id", (req, res) => {
       //   .map(({ id }) => id);
   
       // run both actions
-      return Promise.all([
+      console.log("new", newFriends)
+      // return Promise.all([
         // Friend.destroy({ where: { id: friendsToRemove } }),
-        Friend.bulkCreate(newFriends),
-      ]);
+        return Friend.bulkCreate(newFriends);
+      // ]);
     })
-    .then((updatedFriends) => res.json(updatedFriends))
+    .then((updatedFriends) => {
+      console.log(updatedFriends)
+      res.json(updatedFriends)})
     .catch((err) => {
       // console.log(err);
       res.status(400).json(err);
