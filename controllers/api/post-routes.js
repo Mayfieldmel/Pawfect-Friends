@@ -3,22 +3,22 @@ const sequelize = require("../../config/connection");
 const { Post, Pet, Comment } = require("../../models");
 // const withAuth = require("../../utils/auth");
 
-// get all users
+// get all Pets
 router.get("/", (req, res) => {
   console.log("======================");
   Post.findAll({
-    attributes: ["id", "post_url", "title", "created_at"],
+    attributes: ["id", "title", "post_text", "post_img", "created_at"],
     include: [
       {
         model: Comment,
         attributes: ["id", "comment_text", "post_id", "pet_id", "created_at"],
         include: {
-          model: User,
+          model: Pet,
           attributes: ["pet_name"],
         },
       },
       {
-        model: User,
+        model: Pet,
         attributes: ["pet_name"],
       },
     ],
@@ -35,18 +35,18 @@ router.get("/:id", (req, res) => {
     where: {
       id: req.params.id,
     },
-    attributes: ["id", "post_url", "title", "created_at"],
+    attributes: ["id", "title", "post_text", "post_img", "created_at"],
     include: [
       {
         model: Comment,
         attributes: ["id", "comment_text", "post_id", "pet_id", "created_at"],
         include: {
-          model: User,
+          model: Pet,
           attributes: ["pet_name"],
         },
       },
       {
-        model: User,
+        model: Pet,
         attributes: ["pet_name"],
       },
     ],
@@ -65,10 +65,11 @@ router.get("/:id", (req, res) => {
 });
 
 router.post("/", (req, res) => {
-  // expects {title: 'Taskmaster goes public!', post_url: 'https://taskmaster.com/press', pet_id: 1}
+  // expects {title: 'Taskmaster goes public!', post_text: 'https://taskmaster.com/press', pet_id: 1}
   Post.create({
     title: req.body.title,
-    post_url: req.body.post_url,
+    post_text: req.body.post_text,
+    post_img: req.body.post_img,
     pet_id: req.body.pet_id,
   })
     .then((dbPostData) => res.json(dbPostData))
