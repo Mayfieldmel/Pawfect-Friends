@@ -4,7 +4,7 @@ const submitImage = document.querySelector("#upload-image");
 // const getImages = document.querySelector("#getAll");
 // const display = document.querySelector("#displayAll");
 const reader = new FileReader();
-
+ 
 async function displayImg(event) {
   const file = event.target.files[0];
   // Encode the file using the FileReader API
@@ -16,7 +16,7 @@ async function displayImg(event) {
   };
   reader.readAsDataURL(file);
 }
-
+ 
 async function saveImg(event) {
   event.preventDefault();
   if (imageInput.files) {

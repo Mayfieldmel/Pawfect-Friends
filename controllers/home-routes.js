@@ -48,16 +48,27 @@ router.get('/login', withAuthSign, (req, res) => {
 
 router.get('/signup', withAuthSign, (req, res) => {
   res.render('signup')
+  .catch(err => {
+    console.log(err);
+    res.status(500).json(err);
+  });
 });
 
 router.get('/profile', withAuthSign, (req, res) => {
   res.render('profile', {
     loggedIn: req.session.loggedIn
   })
+  
 });
 
 router.get('/friend', withAuthSign, (req, res) => {
   res.render('friend', {
+    loggedIn: req.session.loggedIn
+  })
+});
+
+router.get('/dashboard', withAuthSign, (req, res) => {
+  res.render('dashboard', {
     loggedIn: req.session.loggedIn
   })
 });
