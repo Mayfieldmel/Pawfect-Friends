@@ -1,0 +1,22 @@
+<h4>Upload Image</h4>
+<form id="upload-image">
+<div class="form-group">
+    <input
+    type="file"
+    name="file"
+    id="input-files"
+    action="/upload"
+    method="POST"
+    enctype="multipart/form-data"
+    />
+</div>
+<button type="submit">Submit</button>
+</form>
+
+<div id="preview-images"></div>
+
+<button id="getAll">Get All Images</button>
+
+<div id="displayAll">All Images</div>
+
+<script src="/javascript/image.js"></script>
