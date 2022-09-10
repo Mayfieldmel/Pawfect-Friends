@@ -30,7 +30,6 @@ async function postFormHandler(event) {
     'textarea[name="post-content"]'
   ).value;
   //   const post_img = imageInput.files[0];
-
   const response = await fetch(`/api/posts`, {
     method: "POST",
     body: JSON.stringify({
@@ -50,7 +49,6 @@ async function postFormHandler(event) {
     alert(response.statusText);
   }
 }
-
 // async function displayImg(event) {
 //   if (imageInput.files) {
 //     console.log(imageInput.files);
@@ -65,5 +63,6 @@ async function postFormHandler(event) {
 //     reader.readAsDataURL(imageInput.files[0]);
 //   }
 // }
+
 
 document.querySelector("#add-post-btn").addEventListener("click", modal);
