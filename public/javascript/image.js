@@ -21,9 +21,7 @@ async function saveImg(event) {
   event.preventDefault();
   console.log("submit")
   if (imageInput.files) {
-    console.log(imageInput.files)
     const image = reader.result;
-    console.log(image)
     const type = imageInput.files[0].type;
     const name = imageInput.files[0].name;
     const size = imageInput.files[0].size;
@@ -53,9 +51,7 @@ async function saveImg(event) {
 
 function getAllImages(event) {
   fetch("/img/display").then((response) => {
-    console.log(response);
     var content = response.json();
-    console.log(content);
     content.then((result) => {
       let img = document.createElement("img");
       img.setAttribute("src", result[0].image);
