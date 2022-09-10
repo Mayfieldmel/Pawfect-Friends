@@ -10,7 +10,7 @@ function modal(event) {
   document
     .querySelector("#add-post-form")
     .addEventListener("submit", postFormHandler);
-  document.querySelector("#input-files").addEventListener("change", displayImg);
+  //   document.querySelector("#input-files").addEventListener("change", displayImg);
 }
 
 // Functions to open and close a modal
@@ -29,15 +29,14 @@ async function postFormHandler(event) {
   const post_text = document.querySelector(
     'textarea[name="post-content"]'
   ).value;
-  const post_img = imageInput.files[0];
-
+  //   const post_img = imageInput.files[0];
   const response = await fetch(`/api/posts`, {
     method: "POST",
     body: JSON.stringify({
       title,
-      post_img,
+      //   post_img,
       post_text,
-    //   pet_id: req.session.id --- add on backend
+      //   pet_id: req.session.id --- add on backend
     }),
     headers: {
       "Content-Type": "application/json",
@@ -45,25 +44,25 @@ async function postFormHandler(event) {
   });
 
   if (response.ok) {
-    document.location.replace("//");
+    document.location.replace("/");
   } else {
     alert(response.statusText);
   }
 }
+// async function displayImg(event) {
+//   if (imageInput.files) {
+//     console.log(imageInput.files);
+//     var reader = new FileReader();
+//     reader.onload = function (event) {
+//       previewImage.textContent = "preview image";
+//       document.createElement("img");
+//       let img = document.createElement("img");
+//       img.setAttribute("src", event.target.result);
+//       previewImage.appendChild(img);
+//     };
+//     reader.readAsDataURL(imageInput.files[0]);
+//   }
+// }
 
-async function displayImg(event) {
-  if (imageInput.files) {
-    console.log(imageInput.files);
-    var reader = new FileReader();
-    reader.onload = function (event) {
-      previewImage.textContent = "preview image"
-      document.createElement("img");
-      let img = document.createElement("img");
-      img.setAttribute("src", event.target.result);
-      previewImage.appendChild(img);
-    };
-    reader.readAsDataURL(imageInput.files[0]);
-  }
-}
 
 document.querySelector("#add-post-btn").addEventListener("click", modal);
