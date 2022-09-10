@@ -5,11 +5,6 @@ async function signupFormHandler(event) {
     const email = document.querySelector('#email-signup').value.trim();
     const password = document.querySelector('#password-signup').value.trim();
     
-    console.log(
-      "pet_name", pet_name,
-      "email", email,
-      "password", password,
-    )
     if (pet_name && email && password) {
       const response = await fetch('/api/pets', {
         method: 'post',
