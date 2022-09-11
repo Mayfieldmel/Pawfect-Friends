@@ -41,7 +41,7 @@ async function saveImg(event) {
     });
     if (response.ok) {
       console.log("success");
-      document.location.replace('/');
+      document.location.replace('/dashboard');
     } else {
       alert(response.statusText);
     }
@@ -60,10 +60,10 @@ async function saveImg(event) {
 // }
 
 
-var modalEl = document.querySelector("#imgModal");
+var imgModalEl = document.querySelector("#imgModal");
 
 
-function modal(event) {
+function imgModal(event) {
   console.log("click");
   openModal();
   document.querySelector("#exit").addEventListener("click", closeModal);
@@ -76,14 +76,14 @@ function modal(event) {
 
 // Functions to open and close a modal
 function openModal() {
-  modalEl.classList.add("is-active");
+  imgModalEl.classList.add("is-active");
   return;
 }
 function closeModal() {
-  modalEl.classList.remove("is-active");
+  imgModalEl.classList.remove("is-active");
   return;
 }
 
 
 
-document.querySelector("#add-img-btn").addEventListener("click", modal);
+document.querySelector("#add-img-btn").addEventListener("click", imgModal);
