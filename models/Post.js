@@ -20,9 +20,6 @@ Post.init(
       post_text: {
         type: DataTypes.TEXT,
       },
-      post_img: {
-        type: DataTypes.TEXT,
-      },
       pet_id: {
         type: DataTypes.INTEGER,
         references: {

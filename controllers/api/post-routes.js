@@ -65,11 +65,9 @@ router.get("/:id", (req, res) => {
 });
 
 router.post("/", (req, res) => {
-  // expects {title: 'Taskmaster goes public!', post_text: 'https://taskmaster.com/press', pet_id: 1}
   Post.create({
     title: req.body.title,
     post_text: req.body.post_text,
-    post_img: req.body.post_img,
     pet_id: req.session.pet_id,
   })
     .then((dbPostData) => res.json(dbPostData))
