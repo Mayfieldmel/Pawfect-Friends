@@ -1,0 +1,46 @@
+.hide {
+  display: none;
+}
+
+/* add-post.handlebars templates */
+.item {
+  list-style-type: none;
+  border: 2px solid var(--secondary-color);
+  margin: 10px 0;
+  margin-right: 30px;
+  margin-left: 20px;
+  background-color: var(--tertiary-color)
+}
+
+.title {
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+  padding: 10px;
+}
+
+.title a {
+  color: var(--primary-color)
+}
+
+.title h2 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.content {
+  padding: 0 30px;
+  color: var(--secondary-color)
+} 
+
+.form {
+  margin-bottom: 20px;
+  font-size: 16px;
+}
+
+.text-box {
+  border: 2px solid var(--secondary-color);
+  width: 97%;
+  background-color: var(--tertiary-color);
+}

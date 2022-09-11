@@ -47,4 +47,10 @@ router.get('/:id', withAuthSign, (req, res) => {
       });
   });
 
+  router.get('/add-post', withAuthSign, (req, res) => {
+    res.render('add-post', {
+      loggedIn: req.session.loggedIn
+    })
+  });
+
   module.exports = router;
