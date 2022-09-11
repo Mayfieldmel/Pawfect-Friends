@@ -54,12 +54,12 @@ router.get('/signup', withAuthSign, (req, res) => {
   });
 });
 
-router.get('/profile', withAuthSign, (req, res) => {
-  res.render('profile', {
-    loggedIn: req.session.loggedIn
-  })
+// router.get('/profile', withAuthSign, (req, res) => {
+//   res.render('profile', {
+//     loggedIn: req.session.loggedIn
+//   })
   
-});
+// });
 
 router.get('/friend', withAuthSign, (req, res) => {
   res.render('friend', {

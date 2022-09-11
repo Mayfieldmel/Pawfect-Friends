@@ -1,7 +1,15 @@
-{{>construction}}
-
+{{!-- list of user posts --}}
+<h1>PET</h1>
+<ul>
+  {{!-- display list of posts --}}
+  {{#each posts as |post|}}
+  <li>
+    {{> post-info post}}
+  </li>
+  {{/each}}
+</ul>
 <div class="modals has-text-centered">
-{{>add-image}}
+{{!-- {{>add-image}} --}}
 {{>add-post}}
 
 </div>
