@@ -1,6 +1,7 @@
-<div id="modal" class="modal">
-  <div class="modal-background"></div>
+<div id="modal" class="modal container">
+  <div class="modal-background">
   <div class="modal-card">
+    {{!-- <div class="tile is-ancestor"> --}}
     <form id="add-post-form">
       <header class="modal-card-head">
         <p class="modal-card-title">Add Post</p>
@@ -14,13 +15,44 @@
         <label for="post-content">Text</label>
         <textarea name="post-content" class="text-box"></textarea>
       </section>
+      {{!-- <div class="tile is-child-box"> --}}
+      <form id="add-img-form">
+      {{!-- <header class="modal-card-head">
+        <p class="modal-card-title">Add Image</p>
+        <button class="delete" aria-label="close" id="exit"></button>
+      </header> --}}
+      {{!-- <section class="modal-card-body"> --}}
+        <label for="file">Image</label>
+        <div class="file has-name is-boxed">
+          <label class="file-label">
+            <input class="file-input" type="file" name="image" id="input-files" action="/upload" method="POST"
+              enctype="multipart/form-data">
+            <span class="file-cta">
+              <span class="file-icon">
+                <i class="fas fa-upload"></i>
+              </span>
+              <span class="file-label">
+                Choose a file…
+              </span>
+            </span>
+          </label>
+          <div id="preview-images"></div>
+        </div>
+      {{!-- <footer class="modal-card-foot"> --}}
+        <button class="button is-success" type="submit">Upload image</button>
+      {{!-- </footer> --}}
+    </form>
+      {{!-- </div> --}}
+    </div>
       <footer class="modal-card-foot">
         <button class="button is-success" type="submit">Save changes</button>
         <button id="close" class="button">Cancel</button>
       </footer>
     </form>
-  </div>
+    {{!-- </div> --}}
+</div>
 </div>
 
 <button id="add-post-btn" class="button is-primary">+ Post</button>
 <script src="/javascript/add-post.js"></script>
+{{!-- <script src="/javascript/add-image.js"></script> --}}

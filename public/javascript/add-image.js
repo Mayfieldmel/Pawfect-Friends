@@ -60,12 +60,12 @@ async function saveImg(event) {
 // }
 
 
-var modalEl = document.querySelector("#imgModal");
+var imgModalEl = document.querySelector("#imgModal");
 
 
 function modal(event) {
-  console.log("click");
-  openModal();
+  // console.log("click");
+  // openModal();
   document.querySelector("#exit").addEventListener("click", closeModal);
   document.querySelector("#end").addEventListener("click", closeModal);
   document
@@ -75,15 +75,15 @@ function modal(event) {
 }
 
 // Functions to open and close a modal
-function openModal() {
-  modalEl.classList.add("is-active");
-  return;
-}
+// function openModal() {
+//   imgModalEl.classList.add("is-active");
+//   return;
+// }
 function closeModal() {
-  modalEl.classList.remove("is-active");
+  imgModalEl.classList.remove("is-active");
   return;
 }
 
 
 
-document.querySelector("#add-img-btn").addEventListener("click", modal);
+// document.querySelector("#add-img-btn").addEventListener("click", modal);
