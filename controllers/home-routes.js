@@ -37,32 +37,31 @@ router.get("/", (req, res) => {
     });
 });
 
-router.get("/login", withAuthSign, (req, res) => {
-  res.render("login", {
-    loggedIn: req.session.loggedIn,
-  });
+router.get('/login', (req, res) => {
+  res.render('login', {
+    loggedIn: req.session.loggedIn
+  })
 });
 
-router.get("/signup", withAuthSign, (req, res) => {
-  res.render("signup").catch((err) => {
-    console.log(err);
-    res.status(500).json(err);
-  });
+router.get('/signup', (req, res) => {
+  res.render('signup', {  
+  })
 });
 
-router.get("/friend", withAuthSign, (req, res) => {
-  res.render("friend", {
-    loggedIn: req.session.loggedIn,
-  });
+router.get('/friend', withAuthSign, (req, res) => {
+  res.render('friend', {
+    loggedIn: req.session.loggedIn
+  })
 });
 
-// router.get("/dashboard", withAuthSign, (req, res) => {
-//   res.render("dashboard", {
-//     loggedIn: req.session.loggedIn,
-//   });
-// });
+router.get('/dashboard', withAuthSign, (req, res) => {
+  res.render('dashboard', {
+    loggedIn: req.session.loggedIn
+  })
+});
 
-router.get("/post/:id", (req, res) => {
+
+router.get('/post/:id', (req, res) => {
   Post.findOne({
     where: {
       id: req.params.id,
