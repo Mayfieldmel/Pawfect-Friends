@@ -1,9 +1,12 @@
 {{!-- create new post form --}}
 <section class="section-margins">
   <div class="title">
-    <h2>Create New Post</h2>
+    <h2> ➕ Create New Post</h2>
   </div>
+  <div class="box">
   {{> add-image}}
+  <br/>
+  <br/>
   <form id="add-post-form">
     <div>
       <label for="post-title">Title</label>
@@ -11,15 +14,13 @@
     </div>
     <label for="post-text">Text</label>
     <textarea name="post-text" class="textarea"></textarea>
-   
+    <br/>
     <button type="submit" class="button is-primary">Create</button>
     <a href='/profile'>
       <button type="button" class="button is-primary" id="cancel-btn">Cancel</button>
     </a>
   </form>
-  <br>
- 
-   
+</div>
 </section>
 
 <script src="/javascript/add-post.js"></script>

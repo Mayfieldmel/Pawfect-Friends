@@ -1,23 +1,3 @@
-var modalEl = document.querySelector("#modal");
-
-
-// function modal(event) {
-//   console.log("click");
-//   openModal();
-//   document.querySelector("#close").addEventListener("click", closeModal);
-//   document.querySelector(".delete").addEventListener("click", closeModal);
-  
-//   //   document.querySelector("#input-files").addEventListener("change", displayImg);
-// }
-
-// // Functions to open and close a modal
-// function openModal() {
-//   modalEl.classList.add("is-active");
-// }
-// function closeModal() {
-//   modalEl.classList.remove("is-active");
-// }
-
 // create new post
 async function postFormHandler(event) {
   console.log("submit")
@@ -45,10 +25,8 @@ async function postFormHandler(event) {
   }
 }
 
-
-
 document
     .querySelector("#add-post-form")
     .addEventListener("submit", postFormHandler);
 
-// document.querySelector("#add-post-btn").addEventListener("click", modal);
+
