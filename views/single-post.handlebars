@@ -1,1 +1,23 @@
-<div>Single-post</div>
+<article class="media">
+{{> post-info post }}
+
+</article>
+
+
+{{!-- {{#if loggedIn}} --}}
+<form class="comment-form column is-8 is-offset-2">
+  <div>
+    <textarea class="input" name="comment-body" rows="2" placeholder="Type a comment here"></textarea>
+  </div>
+  <br>
+  <div>
+    <button class="button is-success" type="submit">Add Comment</button>
+  </div>
+</form>
+{{!-- {{/if}} --}}
+
+{{> comments post.comments}}
+
+{{#if loggedIn}}
+<script src="/javascript/comment.js"></script>
+{{/if}}
