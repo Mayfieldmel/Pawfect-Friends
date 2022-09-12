@@ -20,6 +20,9 @@ const sess = {
   }),
 };
 
+// formatting helpers
+const helpers = require("./utils/helpers");
+
 app.use(session(sess));
 
 const hbs = exphbs.create({ helpers });

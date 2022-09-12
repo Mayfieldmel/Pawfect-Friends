@@ -1,1 +1,19 @@
-comments
+<div class="comments container mx-auto">
+  {{#each this}}
+  <section class="comment media message is-primary">
+    <div class="media-content">
+      <div class="meta content">
+        <strong>
+          {{pet.pet_name}} 
+          {{!-- on {{format_date created_at}} --}}
+        </strong>
+        <br>
+        <div class="text message-body">
+          {{comment_text}}
+        </div>
+        <br>
+      </div>
+    </div>
+  </section>
+  {{/each}}
+</div>

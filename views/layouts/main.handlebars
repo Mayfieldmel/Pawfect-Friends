@@ -1,94 +1,88 @@
 <html lang="en">
 
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Pawfect Friends</title>
-    <link rel="icon" type="image/x-icon" href="/images/Pawfect-brand.png">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-    <link rel="stylesheet" href="./styles.css" />
-    <script src="https://kit.fontawesome.com/083b13e5ba.js" crossorigin="anonymous"></script>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pawfect Friends</title>
+  <link rel="icon" type="image/x-icon" href="/images/Pawfect-brand.png">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <link rel="stylesheet" href="/stylesheets/styles.css" />
+  <script src="https://kit.fontawesome.com/083b13e5ba.js" crossorigin="anonymous"></script>
 
-  </head>
+</head>
 
-  <body>
-    <div class="wrapper">
+<body>
+  <div class="wrapper">
 
-      <header>
-        {{!-- <div class="logo">
-          <img
-            src="/images/Pawfect-long.png"
-            class="top-img"
-            alt="Pawfect logo"
-          />
-        </div> --}}
-      </header>
+    <header>
+      {{!-- <div class="logo">
+        <img src="/images/Pawfect-long.png" class="top-img" alt="Pawfect logo" />
+      </div> --}}
+    </header>
 
-      <nav class="navbar" role="navigation" aria-label="main navigation">
-  <div class="navbar-brand">
-    <a class="navbar-item" href="/">
-      <img src="/images/Pawfect-long.png" width="140" height="35">
-    </a>
-
-    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasic">
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-    </a>
-  </div>
-
-  <div id="navbarBasic" class="navbar-menu">
-    <div class="navbar-start">
-      {{!-- individual posts --}}
-      <a class="navbar-item" href="/profile">Profile</a>
-      {{!-- view all posts --}}
-      <a class="navbar-item" href="/dashboard">Dashboard</a>
-      <a class="navbar-item" href="/friend">Friends</a>
-
-      <div class="navbar-item has-dropdown is-hoverable">
-        <a class="navbar-link">
-          More
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+      <div class="navbar-brand">
+        <a class="navbar-item" href="/">
+          <img src="/images/Pawfect-long.png" width="140" height="35">
         </a>
 
-        <div class="navbar-dropdown">
-          <a class="navbar-item">
-            About
-          </a>
-          <a class="navbar-item"
-            href="https://github.com/Mayfieldmel/Pawfect-Friends" target="_blank">GitHub
-          </a>
-          <hr class="navbar-divider">
-          <a class="navbar-item" href="mailto:support@pawfectpets.com">Report an issue
-          </a>
-        </div>
+        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasic">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
       </div>
-    </div>
 
-    {{>nav-log}}
+      <div id="navbarBasic" class="navbar-menu">
+        <div class="navbar-start">
+          {{!-- individual posts --}}
+          <a class="navbar-item" href="/profile/">Profile</a>
+          {{!-- view all posts --}}
+          <a class="navbar-item" href="/dashboard">Dashboard</a>
+          <a class="navbar-item" href="/friend">Friends</a>
 
-</nav>
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a class="navbar-link">
+              More
+            </a>
 
+            <div class="navbar-dropdown">
+              <a class="navbar-item">
+                About
+              </a>
+              <a class="navbar-item" href="https://github.com/Mayfieldmel/Pawfect-Friends" target="_blank">GitHub
+              </a>
+              <hr class="navbar-divider">
+              <a class="navbar-item" href="mailto:support@pawfectpets.com">Report an issue
+              </a>
+            </div>
+          </div>
+        </div>
+        {{>nav-log}}
+    </nav>
 
-      <main>
-        
-      
+    <main class="section-margins">
       {{{ body }}}
-      </main>
+    </main>
 
-<footer class="footer has-background-grey-lighter py-3">
-  <div class="content has-text-centered is-size-7">
-    <p>
-      <strong>Pawfect Friends, </strong> The only social network for pets. </br> Designed by Melissa, Morgan, Rodolfo & Brian, 2022 </a> 
-    </p>
-    <p><a href="https://github.com/Mayfieldmel/Pawfect-Friends" target="_blank"> <i class="fa fa-github is-size-5" aria-hidden="true"></i></a></p>
+    <footer class="footer has-background-grey-lighter py-3">
+      <div class="content has-text-centered is-size-7">
+        <p>
+          <strong>Pawfect Friends, </strong> The only social network for pets. </br> Designed by Melissa, Morgan,
+          Rodolfo & Brian, 2022 </a>
+        </p>
+        <p><a href="https://github.com/Mayfieldmel/Pawfect-Friends" target="_blank"> <i class="fa fa-github is-size-5"
+              aria-hidden="true"></i></a></p>
+      </div>
+    </footer>
+
   </div>
-</footer>
+</body>
 
-    </div>
-  </body>
-
-  {{#if loggedIn}}
-    <script src="/javascript/logout.js"></script>
-  {{/if}}
+{{#if loggedIn}}
+<script src="/javascript/logout.js"></script>
+{{/if}}
+{{!--
+<script src="/javascript/profile.js"></script> --}}
 
 </html>

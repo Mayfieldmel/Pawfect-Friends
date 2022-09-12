@@ -1,18 +1,34 @@
 const router = require("express").Router();
-const { Post, Pet, Comment } = require("../models");
-// const withAuth = require("../utils/auth");
+const sequelize = require("../config/connection");
+const { Post, Pet, Comment, Image } = require("../models");
+const { withAuth, withAuthSign } = require("../utils/auth");
 
-// get all posts for dashboards
-router.get("/", (req, res) => {
-  console.log(req.session);
+router.get("/add-post", withAuthSign, (req, res) => {
+  res.render("add-post", {
+    loggedIn: req.session.loggedIn,
+  });
+});
 
+router.get("/", withAuthSign, (req, res) => {
+  console.log("session data", req.session);
+  console.log("id", req.session.pet_id);
+  console.log("email", req.session.pet_email);
   console.log("======================");
+  // get all posts for dashboard
   Post.findAll({
     where: {
       pet_id: req.session.pet_id,
     },
-    attributes: ["id", "post_text", "title", "created_at"],
+    attributes: ["id", "post_text", "created_at"],
     include: [
+      {
+        model: Pet,
+        attributes: ["pet_name", "email", "password"],
+        include: {
+          model: Image,
+          attributes: ["image", "name"],
+        },
+      },
       {
         model: Comment,
         attributes: ["id", "comment_text", "post_id", "pet_id", "created_at"],
@@ -21,65 +37,18 @@ router.get("/", (req, res) => {
           attributes: ["pet_name"],
         },
       },
-      {
-        model: Pet,
-        attributes: ["pet_name", "email", "password"],
-      },
     ],
-    // order: [["created_at", "DESC"]],
+    order: [["created_at", "DESC"]],
   })
     .then((dbPostData) => {
+      // serialize data
       const posts = dbPostData.map((post) => post.get({ plain: true }));
-      console.log(posts);
-
-      res.render("profile", {
-        posts,
-        loggedIn: req.session.loggedIn,
-      });
+      res.render("profile", { posts, loggedIn: true });
     })
     .catch((err) => {
       console.log(err);
       res.status(500).json(err);
     });
 });
-
-// router.get("/edit/:id", withAuth, (req, res) => {
-//     Post.findByPk(req.params.id, {
-//       attributes: ["id", "post_content", "title", "created_at"],
-//       include: [
-//         {
-//           model: Comment,
-//           attributes: ["id", "comment_text", "post_id", "user_id", "created_at"],
-//           include: {
-//             model: User,
-//             attributes: ["username"],
-//           },
-//         },
-//         {
-//           model: User,
-//           attributes: ["username"],
-//         },
-//       ],
-//     })
-//       .then((dbPostData) => {
-//         if (dbPostData) {
-//           const post = dbPostData.get({ plain: true });
-
-//           res.render("edit-post", {
-//             post,
-//             loggedIn: true,
-//           });
-//         } else {
-//           res.status(404).end();
-//         }
-//       })
-//       .catch((err) => {
-//         res.status(500).json(err);
-//       });
-//   });
-
-//   router.get("/new", withAuth, (req, res) => {
-//     res.render("new");
-//   });
 
 module.exports = router;

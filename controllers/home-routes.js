@@ -7,13 +7,7 @@ const { withAuth, withAuthSign } = require("../utils/auth");
 router.get("/", (req, res) => {
   console.log("======================");
   Post.findAll({
-    attributes: [
-      "id",
-      // 'post_url',
-      "title",
-      "created_at",
-      //   [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id)'), 'vote_count']
-    ],
+    attributes: ["id", "post_text", "created_at"],
     include: [
       {
         model: Comment,
@@ -44,11 +38,28 @@ router.get("/", (req, res) => {
 });
 
 router.get("/login", withAuthSign, (req, res) => {
-  res.render("login");
+  res.render("login", {
+    loggedIn: req.session.loggedIn,
+  });
 });
 
 router.get("/signup", withAuthSign, (req, res) => {
-  res.render("signup");
+  res.render("signup").catch((err) => {
+    console.log(err);
+    res.status(500).json(err);
+  });
+});
+
+router.get("/friend", withAuthSign, (req, res) => {
+  res.render("friend", {
+    loggedIn: req.session.loggedIn,
+  });
+});
+
+router.get("/dashboard", withAuthSign, (req, res) => {
+  res.render("dashboard", {
+    loggedIn: req.session.loggedIn,
+  });
 });
 
 router.get("/post/:id", (req, res) => {
@@ -56,13 +67,7 @@ router.get("/post/:id", (req, res) => {
     where: {
       id: req.params.id,
     },
-    attributes: [
-      "id",
-      // 'post_url',
-      "title",
-      "created_at",
-      //   [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id)'), 'vote_count']
-    ],
+    attributes: ["id", "post_text", "created_at"],
     include: [
       {
         model: Comment,

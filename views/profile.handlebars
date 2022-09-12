@@ -1,13 +1,31 @@
-{{#if posts.length}}
-<section>
-  <h2>Your Posts</h2>
-  <ol>
-    {{#each posts as |post|}}
-    <li>
-      {{> post-info post}}
-      {{!-- <a href="/profile/edit/{{post.id}}" class="edit-link">Edit post</a> --}}
-    </li>
-    {{/each}}
-  </ol>
-</section>
-{{/if}}
+<div class="container">
+    <h1 class="title">pet_name{{posts.pet.pet_name}}</h1>
+    <a href="/img" class="is-justify-content-center">
+        <figure class="image is-128x128">
+            <img class="is-rounded" src={{posts.pet.image.image}}>
+        </figure>
+    </a>
+    </br>
+    <div class="buttons">
+        <a href="/profile/update">
+            <button class="button is-primary margin-right">edit profile</button>
+        </a>
+        {{!-- {{>add-image}} --}}
+        <a href="/profile/add-post">
+            <button class="button is-primary">+ post</button>
+        </a>
+    </div>
+</div>
+
+<br/>
+<div class="container">
+<ul>
+  {{!-- display list of user posts --}}
+  {{#each posts as |post|}}
+  <li>
+    {{> post-info post}}
+  </li>
+  {{/each}}
+</ul>
+</div>
+</br>
