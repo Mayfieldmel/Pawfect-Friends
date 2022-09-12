@@ -37,22 +37,18 @@ router.get("/", (req, res) => {
     });
 });
 
-router.get('/login', (req, res) => {
-  res.render('login', {
-    loggedIn: req.session.loggedIn
-  })
+
+router.get("/login", (req, res) => {
+  res.render("login", {
+    loggedIn: req.session.loggedIn,
+  });
 });
 
-router.get('/signup', (req, res) => {
-  res.render('signup', {
-    loggedIn: req.session.loggedIn 
-  })
-});
-
-router.get('/friend', withAuthSign, (req, res) => {
-  res.render('friend', {
-    loggedIn: req.session.loggedIn
-  })
+router.get("/signup", (req, res) => {
+  res.render("signup",
+    {
+      loggedIn: req.session.loggedIn,
+    });
 });
 
 router.get('/dashboard', withAuthSign, (req, res) => {
