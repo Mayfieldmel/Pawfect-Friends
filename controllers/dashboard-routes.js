@@ -21,6 +21,7 @@ router.get("/", (req, res) => {
         attributes: ["pet_name"],
       },
     ],
+    order: [["created_at", "DESC"]],
   })
     .then((dbPostData) => {
       const posts = dbPostData.map((post) => post.get({ plain: true }));
