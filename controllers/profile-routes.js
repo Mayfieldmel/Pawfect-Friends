@@ -21,7 +21,7 @@ router.get('/', withAuthSign, (req, res) => {
         pet_id: req.session.pet_id
       },
       attributes: [
-        'id',,
+        'id',
         'post_text',
         'created_at',
       ],
