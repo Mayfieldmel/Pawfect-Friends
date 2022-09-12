@@ -66,11 +66,6 @@ router.get('/dashboard', withAuthSign, (req, res) => {
   })
 });
 
-router.get('/edit', withAuthSign, (req, res) => {
-  res.render('edit', {
-    loggedIn: req.session.loggedIn
-  })
-});
 
 router.get('/post/:id', (req, res) => {
   Post.findOne({
