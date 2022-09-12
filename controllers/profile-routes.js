@@ -3,6 +3,12 @@ const sequelize = require("../config/connection");
 const { Post, Pet, Comment, Image } = require("../models");
 const { withAuth, withAuthSign } = require("../utils/auth");
 
+router.get("/update", withAuthSign, (req, res) => {
+  res.render("update", {
+    loggedIn: req.session.loggedIn,
+  });
+});
+
 router.get("/add-post", withAuthSign, (req, res) => {
   res.render("add-post", {
     loggedIn: req.session.loggedIn,
