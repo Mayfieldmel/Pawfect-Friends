@@ -4,13 +4,10 @@ const { Post, Pet, Comment, Friend, Image } = require('../models');
 
 
 
-// // GET /img
-// router.get("/", (req, res) => {
-//     // get all Pets
-    
-//         res.render('image', { loggedIn: true });
-    
-//   });
+// GET /img
+router.get("/", (req, res) => {
+    res.render('profile-image', { loggedIn: true });
+  });
  
 // GET /img/display  
 router.get("/display", (req, res) => {
