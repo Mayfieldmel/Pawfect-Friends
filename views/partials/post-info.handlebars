@@ -10,7 +10,7 @@
     <div class="media-content">
       <div class="content">
         <p>
-          <strong>{{pet.pet_name}}</strong> <small>{{format_date created_at}}</small>
+          <strong>{{pet.pet_name}}</strong> <small>| {{format_date created_at}}</small> <small>| {{comments.length}} {{format_plural "comment" comments.length}}</small>
           <br>
          {{post_text}}
         </p>
