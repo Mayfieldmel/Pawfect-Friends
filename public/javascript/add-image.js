@@ -41,7 +41,7 @@ async function saveImg(event) {
     });
     if (response.ok) {
       console.log("success");
-      document.location.replace('/dashboard');
+      document.location.replace('/profile/add-post');
     } else {
       alert(response.statusText);
     }

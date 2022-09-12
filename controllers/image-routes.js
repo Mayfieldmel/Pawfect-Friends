@@ -95,7 +95,8 @@ router.post('/', (req, res) => {
         name: req.body.name,
         type: req.body.type,
         size: req.body.size,
-        profile_pic: req.body.profile_pic
+        profile_pic: req.body.profile_pic,
+        pet_id: req.session.pet_id
     })
     .then((dbPetData) => {
         res.json(dbPetData);

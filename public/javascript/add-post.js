@@ -44,22 +44,11 @@ async function postFormHandler(event) {
     alert(response.statusText);
   }
 }
-// async function displayImg(event) {
-//   if (imageInput.files) {
-//     console.log(imageInput.files);
-//     var reader = new FileReader();
-//     reader.onload = function (event) {
-//       previewImage.textContent = "preview image";
-//       document.createElement("img");
-//       let img = document.createElement("img");
-//       img.setAttribute("src", event.target.result);
-//       previewImage.appendChild(img);
-//     };
-//     reader.readAsDataURL(imageInput.files[0]);
-//   }
-// }
+
+
 
 document
     .querySelector("#add-post-form")
     .addEventListener("submit", postFormHandler);
+
 // document.querySelector("#add-post-btn").addEventListener("click", modal);
