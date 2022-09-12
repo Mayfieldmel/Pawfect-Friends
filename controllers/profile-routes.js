@@ -29,6 +29,10 @@ router.get('/', withAuthSign, (req, res) => {
           {
               model: Pet,
               attributes: ['pet_name', 'email', 'password'],
+              include: {
+                model: Image,
+                attributes: ['image']
+              }
           },
           {
               model: Comment,
