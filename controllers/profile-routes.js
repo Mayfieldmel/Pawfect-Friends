@@ -22,7 +22,6 @@ router.get('/', withAuthSign, (req, res) => {
       },
       attributes: [
         'id',
-        'title',
         'post_text',
         'created_at',
       ],
