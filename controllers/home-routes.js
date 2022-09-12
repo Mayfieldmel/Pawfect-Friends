@@ -51,6 +51,12 @@ router.get("/signup", (req, res) => {
     });
 });
 
+router.get("/friend", withAuthSign, (req, res) => {
+  res.render("friend", {
+        loggedIn: req.session.loggedIn,
+    });
+});
+
 
 router.get('/post/:id', (req, res) => {
   Post.findOne({
