@@ -1,3 +1,22 @@
+<h1 class="title">pet_name{{posts.pet.pet_name}}</h1>
+<div class="container">
+    <figure class="image is-128x128">
+        <img class="is-rounded" src="https://bulma.io/images/placeholders/128x128.png">
+    </figure>
+    </br>
+    <div class="buttons">
+        <a href="/profile/edit-profile">
+            <button class="button is-primary margin-right">edit profile</button>
+        </a>
+        {{!-- {{>add-image}} --}}
+        <a href="/profile/add-post">
+            <button class="button is-primary">+ post</button>
+        </a>
+    </div>
+</div>
+
+<br/>
+<div class="container">
 <ul>
   {{!-- display list of user posts --}}
   {{#each posts as |post|}}
@@ -6,11 +25,5 @@
   </li>
   {{/each}}
 </ul>
-<div class="modals has-text-centered">
-{{!-- {{>add-image}} --}}
-<a href="/profile/add-post">
-    <button class="button is-primary">+ post</button>
-</a>
 </div>
-</br></br>
-
+</br>
