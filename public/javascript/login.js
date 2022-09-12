@@ -17,7 +17,8 @@ async function loginFormHandler(event) {
         // console.log(response.json())
         const pet_id = response.json()
         pet_id.then(result => {
-          document.location.replace(`profile/${result.Pet.id}`);
+          // document.location.replace(`profile/${result.Pet.id}`);
+          document.location.replace(`/profile`);
         })
       } else {
         alert(response.statusText);

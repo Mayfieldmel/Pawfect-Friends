@@ -1,17 +1,18 @@
 {{!-- create new post form --}}
-<section class="item">
+<section class="section-margins">
   <div class="title form">
     <h2>Create New Post</h2>
   </div>
   <form id="add-post-form" class="content">
     <div>
       <label for="post-title">Title</label>
-      <input type="text" id="post-title" name="post-title" class="text-box" />
+      <input type="text" id="post-title" name="post-title" class="input is-normal" />
     </div>
     <label for="post-text">Text</label>
-    <textarea name="post-text" class="text-box"></textarea>
-    <button type="submit" class="btn long">Create</button>
+    <textarea name="post-text" class="textarea"></textarea>
+    {{> add-image}}
+    <button type="submit" class="button is-primary">Create</button>
   </form>
 </section>
-{{> add-image}}
+
 <script src="/javascript/add-post.js"></script>

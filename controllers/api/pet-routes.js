@@ -67,8 +67,9 @@ router.post("/", (req, res) => {
     .then((dbPetData) => {
       req.session.save(() => {
         console.log("in req.session.save")
-        req.session.id = dbPetData.id;
+        req.session.pet_id = dbPetData.id;
         req.session.pet_name = dbPetData.pet_name;
+        req.session.pet_email = dbPetData.email;
         req.session.loggedIn = true;
 
         res.json(dbPetData);
@@ -101,10 +102,11 @@ router.post("/login", (req, res) => {
     }
     // create session
     req.session.save(() => {
-      req.session.id = dbPetData.id;
+      req.session.pet_id = dbPetData.id;
       req.session.pet_name = dbPetData.pet_name;
+      req.session.pet_email = dbPetData.email;
       req.session.loggedIn = true;
-
+      console.log("in pet-routes", dbPetData.id, req.session.pet_id)
       res.json({ Pet: dbPetData, message: "You are now logged in!" });
     });
   });
