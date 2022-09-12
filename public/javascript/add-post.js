@@ -20,12 +20,11 @@ var modalEl = document.querySelector("#modal");
 
 // create new post
 async function postFormHandler(event) {
+  console.log("submit")
   event.preventDefault();
 
   const title = document.querySelector('input[name="post-title"]').value;
-  const post_text = document.querySelector(
-    'textarea[name="post-content"]'
-  ).value;
+  const post_text = document.querySelector('textarea[name="post-text"]').value;
 
   const response = await fetch(`/api/posts`, {
     method: "POST",
