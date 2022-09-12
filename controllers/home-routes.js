@@ -37,16 +37,15 @@ router.get("/", (req, res) => {
     });
 });
 
-router.get("/login", withAuthSign, (req, res) => {
+router.get("/login", (req, res) => {
   res.render("login", {
     loggedIn: req.session.loggedIn,
   });
 });
 
-router.get("/signup", withAuthSign, (req, res) => {
-  res.render("signup").catch((err) => {
-    console.log(err);
-    res.status(500).json(err);
+router.get("/signup", (req, res) => {
+  res.render("signup", {
+    loggedIn: req.session.loggedIn,
   });
 });
 
