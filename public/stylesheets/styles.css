@@ -11,5 +11,9 @@
 }
 
 .post-info-links {
-  color: black
+  color: black;
+}
+
+.margin-bottom {
+  margin-bottom: 10px;
 }
