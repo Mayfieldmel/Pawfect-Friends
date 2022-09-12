@@ -56,11 +56,11 @@ router.get("/friend", withAuthSign, (req, res) => {
   });
 });
 
-router.get("/dashboard", withAuthSign, (req, res) => {
-  res.render("dashboard", {
-    loggedIn: req.session.loggedIn,
-  });
-});
+// router.get("/dashboard", withAuthSign, (req, res) => {
+//   res.render("dashboard", {
+//     loggedIn: req.session.loggedIn,
+//   });
+// });
 
 router.get("/post/:id", (req, res) => {
   Post.findOne({
