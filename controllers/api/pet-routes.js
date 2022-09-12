@@ -31,14 +31,14 @@ router.get("/:id", (req, res) => {
       },
       {
         model: Post,
-        attributes: ["id", "title", "post_img", "post_text", "created_at"],
+        attributes: ["id", "post_text", "post_img", "post_text", "created_at"],
       },
       {
         model: Comment,
         attributes: ["id", "comment_text", "created_at"],
         include: {
           model: Post,
-          attributes: ["title"],
+          attributes: ["post_text"],
         },
       },
     ],
