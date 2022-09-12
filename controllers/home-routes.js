@@ -1,99 +1,91 @@
-const router = require('express').Router();
-const sequelize = require('../config/connection');
-const { Post, Pet, Comment } = require('../models');
-const { withAuth, withAuthSign } = require('../utils/auth');
+const router = require("express").Router();
+const sequelize = require("../config/connection");
+const { Post, Pet, Comment } = require("../models");
+const { withAuth, withAuthSign } = require("../utils/auth");
 
 // get all posts for homepage
-router.get('/', (req, res) => {
-  console.log('======================');
+router.get("/", (req, res) => {
+  console.log("======================");
   Post.findAll({
-    attributes: [
-      'id',
-      'post_text',
-      'created_at',
-    ],
+    attributes: ["id", "post_text", "created_at"],
     include: [
       {
         model: Comment,
-        attributes: ['id', 'comment_text', 'post_id', 'pet_id', 'created_at'],
+        attributes: ["id", "comment_text", "post_id", "pet_id", "created_at"],
         include: {
           model: Pet,
-          attributes: ['pet_name']
-        }
+          attributes: ["pet_name"],
+        },
       },
       {
         model: Pet,
-        attributes: ['pet_name']
-      }
-    ]
+        attributes: ["pet_name"],
+      },
+    ],
   })
-    .then(dbPostData => {
-      const posts = dbPostData.map(post => post.get({ plain: true }));
+    .then((dbPostData) => {
+      const posts = dbPostData.map((post) => post.get({ plain: true }));
 
-      res.render('homepage', { 
+      res.render("homepage", {
         posts,
-        loggedIn: req.session.loggedIn });
+        loggedIn: req.session.loggedIn,
+      });
     })
-    .catch(err => {
+    .catch((err) => {
       console.log(err);
       res.status(500).json(err);
     });
 });
 
-router.get('/login', withAuthSign, (req, res) => {
-  res.render('login', {
-    loggedIn: req.session.loggedIn
-  })
+router.get("/login", withAuthSign, (req, res) => {
+  res.render("login", {
+    loggedIn: req.session.loggedIn,
+  });
 });
 
-router.get('/signup', withAuthSign, (req, res) => {
-  res.render('signup')
-  .catch(err => {
+router.get("/signup", withAuthSign, (req, res) => {
+  res.render("signup").catch((err) => {
     console.log(err);
     res.status(500).json(err);
   });
 });
 
-router.get('/friend', withAuthSign, (req, res) => {
-  res.render('friend', {
-    loggedIn: req.session.loggedIn
-  })
+router.get("/friend", withAuthSign, (req, res) => {
+  res.render("friend", {
+    loggedIn: req.session.loggedIn,
+  });
 });
 
-router.get('/dashboard', withAuthSign, (req, res) => {
-  res.render('dashboard', {
-    loggedIn: req.session.loggedIn
-  })
-});
+// router.get("/dashboard", withAuthSign, (req, res) => {
+//   res.render("dashboard", {
+//     loggedIn: req.session.loggedIn,
+//   });
+// });
 
-router.get('/post/:id', (req, res) => {
+router.get("/post/:id", (req, res) => {
   Post.findOne({
     where: {
-      id: req.params.id
+      id: req.params.id,
     },
-    attributes: [
-      'id',
-      'post_text',
-      'created_at',
-    ],
+    attributes: ["id", "post_text", "created_at"],
     include: [
       {
         model: Comment,
-        attributes: ['id', 'comment_text', 'post_id', 'pet_id', 'created_at'],
+        attributes: ["id", "comment_text", "post_id", "pet_id", "created_at"],
         include: {
           model: Pet,
-          attributes: ['pet_name']
-        }
+          attributes: ["pet_name"],
+        },
       },
       {
         model: Pet,
-        attributes: ['pet_name']
-      }
-    ]
+        attributes: ["pet_name"],
+      },
+    ],
   })
-    .then(dbPostData => {
+    .then((dbPostData) => {
       if (!dbPostData) {
-        res.status(404).json({ message: 'No post found with this id' });
+        res.status(404).json({ message: "No post found with this id" });
         return;
       }
 
@@ -101,12 +93,12 @@ router.get('/post/:id', (req, res) => {
       const post = dbPostData.get({ plain: true });
 
       // pass data to template
-      res.render('single-post', { 
+      res.render("single-post", {
         post,
-        loggedIn: req.session.loggedIn 
+        loggedIn: req.session.loggedIn,
       });
     })
-    .catch(err => {
+    .catch((err) => {
       console.log(err);
       res.status(500).json(err);
     });

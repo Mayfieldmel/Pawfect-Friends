@@ -1,7 +1,11 @@
-{{>construction}}
+<div class="section-margins">
 
-<div class="modals has-text-centered">
+<ul class="post-list">
+  {{#each posts as |post|}}
+  <li>
+    {{> post-info post }}
+  </li>
+  {{/each}}
+</ul>
 
-{{>add-image}}
 </div>
-</br></br>
