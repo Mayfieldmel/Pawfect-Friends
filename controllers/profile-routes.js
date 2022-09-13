@@ -15,17 +15,9 @@ router.get("/add-post", withAuthSign, (req, res) => {
   });
 });
 
-router.get("/update", withAuthSign, (req, res) => {
-  res.render("update", {
-    loggedIn: req.session.loggedIn,
-  });
-});
-
 router.get("/", withAuthSign, (req, res) => {
   console.log("session data", req.session);
-  console.log("id", req.session.pet_id);
-  console.log("email", req.session.pet_email);
-  console.log("======================");
+
   // get all posts for dashboard
   Post.findAll({
     where: {
