@@ -19,11 +19,15 @@
 
 <br/>
 <div class="container">
+<h2>Your Posts</h2>    
 <ul>
   {{!-- display list of user posts --}}
   {{#each posts as |post|}}
   <li>
     {{> post-info post}}
+    <a href="/profile/edit/{{post.id}}">
+    <button class="button is-primary">Edit Post</button>
+    </a>
   </li>
   {{/each}}
 </ul>
