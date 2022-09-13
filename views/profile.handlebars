@@ -16,6 +16,7 @@
         <a href="/profile/update">
             <button class="button is-primary margin-right">edit profile</button>
         </a>
+        {{!-- {{>add-image}} --}}
         <a href="/profile/add-post">
             <button class="button is-primary">+ post</button>
         </a>
@@ -24,9 +25,17 @@
 
 <br/>
 <div class="container">
-<ul id="display">
+<ul>
+  {{#each dataArr as |post|}}
+    {{#if post.image}}
+        <img src={{post.image}} />
+    {{else}}
+        <li>
+            {{> post-info post}}
+        </li>
+    {{/if}}
+  {{/each}}
 </ul>
-
 </div>
 </br></br>
 <script src="/javascript/profile.js"></script>
