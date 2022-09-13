@@ -31,7 +31,7 @@ router.get("/", withAuthSign, (req, res) => {
               // serialize data
             const pets = dbPetData.map(pet => pet.get({ plain: true }));
             console.log("pets:", pets)
-            res.render('profile', { pets, loggedIn: true });
+            res.render('profile', { pets: pets[0], loggedIn: true });
           })
           .catch(err => {
             console.log(err);
@@ -107,79 +107,79 @@ router.put("/img", (req, res) => {
 
 // SUCCESS GETTING ONE ARRAY W/ POSTS & IMAGES
 //   GET /profile/display
-// router.get('/display', withAuthSign, (req, res) => {
-//     console.log("session data", req.session);
-//     console.log('======================');
-//     // get all posts & images for dashboard
-//     Post.findAll({
-//         where: {
-//             pet_id: req.session.pet_id
-//         },
-//         attributes: [
-//             'id',
-//             'post_text',
-//             'created_at',
-//         ],
-//         include: [
-//             {
-//                 model: Pet,
-//                 attributes: ['pet_name', 'email', 'password']
-//             },
-//             {
-//                 model: Comment,
-//                 attributes: ['id', 'comment_text', 'post_id', 'pet_id', 'created_at'],
-//                 include: {
-//                 model: Pet,
-//                 attributes: ['pet_name']
-//                 }
-//             }
-//         ],
-//         order: [
-//             ['created_at', 'DESC']
-//         ]
-//     }).then(dbPostData => {
-//     Image.findAll({
-//         where: {
-//             pet_id: req.session.pet_id
-//         },
-//         attributes: ['image', 'created_at'],
-//         include: [
-//             {
-//                 model: Pet,
-//                 attributes: ['pet_name']
-//             }
-//             // ,
-//             // {
-//             //     model: Comment,
-//             //     attributes: ['id', 'comment_text', 'post_id', 'pet_id', 'created_at'],
-//             //     include: {
-//             //     model: Pet,
-//             //     attributes: ['pet_name']
-//             //     }
-//             // }
-//         ],
-//         order: [
-//             ['created_at', 'DESC']
-//         ]
-//     })
-//     .then(dbImageData => {
-//         const dbAllData = [...dbPostData, ...dbImageData]
-//         console.log(dbAllData)
-//         return dbAllData;
-//     })
-//     .then(dbPostData => {
-//         // serialize data
-//       const posts = dbPostData.map(post => post.get({ plain: true }));
-//       console.log(posts)
-//       res.render('profile', { posts, loggedIn: true });
-//     })
-//     .catch(err => {
-//       console.log(err);
-//       res.status(500).json(err);
-//     });
-// })
+router.get('/display', withAuthSign, (req, res) => {
+    console.log("session data", req.session);
+    console.log('======================');
+    // get all posts & images for dashboard
+    Post.findAll({
+        where: {
+            pet_id: req.session.pet_id
+        },
+        attributes: [
+            'id',
+            'post_text',
+            'created_at',
+        ],
+        include: [
+            {
+                model: Pet,
+                attributes: ['pet_name', 'email', 'password']
+            },
+            {
+                model: Comment,
+                attributes: ['id', 'comment_text', 'post_id', 'pet_id', 'created_at'],
+                include: {
+                model: Pet,
+                attributes: ['pet_name']
+                }
+            }
+        ],
+        order: [
+            ['created_at', 'DESC']
+        ]
+    }).then(dbPostData => {
+    Image.findAll({
+        where: {
+            pet_id: req.session.pet_id
+        },
+        attributes: ['image', 'created_at'],
+        include: [
+            {
+                model: Pet,
+                attributes: ['pet_name']
+            }
+            // ,
+            // {
+            //     model: Comment,
+            //     attributes: ['id', 'comment_text', 'post_id', 'pet_id', 'created_at'],
+            //     include: {
+            //     model: Pet,
+            //     attributes: ['pet_name']
+            //     }
+            // }
+        ],
+        order: [
+            ['created_at', 'DESC']
+        ]
+    })
+    .then(dbImageData => {
+        const dbAllData = [...dbPostData, ...dbImageData]
+        console.log(dbAllData)
+        return dbAllData;
+    })
+    .then(dbPostData => {
+        // serialize data
+      const posts = dbPostData.map(post => post.get({ plain: true }));
+      console.log(posts)
+      res.render('profile', { posts, loggedIn: true });
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+})
       
-//   });
+  });
 
 // FAILED PROMISE.ALL ATTEMPT
 // router.get('/', withAuthSign, (req, res) => {
