@@ -37,6 +37,7 @@ router.get("/", (req, res) => {
     });
 });
 
+
 router.get("/login", (req, res) => {
   res.render("login", {
     loggedIn: req.session.loggedIn,
@@ -44,25 +45,20 @@ router.get("/login", (req, res) => {
 });
 
 router.get("/signup", (req, res) => {
-  res.render("signup"),
+  res.render("signup",
     {
       loggedIn: req.session.loggedIn,
-    };
+    });
 });
 
 router.get("/friend", withAuthSign, (req, res) => {
   res.render("friend", {
-    loggedIn: req.session.loggedIn,
-  });
+        loggedIn: req.session.loggedIn,
+    });
 });
 
-// router.get("/dashboard", withAuthSign, (req, res) => {
-//   res.render("dashboard", {
-//     loggedIn: req.session.loggedIn,
-//   });
-// });
 
-router.get("/post/:id", (req, res) => {
+router.get('/post/:id', (req, res) => {
   Post.findOne({
     where: {
       id: req.params.id,

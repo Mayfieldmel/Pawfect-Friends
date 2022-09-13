@@ -3,8 +3,20 @@ const sequelize = require("../config/connection");
 const { Post, Pet, Comment, Image } = require("../models");
 const { withAuth, withAuthSign } = require("../utils/auth");
 
+router.get("/update", withAuthSign, (req, res) => {
+  res.render("update", {
+    loggedIn: req.session.loggedIn,
+  });
+});
+
 router.get("/add-post", withAuthSign, (req, res) => {
   res.render("add-post", {
+    loggedIn: req.session.loggedIn,
+  });
+});
+
+router.get("/update", withAuthSign, (req, res) => {
+  res.render("update", {
     loggedIn: req.session.loggedIn,
   });
 });
@@ -24,10 +36,6 @@ router.get("/", withAuthSign, (req, res) => {
       {
         model: Pet,
         attributes: ["pet_name", "email", "password"],
-        include: {
-          model: Image,
-          attributes: ["image", "name"],
-        },
       },
       {
         model: Comment,
