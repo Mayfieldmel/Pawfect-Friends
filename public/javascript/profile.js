@@ -13,6 +13,7 @@ async function profileNav(event) {
         }),
         headers: { 'Content-Type': 'application/json' }
       });
+      
       if (response.ok) {
         // console.log(response.json())
         const pet_id = response.json()
