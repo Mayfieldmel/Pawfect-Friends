@@ -4,10 +4,11 @@ async function updateFormHandler(event) {
     const email = document.querySelector('#newEmail').value.trim();
     const password = document.querySelector('#newPassword').value.trim();
     
+
     
     if (email && password) {
         // const response = await fetch(`/api/pets/${req.session.pet_id}`, {
-        const response = await fetch("/api/pets/11", {
+        const response = await fetch(`/api/pets/`, {
             method: 'put',
             body: JSON.stringify({
                 email,

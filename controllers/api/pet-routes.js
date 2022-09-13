@@ -124,13 +124,14 @@ router.post("/logout", (req, res) => {
   }
 });
 
-// PUT api/pets/1
-router.put("/:id", (req, res) => {
+// PUT api/pets/
+router.put("/", (req, res) => {
   // edit pet info
+
   Pet.update(req.body, {
     individualHooks: true,
     where: {
-      id: req.params.id,
+      id: req.session.pet_id,
     },
   })
     .then((dbPetData) => {

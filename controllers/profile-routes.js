@@ -15,12 +15,6 @@ router.get("/add-post", withAuthSign, (req, res) => {
   });
 });
 
-router.get("/update", withAuthSign, (req, res) => {
-  res.render("update", {
-    loggedIn: req.session.loggedIn,
-  });
-});
-
 router.get('/', withAuthSign, (req, res) => {
     console.log("session data", req.session);
     console.log("id", req.session.pet_id);
