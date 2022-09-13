@@ -1,28 +1,14 @@
-async function profileNav(event) {
+async function fetchData(event) {
     event.preventDefault();
-  
-    const email = document.querySelector('#email-login').value.trim();
-    const password = document.querySelector('#password-login').value.trim();
-  
-    if (email && password) {
-      const response = await fetch('/api/pets', {
-        method: 'get',
-        body: JSON.stringify({
-          email,
-          password
-        }),
-        headers: { 'Content-Type': 'application/json' }
-      });
+      const response = await fetch('/api/pets');
       if (response.ok) {
-        // console.log(response.json())
-        const pet_id = response.json()
-        pet_id.then(result => {
-          document.location.replace(`profile/${result.Pet.id}`);
-          
+        response.json().then((data) => {
+            console.log(data)
         })
+          
       } else {
         alert(response.statusText);
       }
-    }
   }
  
+  window.addEventListener('load', fetchData)
