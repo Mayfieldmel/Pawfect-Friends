@@ -14,4 +14,4 @@ async function fetchData(event) {
 
   }
  
-  window.addEventListener('load', fetchData)
+//   window.addEventListener('load', fetchData)

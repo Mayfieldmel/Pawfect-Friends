@@ -23,10 +23,10 @@ Image.init(
     size: {
       type: DataTypes.INTEGER,
     },
-    profile_pic: {
-      type: DataTypes.BOOLEAN,
-      defaultValue: false,
-    },
+    // profile_pic: {
+    //   type: DataTypes.BOOLEAN,
+    //   defaultValue: false,
+    // },
     pet_id: {
       type: DataTypes.INTEGER,
     },
