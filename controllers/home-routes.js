@@ -51,10 +51,10 @@ router.get("/signup", (req, res) => {
     });
 });
 
-router.get('/dashboard', withAuthSign, (req, res) => {
-  res.render('dashboard', {
-    loggedIn: req.session.loggedIn
-  })
+router.get("/friend", withAuthSign, (req, res) => {
+  res.render("friend", {
+        loggedIn: req.session.loggedIn,
+    });
 });
 
 
