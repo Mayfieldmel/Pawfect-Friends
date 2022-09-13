@@ -30,7 +30,7 @@ router.get("/", withAuthSign, (req, res) => {
           .then(dbPetData => {
               // serialize data
             const pets = dbPetData.map(pet => pet.get({ plain: true }));
-            console.log("pet data", pets)
+            console.log("pets:", pets)
             res.render('profile', { pets, loggedIn: true });
           })
           .catch(err => {

@@ -1,9 +1,15 @@
 <div class="container">
-    <h1 class="title">pet_name{{pet.pet_name}}</h1>
+    <h1 class="title">{{pets.pet_name}}</h1>
     <a href="/img" class="is-justify-content-center">
+    {{#if pets.profile_pic.length}}
+        <figure class="image is-128x128">
+            <img class="is-rounded" src={{pets.profile_pic}}>
+        </figure>
+    {{else}}
         <figure class="image is-128x128">
             <img class="is-rounded" src="https://bulma.io/images/placeholders/128x128.png">
         </figure>
+    {{/if}}
     </a>
     </br>
     <div class="buttons">
