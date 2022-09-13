@@ -17,3 +17,11 @@
 .margin-bottom {
   margin-bottom: 10px;
 }
+
+.bone:hover .fa-bone,
+.bone .fa-paw {
+    display: none;
+}
+.bone:hover .fa-paw {
+    display: inline;
+}
