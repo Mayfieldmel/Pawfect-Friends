@@ -1,3 +1,7 @@
+{{#if err}}
+    <p>an error occurred</p>
+{{/if}}
+
 <div class="container">
     <h1 class="title">{{pets.pet_name}}</h1>
     <a href="/img" class="is-justify-content-center">
@@ -28,11 +32,42 @@
 <ul>
   {{#each dataArr as |post|}}
     {{#if post.image}}
-        <img src={{post.image}} />
+        <div class="box">
+            <a href="/post/{{post.id}}" class="post-info-links">
+                <img src={{post.image}} />
+            </a>
+        </div>
     {{else}}
-        <li>
-            {{> post-info post}}
-        </li>
+        <a href="/post/{{post.id}}" class="post-info-links">
+            <div class="box margin-bottom">
+            <article class="media">
+                <div class="media-left">
+                <figure class="image is-64x64">
+                    <img src={{post.profile_pic}} alt="Image">
+                </figure>
+                </div>
+                <div class="media-content">
+                <div class="content">
+                    <p>
+                    <strong>{{pet.pet_name}}</strong> <small>| {{format_date post.created_at}}</small> <small>| {{post.comments.length}} {{format_plural "comment" post.comments.length}}</small>
+                    </br>
+
+                    {{post.post_text}}
+                    </p>
+                </div>
+                <nav class="level is-mobile">
+                    <div class="level-left">
+                    <a class="level-item" aria-label="reply">
+                        <span class="icon is-small">
+                        <i class="fas fa-reply" aria-hidden="true"></i>
+                        </span>
+                    </a>
+                    </div>
+                </nav>
+                </div>
+            </article>
+            </div>
+        </a>
     {{/if}}
   {{/each}}
 </ul>
