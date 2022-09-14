@@ -1,8 +1,6 @@
 const imageInput = document.querySelector("#input-files");
 const previewImage = document.querySelector("#preview-images");
 const submitImage = document.querySelector("#upload-image");
-// const getImages = document.querySelector("#getAll");
-// const display = document.querySelector("#displayAll");
 const reader = new FileReader();
  
 async function displayImg(event) {
@@ -47,18 +45,6 @@ async function saveImg(event) {
     }
   }
 }
-
-// function getAllImages(event) {
-//   fetch("/img/display").then((response) => {
-//     var content = response.json();
-//     content.then((result) => {
-//       let img = document.createElement("img");
-//       img.setAttribute("src", result[0].image);
-//       display.appendChild(img);
-//     });
-//   });
-// }
-
 
 var imgModalEl = document.querySelector("#imgModal");
 

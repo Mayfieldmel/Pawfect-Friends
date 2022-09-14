@@ -5,35 +5,27 @@ const { withAuth, withAuthSign } = require("../utils/auth");
 const sortArray = require("sort-array");
 
 // GET profile/update
-router.get("/update", withAuthSign, (req, res) => {
-    Pet.findAll({
-        where: {
-            id: req.session.pet_id
-        }
-      })
-      .then((dbPetData) => {
-        console.log(dbPetData[0].dataValues)
-        if (!dbPetData) {
-          res.status(404).json({ message: "No Pet found with this id" });
-          return;
-        }
-        const petData = [dbPetData[0].dataValues]
-        console.log(petData)
-        // serialize the data
-        const pet = petData.get({ plain: true });
-        console.log(pet)
+router.get("/update", withAuthSign, async (req, res) => {
+    try {
+        const petData = await Pet.findAll({
+            where: {
+                id: req.session.pet_id
+            },
+            raw: true,
+          })
+          const pet = petData[0]
         // pass data to template
         res.render("update", {
           pet,
           loggedIn: req.session.loggedIn,
         });
-      })
-        .catch((err) => {
-          console.log(err);
-          res.status(500).json(err);
-        });
+    } catch {
+        console.log(err);
+    }
+      
+})
+        
  
-});
 
 // GET profile/add-post
 router.get("/add-post", withAuthSign, (req, res) => {
