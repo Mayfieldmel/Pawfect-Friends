@@ -29,7 +29,7 @@ router.get("/", async (req, res) => {
       raw: true,
     });
     const imgData = await Image.findAll({
-      attributes: ["image", "created_at"],
+      attributes: ["id", "image", "created_at"],
       include: [
         {
           model: Pet,

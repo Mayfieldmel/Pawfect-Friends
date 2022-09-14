@@ -1,20 +1,18 @@
-<article class="media">
+{{!-- import post-info --}}
 {{> post-info post }}
 
-</article>
 
-
-{{!-- {{#if loggedIn}} --}}
 <form class="comment-form column box is-10 is-offset-1">
   <div>
     <textarea class="input textarea" name="comment-body" rows="3" placeholder="Type a comment here"></textarea>
   </div>
   <br>
+{{#if loggedIn}}
   <div>
     <button class="button is-success" type="submit">Add Comment</button>
   </div>
 </form>
-{{!-- {{/if}} --}}
+{{/if}}
 
 {{> comments post.comments}}
 

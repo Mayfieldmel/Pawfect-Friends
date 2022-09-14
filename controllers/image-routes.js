@@ -41,13 +41,19 @@ router.get("/profile/display/:id", (req, res) => {
     });
 });
 
-// GET /img/display/1  
-router.get("/display/:id", (req, res) => {
+// GET /img/1  
+router.get("/:id", (req, res) => {
     // GET ONE IMAGE
     Image.findOne({
       where: {
         id: req.params.id
       },
+      include: [
+        {
+          model: Pet,
+          attributes: ["pet_name"],
+        }
+      ]
     })
     .then((dbPetData) => {
       if (!dbPetData) {
