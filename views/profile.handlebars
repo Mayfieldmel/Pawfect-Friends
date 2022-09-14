@@ -32,8 +32,11 @@
 <h2>Your Posts</h2>    
 <ul>
   {{#each dataArr as |post|}}
-    <li>
+    <li class="box">
     {{> post-image-display post}}
+    <a href="/profile/edit/{{id}}">
+        <button class="button is-primary">Edit Post</button>
+    </a>
     </li>    
     {{/each}}
 </ul>
