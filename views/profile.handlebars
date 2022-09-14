@@ -28,15 +28,11 @@
 </div>
 
 <br/>
-<div class="container">
-<h2>Your Posts</h2>    
+<div class="container">   
 <ul>
   {{#each dataArr as |post|}}
     <li class="box">
-    {{> post-image-display post}}
-    <a href="/profile/edit/{{id}}">
-        <button class="button is-primary">Edit Post</button>
-    </a>
+    {{> profile-posts post}}
     </li>    
     {{/each}}
 </ul>
