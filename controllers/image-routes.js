@@ -52,15 +52,30 @@ router.get("/:id", (req, res) => {
         {
           model: Pet,
           attributes: ["pet_name"],
+        },
+        {
+        model: Comment,
+          attributes: ["id", "comment_text", "image_id", "pet_id", "created_at"],
+          include: {
+            model: Pet,
+            attributes: ["pet_name"],
+          }
         }
       ]
     })
-    .then((dbPetData) => {
-      if (!dbPetData) {
-        res.status(404).json({ message: "No Pet found with this id" });
+    .then((dbImageData) => {
+      if (!dbImageData) {
+        res.status(404).json({ message: "No image found with this id" });
         return;
       }
-      res.json(dbPetData);
+      // serialize the data
+      const image = dbImageData.get({ plain: true });
+      console.log(image)
+      // pass data to template
+      res.render("single-image", {
+        image,
+        loggedIn: req.session.loggedIn,
+      });
     })
     .catch((err) => {
       console.log(err);
