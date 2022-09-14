@@ -17,3 +17,7 @@
 .margin-bottom {
   margin-bottom: 10px;
 }
+
+.right-btn {
+  float: right;
+}
