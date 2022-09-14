@@ -18,7 +18,7 @@ router.get("/", (req, res) => {
       },
       {
         model: Pet,
-        attributes: ["pet_name"],
+        attributes: ["pet_name", "profile_pic"],
       },
     ],
     order: [["created_at", "DESC"]],
