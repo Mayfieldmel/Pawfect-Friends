@@ -39,6 +39,9 @@ Pet.init(
           len: [4]
         }
       },
+      profile_pic: {
+        type: DataTypes.TEXT,
+      },
     },
     {
       hooks: {

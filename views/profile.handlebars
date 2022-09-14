@@ -1,9 +1,19 @@
+{{#if err}}
+    <p>an error occurred</p>
+{{/if}}
+
 <div class="container">
-    <h1 class="title">pet_name{{posts.pet.pet_name}}</h1>
+    <h1 class="title">{{pets.pet_name}}</h1>
     <a href="/img" class="is-justify-content-center">
+    {{#if pets.profile_pic}}
         <figure class="image is-128x128">
-            <img class="is-rounded" src={{posts.pet.image.image}}>
+            <img class="is-rounded" src={{pets.profile_pic}}>
         </figure>
+    {{else}}
+        <figure class="image is-128x128">
+            <img class="is-rounded" src="https://bulma.io/images/placeholders/128x128.png">
+        </figure>
+    {{/if}}
     </a>
     </br>
     <div class="buttons">
@@ -21,16 +31,49 @@
 <div class="container">
 <h2>Your Posts</h2>    
 <ul>
-  {{!-- display list of user posts --}}
-  {{#each posts as |post|}}
-  <li>
-    {{> post-info post}}
-    <a href="/profile/edit/{{post.id}}">
-    <button class="button is-primary">Edit Post</button>
-    </a>
-  </li>
-  {{/each}}
+  {{#each dataArr as |post|}}
+    {{#if post.image}}
+        <div class="box">
+            <a href="/post/{{post.id}}" class="post-info-links">
+                <img src={{post.image}} />
+            </a>
+        </div>
+    {{else}}
+        <a href="/post/{{post.id}}" class="post-info-links">
+            <div class="box margin-bottom">
+            <article class="media">
+                <div class="media-left">
+                <figure class="image is-64x64">
+                    <img src={{post.profile_pic}} alt="Image">
+                </figure>
+                </div>
+                <div class="media-content">
+                <div class="content">
+                    <p>
+                    <strong>{{pet.pet_name}}</strong> <small>| {{format_date post.created_at}}</small> <small>| {{post.comments.length}} {{format_plural "comment" post.comments.length}}</small>
+                    </br>
+                    {{post.post_text}}
+                    </p>
+                    <a href="/profile/edit/{{post.id}}">
+                        <button class="button is-primary">Edit Post</button>
+                    </a>
+                </div>
+                <nav class="level is-mobile">
+                    <div class="level-left">
+                    <a class="level-item" aria-label="reply">
+                        <span class="icon is-small">
+                        <i class="fas fa-reply" aria-hidden="true"></i>
+                        </span>
+                    </a>
+                    </div>
+                </nav>
+                </div>
+            </article>
+            </div>
+        </a>
+    {{/if}}
+    {{/each}}
 </ul>
 </div>
 </br></br>
-<script src="/javascript/profile.js"></script>
+

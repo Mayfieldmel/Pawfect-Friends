@@ -20,20 +20,11 @@ async function displayImg(event) {
 async function saveImg(event) {
   event.preventDefault();
   if (imageInput.files) {
-    const image = reader.result;
-    const type = imageInput.files[0].type;
-    const name = imageInput.files[0].name;
-    const size = imageInput.files[0].size;
-    const profile_pic = true;
-    // const pet_id = 3; // req.session.id assigned in backend
-
-    const response = await fetch('/img', {
-      method: "POST",
+    const profile_pic = reader.result;
+    console.log(profile_pic)
+    const response = await fetch('/profile/img', {
+      method: "PUT",
       body: JSON.stringify({
-        image,
-        type,
-        name,
-        size,
         profile_pic
         // pet_id, // req.session.id assigned in backend
       }),
@@ -43,12 +34,45 @@ async function saveImg(event) {
     });
     if (response.ok) {
       console.log("success");
-      document.location.replace('/profile');
+      console.log(response.json())
+      // document.location.replace('/profile');
     } else {
       alert(response.statusText);
     }
   }
 }
+// async function saveImg(event) {
+//   event.preventDefault();
+//   if (imageInput.files) {
+//     const image = reader.result;
+//     const type = imageInput.files[0].type;
+//     const name = imageInput.files[0].name;
+//     const size = imageInput.files[0].size;
+//     const profile_pic = true;
+//     // const pet_id = 3; // req.session.id assigned in backend
+
+//     const response = await fetch('/img', {
+//       method: "POST",
+//       body: JSON.stringify({
+//         image,
+//         type,
+//         name,
+//         size,
+//         profile_pic
+//         // pet_id, // req.session.id assigned in backend
+//       }),
+//       headers: {
+//         "Content-Type": "application/json",
+//       },
+//     });
+//     if (response.ok) {
+//       console.log("success");
+//       document.location.replace('/profile');
+//     } else {
+//       alert(response.statusText);
+//     }
+//   }
+// }
 
 // function getAllImages(event) {
 //   fetch("/img/display").then((response) => {
