@@ -31,6 +31,13 @@ Comment.init(
         model: 'post',
         key: 'id'
       }
+    },
+    image_id: {
+      type: DataTypes.TEXT,
+      references: {
+        model: 'image',
+        key: 'id'
+      }
     }
   },
   {

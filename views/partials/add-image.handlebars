@@ -1,16 +1,12 @@
-<div id="modal" class="modal">
+<div id="imgModal" class="modal">
   <div class="modal-background"></div>
   <div class="modal-card">
-    <form id="add-post-form">
+    <form id="add-img-form">
       <header class="modal-card-head">
-        <p class="modal-card-title">Add Post</p>
-        <button class="delete" aria-label="close"></button>
+        <p class="modal-card-title">Add Image</p>
+        <button class="delete" aria-label="close" id="exit"></button>
       </header>
       <section class="modal-card-body">
-        <div>
-          <label for="post-title">Title</label>
-          <input type="text" id="post-title" name="post-title" class="text-box" />
-        </div>
         <label for="file">Image</label>
         <div class="file has-name is-boxed">
           <label class="file-label">
@@ -27,16 +23,13 @@
           </label>
           <div id="preview-images"></div>
         </div>
-        <label for="post-content">Text</label>
-        <textarea name="post-content" class="text-box"></textarea>
-      </section>
       <footer class="modal-card-foot">
-        <button class="button is-success">Save changes</button>
-        <button id="close" class="button">Cancel</button>
+        <button class="button is-info" type="submit">Save changes</button>
+        <button id="end" class="button">Cancel</button>
       </footer>
     </form>
   </div>
 </div>
 
-<button id="add-post-btn" class="button is-primary">+ Post</button>
-<script src="/javascript/add-post.js"></script>
+<button id="add-img-btn" class="button is-info">+ Image</button>
+<script src="/javascript/add-image.js"></script>

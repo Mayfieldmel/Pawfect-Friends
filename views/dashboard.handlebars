@@ -1,0 +1,15 @@
+<div class="section-margins">
+
+<a href="/profile/add-post">
+<button class="button is-primary">New Post</button>
+</a> <br><br>
+
+<ul class="post-list">
+  {{#each dataArr as |post|}}
+  <li>
+    {{> post-image-display post }}
+  </li>
+  {{/each}}
+</ul>
+
+</div>

@@ -31,14 +31,14 @@ router.get("/:id", (req, res) => {
       },
       {
         model: Post,
-        attributes: ["id", "title", "post_img", "post_text", "created_at"],
+        attributes: ["id", "post_text", "created_at"],
       },
       {
         model: Comment,
         attributes: ["id", "comment_text", "created_at"],
         include: {
           model: Post,
-          attributes: ["title"],
+          attributes: ["post_text"],
         },
       },
     ],
@@ -66,9 +66,9 @@ router.post("/", (req, res) => {
   })
     .then((dbPetData) => {
       req.session.save(() => {
-        console.log("in req.session.save")
-        req.session.id = dbPetData.id;
+        req.session.pet_id = dbPetData.id;
         req.session.pet_name = dbPetData.pet_name;
+        req.session.pet_email = dbPetData.email;
         req.session.loggedIn = true;
 
         res.json(dbPetData);
@@ -101,10 +101,10 @@ router.post("/login", (req, res) => {
     }
     // create session
     req.session.save(() => {
-      req.session.id = dbPetData.id;
+      req.session.pet_id = dbPetData.id;
       req.session.pet_name = dbPetData.pet_name;
+      req.session.pet_email = dbPetData.email;
       req.session.loggedIn = true;
-
       res.json({ Pet: dbPetData, message: "You are now logged in!" });
     });
   });
@@ -122,13 +122,14 @@ router.post("/logout", (req, res) => {
   }
 });
 
-// PUT api/pets/1
-router.put("/:id", (req, res) => {
+// PUT api/pets/
+router.put("/", (req, res) => {
   // edit pet info
+
   Pet.update(req.body, {
     individualHooks: true,
     where: {
-      id: req.params.id,
+      id: req.session.pet_id,
     },
   })
     .then((dbPetData) => {
@@ -144,7 +145,7 @@ router.put("/:id", (req, res) => {
     });
 });
 
-// // PUT api/friend/1
+// // PUT api/pets/friend/1
 router.put("/friend/:id", (req, res) => {
     // edit pet info
     Pet.update(req.body, {
@@ -157,6 +158,7 @@ router.put("/friend/:id", (req, res) => {
       return Friend.findAll({ where: { pet_id: req.params.id } });
     })
     .then((friendsIds) => {
+      console.log(friendsIds)
       // get list of current friend_ids
       const friendIds = friendsIds.map(({ friend_id }) => friend_id);
       // create filtered list of new friend_ids
@@ -174,12 +176,15 @@ router.put("/friend/:id", (req, res) => {
       //   .map(({ id }) => id);
   
       // run both actions
-      return Promise.all([
+      console.log("new", newFriends)
+      // return Promise.all([
         // Friend.destroy({ where: { id: friendsToRemove } }),
-        Friend.bulkCreate(newFriends),
-      ]);
+        return Friend.bulkCreate(newFriends);
+      // ]);
     })
-    .then((updatedFriends) => res.json(updatedFriends))
+    .then((updatedFriends) => {
+      console.log(updatedFriends)
+      res.json(updatedFriends)})
     .catch((err) => {
       // console.log(err);
       res.status(400).json(err);

@@ -1,0 +1,43 @@
+{{#if image}}
+        <div class="box">
+            <a href="/post/{{id}}" class="post-info-links">
+                <img src={{image}} />
+            </a>
+            <a href="/profile/img/{{id}}" class="right-btn">
+                    <button class="button is-primary margin-right right-btn">Delete</button>
+            </a>
+        </div>
+    {{else}}
+        <a href="/post/{{id}}" class="post-info-links">
+            <div class="box margin-bottom">
+            <article class="media">
+                <div class="media-left">
+                <figure class="image is-64x64">
+                    <img src={{profile_pic}} alt="Image">
+                </figure>
+                </div>
+                <div class="media-content">
+                <div class="content">
+                    <p>
+                    <strong>{{pet_name}}</strong> <small>| {{format_date created_at}}</small> <small>| {{comments.length}} {{format_plural "comment" comments.length}}</small>
+                    </br>
+                    {{post_text}}
+                    </p>
+                </div>
+                <nav class="level is-mobile">
+                    <div class="level-left">
+                        <a href="/profile/edit/{{id}}">
+                            <button class="button is-primary margin-right">Edit Post</button>
+                        </a>
+                    <a class="level-item" aria-label="reply">
+                        <span class="icon is-small">
+                        <i class="fas fa-reply" aria-hidden="true"></i>
+                        </span>
+                    </a>
+                    </div>
+                </nav>
+                </div>
+            </article>
+            </div>
+        </a>
+    {{/if}}

@@ -1,0 +1,31 @@
+.hide {
+  display: none;
+}
+
+.section-margins {
+  margin: 20px;
+}
+
+.margin-right {
+  margin-right: 10px;
+}
+
+.post-info-links {
+  color: black;
+}
+
+.margin-bottom {
+  margin-bottom: 10px;
+}
+
+.right-btn {
+  float: right;
+}
+
+.bone:hover .fa-bone,
+.bone .fa-paw {
+    display: none;
+}
+.bone:hover .fa-paw {
+    display: inline;
+}

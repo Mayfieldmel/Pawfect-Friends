@@ -13,13 +13,12 @@ async function loginFormHandler(event) {
         }),
         headers: { 'Content-Type': 'application/json' }
       });
-  
       if (response.ok) {
-        document.location.replace('/');
+          document.location.replace(`/profile`);
       } else {
         alert(response.statusText);
       }
     }
   }
-
+   
   document.querySelector('#login').addEventListener('submit', loginFormHandler);
