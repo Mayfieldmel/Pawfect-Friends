@@ -31,14 +31,14 @@ router.get("/:id", (req, res) => {
       },
       {
         model: Post,
-        attributes: ["id", "post_text", "created_at"],
+        attributes: ["id", "title", "post_img", "post_text", "created_at"],
       },
       {
         model: Comment,
         attributes: ["id", "comment_text", "created_at"],
         include: {
           model: Post,
-          attributes: ["post_text"],
+          attributes: ["title"],
         },
       },
     ],
@@ -66,6 +66,7 @@ router.post("/", (req, res) => {
   })
     .then((dbPetData) => {
       req.session.save(() => {
+        console.log("in req.session.save")
         req.session.pet_id = dbPetData.id;
         req.session.pet_name = dbPetData.pet_name;
         req.session.pet_email = dbPetData.email;
@@ -105,6 +106,7 @@ router.post("/login", (req, res) => {
       req.session.pet_name = dbPetData.pet_name;
       req.session.pet_email = dbPetData.email;
       req.session.loggedIn = true;
+      console.log("in pet-routes", dbPetData.id, req.session.pet_id)
       res.json({ Pet: dbPetData, message: "You are now logged in!" });
     });
   });
@@ -122,13 +124,14 @@ router.post("/logout", (req, res) => {
   }
 });
 
-// PUT api/pets/1
-router.put("/:id", (req, res) => {
+// PUT api/pets/
+router.put("/", (req, res) => {
   // edit pet info
+
   Pet.update(req.body, {
     individualHooks: true,
     where: {
-      id: req.params.id,
+      id: req.session.pet_id,
     },
   })
     .then((dbPetData) => {
