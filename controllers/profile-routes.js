@@ -111,7 +111,6 @@ router.get("/", withAuthSign, async (req, res) => {
       order: "desc",
     }); 
   
-    console.log(dataArr)
     res.render("profile", {
       pets: petData[0],
       dataArr: dataArr,

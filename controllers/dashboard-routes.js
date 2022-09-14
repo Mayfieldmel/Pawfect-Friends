@@ -61,7 +61,6 @@ router.get("/", async (req, res) => {
       order: "desc",
     }); 
   
-    console.log(dataArr)
     res.render("dashboard", {
       dataArr: dataArr,
       loggedIn: true,

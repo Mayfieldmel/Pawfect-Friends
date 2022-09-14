@@ -1,9 +1,17 @@
 {{#if image}}
-        <div class="box">
+        <div class="box margin-bottom">
             <a href="/img/{{id}}" class="post-info-links">
                 <img src={{image}} />
             </a>
-           
+            <nav class="level is-mobile right-btn">
+                    <div class="level-left">
+                    <a class="level-item" aria-label="reply">
+                        <span class="icon is-small">
+                        <i class="fas fa-reply" aria-hidden="true"></i>
+                        </span>
+                    </a>
+                    </div>
+                </nav>
         </div>
     {{else}}
         <a href="/post/{{id}}" class="post-info-links">
@@ -24,9 +32,6 @@
                 </div>
                 <nav class="level is-mobile">
                     <div class="level-left">
-                        <a href="/profile/edit/{{id}}">
-                            <button class="button is-primary margin-right">Edit Post</button>
-                        </a>
                     <a class="level-item" aria-label="reply">
                         <span class="icon is-small">
                         <i class="fas fa-reply" aria-hidden="true"></i>
