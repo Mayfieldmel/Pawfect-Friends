@@ -9,7 +9,7 @@ This app will be a pet social media site that allows users to post images, follo
 - [Description](#description)
 - [Installation](#installation)
 - [Usage](#usage)
-
+- [Technologies](#technologies)
 - [Contributing](#contribute)
 - [Tests](#tests)
 - [Questions](#questions)
@@ -24,6 +24,25 @@ To install necessary dependencies, run the following command:<br>
 
 Please remember that you need to have the required dependencies and the database created to run locally.
 
+## [Technologies](#table-of-contents)
+
+Technologies used:
+> HTML, 
+> CSS, 
+> JavaScript
+> Bulma CSS (new technology used)
+> Font Awesome
+> NPM packages:	  
+>>"bcrypt": "^5.0.1",  
+>> "connect-session-sequelize": "^7.1.5",
+>> "dotenv": "^16.0.2",
+>> "express": "^4.18.1",
+>> "express-handlebars": "^6.0.6",
+>> "express-session": "^1.17.3",
+>> "mysql2": "^2.3.3",
+>> "sequelize": "^6.21.4"
+>> "sort-array": "^4.1.5"
+
 ## [Contributing](#table-of-contents)
 
 Please reach out to our emails if you would like to make any contributions, but we will not accept any independent contributions.
@@ -33,6 +52,7 @@ Please reach out to our emails if you would like to make any contributions, but 
 To run tests, run the following command:<br>
 
 > npm start
+> npm test
 
 ## [Questions](#table-of-contents)
 
