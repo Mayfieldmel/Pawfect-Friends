@@ -21,3 +21,11 @@
 .right-btn {
   float: right;
 }
+
+.bone:hover .fa-bone,
+.bone .fa-paw {
+    display: none;
+}
+.bone:hover .fa-paw {
+    display: inline;
+}
