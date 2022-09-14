@@ -1,4 +1,6 @@
 async function editFormHandler(event) {
+  console.log("submit");
+
   event.preventDefault();
 
   const post_text = document

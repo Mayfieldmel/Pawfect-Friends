@@ -29,6 +29,7 @@
 
 <br/>
 <div class="container">
+<h2>Your Posts</h2>    
 <ul>
   {{#each dataArr as |post|}}
     {{#if post.image}}
@@ -51,9 +52,11 @@
                     <p>
                     <strong>{{pet.pet_name}}</strong> <small>| {{format_date post.created_at}}</small> <small>| {{post.comments.length}} {{format_plural "comment" post.comments.length}}</small>
                     </br>
-
                     {{post.post_text}}
                     </p>
+                    <a href="/profile/edit/{{post.id}}">
+                        <button class="button is-primary">Edit Post</button>
+                    </a>
                 </div>
                 <nav class="level is-mobile">
                     <div class="level-left">
@@ -69,7 +72,7 @@
             </div>
         </a>
     {{/if}}
-  {{/each}}
+
 </ul>
 </div>
 </br></br>
