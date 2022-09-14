@@ -1,6 +1,5 @@
 async function signupFormHandler(event) {
     event.preventDefault();
-    console.log(event.target)
     const pet_name = document.querySelector('#petname-signup').value.trim();
     const email = document.querySelector('#email-signup').value.trim();
     const password = document.querySelector('#password-signup').value.trim();
