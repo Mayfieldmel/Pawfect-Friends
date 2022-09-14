@@ -17,9 +17,14 @@
     <a href="/post/{{id}}" class="post-info-links">
         <div class="box margin-bottom">
         <article class="media">
+           
             <div class="media-left">
             <figure class="image is-64x64">
+                 {{#if profile_pic}}
                 <img src={{profile_pic}} alt="Image">
+                 {{else}}
+                 <img src="/images/paw-print.png">
+                 {{/if}}
             </figure>
             </div>
             <div class="media-content">
