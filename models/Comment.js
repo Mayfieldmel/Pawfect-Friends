@@ -33,7 +33,7 @@ Comment.init(
       }
     },
     image_id: {
-      type: DataTypes.TEXT,
+      type: DataTypes.INTEGER,
       references: {
         model: 'image',
         key: 'id'

@@ -79,7 +79,7 @@ router.get("/", withAuthSign, async (req, res) => {
       where: {
         pet_id: req.session.pet_id,
       },
-      attributes: ["image", "created_at"],
+      attributes: ["id", "image", "created_at"],
       include: [
         {
           model: Pet,
@@ -111,7 +111,6 @@ router.get("/", withAuthSign, async (req, res) => {
       order: "desc",
     }); 
   
-    console.log(dataArr)
     res.render("profile", {
       pets: petData[0],
       dataArr: dataArr,

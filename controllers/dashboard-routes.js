@@ -29,7 +29,7 @@ router.get("/", async (req, res) => {
       raw: true,
     });
     const imgData = await Image.findAll({
-      attributes: ["image", "created_at"],
+      attributes: ["id", "image", "created_at"],
       include: [
         {
           model: Pet,
@@ -61,7 +61,6 @@ router.get("/", async (req, res) => {
       order: "desc",
     }); 
   
-    console.log(dataArr)
     res.render("dashboard", {
       dataArr: dataArr,
       loggedIn: true,
