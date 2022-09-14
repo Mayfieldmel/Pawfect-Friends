@@ -1,25 +1,63 @@
 
-<div class="card">
-  <div class="card-content">
-    <div class="content">
+<div class="box">
 
-<form id="newProfileUpdates">
+  {{!-- update profile pic modal --}}
 <label class="label">Profile Picture</label>
+<br/>
 <figure class="image is-128x128">
-  <img src="https://bulma.io/images/placeholders/128x128.png">
+  {{#if pet.profile_pic}}
+  <img id="preview-profile-pic" src={{pet.profile_pic}}>
+  {{else}}
+  <img id="preview-profile-pic" src="/images/paw-print.png">
+  {{/if}}
 </figure>
-
 <div class="field is-grouped">
-  <div class="control">
-    <button class="button is-primary">Update Profile Picture</button>
+</div>
+<div id="imgModal" class="modal">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <form id="add-img-form">
+      <header class="modal-card-head">
+        <p class="modal-card-title">Update Image</p>
+        <button class="delete" aria-label="close" id="exit"></button>
+      </header>
+      <section class="modal-card-body">
+        <label for="file">Image</label>
+        <div class="file has-name is-boxed">
+          <label class="file-label">
+            <input class="file-input" type="file" name="image" id="input-files" action="/upload" method="POST"
+              enctype="multipart/form-data">
+            <span class="file-cta">
+              <span class="file-icon">
+                <i class="fas fa-upload"></i>
+              </span>
+              <span class="file-label">
+                Choose a file…
+                max size: 50KB
+              </span>
+            </span>
+          </label>
+          <div id="preview-images"></div>
+        </div>
+      <footer class="modal-card-foot">
+        <button class="button is-info" type="submit">Save changes</button>
+        <button id="end" class="button">Cancel</button>
+      </footer>
+    </form>
   </div>
 </div>
 
-</br>
+<button id="add-img-btn" class="button is-primary">Update Profile Picture</button>
+
+{{!-- email and password update --}}
+<br/>
+<br/>
+<br/>
+<form id="newProfileUpdates">
   <div class="field">
   <label class="label">Email</label>
   <div class="control has-icons-left has-icons-right">
-    <input class="input" id="newEmail" type="email" placeholder="New Email" value="">
+    <input class="input" id="newEmail" type="email"  value={{pet.email}}>
     <span class="icon is-small is-left">
       <i class="fas fa-envelope"></i>
     </span>
@@ -31,7 +69,7 @@
 <div class="field">
   <label class="label">New Password</label>
   <div class="control has-icons-left has-icons-right">
-    <input class="input" id="newPassword" type="password" placeholder="New Password" value="">
+    <input class="input" id="newPassword" type="password" value="pet.password">
     <span class="icon is-small is-left">
       <i class="fas fa-envelope"></i>
     </span>
@@ -56,8 +94,9 @@
     <button class="button is-link is-danger">Delete Profile</button>
   </div>
   </form>
-   </div>
-   </div>
+
+  
+ </div>
 
 {{#if loggedIn}}
 <script src="/javascript/update-profile.js"></script>

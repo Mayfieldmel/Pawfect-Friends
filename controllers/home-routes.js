@@ -38,16 +38,19 @@ router.get("/", (req, res) => {
 });
 
 router.get("/login", (req, res) => {
-  res.render("login", {
-    loggedIn: req.session.loggedIn,
-  });
+  if (req.session.loggedIn) {
+    res.redirect('/profile');
+    return;
+  }
+  res.render("login") 
 });
 
 router.get("/signup", (req, res) => {
-  res.render("signup",
-    {
-      loggedIn: req.session.loggedIn,
-    });
+  if (req.session.loggedIn) {
+    res.redirect('/profile');
+    return;
+  }
+  res.render("signup")
 });
 
 router.get("/friend", withAuthSign, (req, res) => {
@@ -74,7 +77,7 @@ router.get('/post/:id', (req, res) => {
       },
       {
         model: Pet,
-        attributes: ["pet_name"],
+        attributes: ["pet_name", "profile_pic"],
       },
     ],
   })
@@ -86,7 +89,6 @@ router.get('/post/:id', (req, res) => {
 
       // serialize the data
       const post = dbPostData.get({ plain: true });
-
       // pass data to template
       res.render("single-post", {
         post,

@@ -5,11 +5,27 @@ const { withAuth, withAuthSign } = require("../utils/auth");
 const sortArray = require("sort-array");
 
 // GET profile/update
-router.get("/update", withAuthSign, (req, res) => {
-  res.render("update", {
-    loggedIn: req.session.loggedIn,
-  });
-});
+router.get("/update", withAuthSign, async (req, res) => {
+    try {
+        const petData = await Pet.findAll({
+            where: {
+                id: req.session.pet_id
+            },
+            raw: true,
+          })
+          const pet = petData[0]
+        // pass data to template
+        res.render("update", {
+          pet,
+          loggedIn: req.session.loggedIn,
+        });
+    } catch {
+        console.log(err);
+    }
+      
+})
+        
+ 
 
 // GET profile/add-post
 router.get("/add-post", withAuthSign, (req, res) => {
@@ -79,7 +95,7 @@ router.get("/", withAuthSign, async (req, res) => {
       where: {
         pet_id: req.session.pet_id,
       },
-      attributes: ["image", "created_at"],
+      attributes: ["id", "image", "created_at"],
       include: [
         {
           model: Pet,
@@ -111,7 +127,6 @@ router.get("/", withAuthSign, async (req, res) => {
       order: "desc",
     }); 
   
-    console.log(dataArr)
     res.render("profile", {
       pets: petData[0],
       dataArr: dataArr,
