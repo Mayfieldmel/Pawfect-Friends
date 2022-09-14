@@ -6,7 +6,7 @@ async function updateFormHandler(event) {
     
 
     
-    if (email && password && profile_pic) {
+    if (email && password) {
         // const response = await fetch(`/api/pets/${req.session.pet_id}`, {
         const response = await fetch(`/api/pets/`, {
             method: 'put',
@@ -19,7 +19,7 @@ async function updateFormHandler(event) {
   
       if (response.ok) {
         console.log(response)
-        // document.location.replace('/profile');
+        document.location.replace('/profile/update');
       } 
     }
   }
