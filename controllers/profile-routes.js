@@ -6,9 +6,33 @@ const sortArray = require("sort-array");
 
 // GET profile/update
 router.get("/update", withAuthSign, (req, res) => {
-  res.render("update", {
-    loggedIn: req.session.loggedIn,
-  });
+    Pet.findAll({
+        where: {
+            id: req.session.pet_id
+        }
+      })
+      .then((dbPetData) => {
+        console.log(dbPetData[0].dataValues)
+        if (!dbPetData) {
+          res.status(404).json({ message: "No Pet found with this id" });
+          return;
+        }
+        const petData = [dbPetData[0].dataValues]
+        console.log(petData)
+        // serialize the data
+        const pet = petData.get({ plain: true });
+        console.log(pet)
+        // pass data to template
+        res.render("update", {
+          pet,
+          loggedIn: req.session.loggedIn,
+        });
+      })
+        .catch((err) => {
+          console.log(err);
+          res.status(500).json(err);
+        });
+ 
 });
 
 // GET profile/add-post
