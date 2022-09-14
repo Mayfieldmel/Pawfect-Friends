@@ -103,14 +103,15 @@ router.get("/", withAuthSign, async (req, res) => {
 
     const combinedArr = [...postData.map((post) => ({
         ...post,
-        profile_pic: post['pet.profile_pic']
+        profile_pic: post['pet.profile_pic'],
+        pet_name: post['pet.pet_name']
     })), ...imgData];
     const dataArr = sortArray(combinedArr, {
       by: "created_at",
       order: "desc",
     }); 
   
-    console.log(petData[0])
+    console.log(dataArr)
     res.render("profile", {
       pets: petData[0],
       dataArr: dataArr,

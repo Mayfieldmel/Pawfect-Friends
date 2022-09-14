@@ -5,9 +5,9 @@
 </a> <br>
 
 <ul class="post-list">
-  {{#each posts as |post|}}
+  {{#each dataArr as |post|}}
   <li>
-    {{> post-info post }}
+    {{> post-image-display post }}
   </li>
   {{/each}}
 </ul>
