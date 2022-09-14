@@ -35,45 +35,11 @@ router.put("/img", (req, res) => {
       }
       res.json(dbPetData);
     })
-})
-
-
-router.get("/", withAuthSign, (req, res) => {
-  console.log("session data", req.session);
-  // get all posts for dashboard
-  Post.findAll({
-    where: {
-      pet_id: req.session.pet_id,
-    },
-    attributes: ["id", "post_text", "created_at"],
-    include: [
-      {
-        model: Pet,
-        attributes: ["pet_name", "email", "password"],
-      },
-      {
-        model: Comment,
-        attributes: ["id", "comment_text", "post_id", "pet_id", "created_at"],
-        include: {
-          model: Pet,
-          attributes: ["pet_name"],
-        },
-      },
-    ],
-    order: [["created_at", "DESC"]],
-  })
-    .then((dbPostData) => {
-      // serialize data
-      const posts = dbPostData.map((post) => post.get({ plain: true }));
-      res.render("profile", { posts, loggedIn: true });
-    })
     .catch((err) => {
-      console.log(err);
-      res.status(500).json(err);
-    });
-});
-
-
+        console.log(err);
+        res.status(500).json(err);
+      });
+    })
 
 //   GET /profile/
 router.get("/", withAuthSign, async (req, res) => {
@@ -133,7 +99,7 @@ router.get("/", withAuthSign, async (req, res) => {
       raw: true,
     });
 
-    console.log(postData[0]['pet.profile_pic']);
+    // console.log(postData[0]['pet.profile_pic']);
 
     const combinedArr = [...postData.map((post) => ({
         ...post,
@@ -142,7 +108,9 @@ router.get("/", withAuthSign, async (req, res) => {
     const dataArr = sortArray(combinedArr, {
       by: "created_at",
       order: "desc",
-    });
+    }); 
+  
+    console.log(petData[0])
     res.render("profile", {
       pets: petData[0],
       dataArr: dataArr,
@@ -150,9 +118,6 @@ router.get("/", withAuthSign, async (req, res) => {
     });
   } catch (err) {
     console.log(err);
-    res.render("profile", {
-        err
-      });
   }
 })
 

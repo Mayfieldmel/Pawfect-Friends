@@ -5,7 +5,7 @@
 <div class="container">
     <h1 class="title">{{pets.pet_name}}</h1>
     <a href="/img" class="is-justify-content-center">
-    {{#if pets.profile_pic.length}}
+    {{#if pets.profile_pic}}
         <figure class="image is-128x128">
             <img class="is-rounded" src={{pets.profile_pic}}>
         </figure>
@@ -72,8 +72,8 @@
             </div>
         </a>
     {{/if}}
-
+    {{/each}}
 </ul>
 </div>
 </br></br>
-<script src="/javascript/profile.js"></script>
+
