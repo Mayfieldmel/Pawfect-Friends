@@ -11,7 +11,6 @@ This app will be a pet social media site that allows users to post images, follo
 - [Usage](#usage)
 - [Technologies](#technologies)
 - [Contributing](#contribute)
-- [Tests](#tests)
 - [Questions](#questions)
 
 ## [Installation](#table-of-contents)
@@ -22,6 +21,7 @@ To install necessary dependencies, run the following command:<br>
 
 ## [Usage](#table-of-contents)
 
+Access deployed link at: [https://pawfect-friends-app.herokuapp.com/](https://pawfect-friends-app.herokuapp.com/) .
 Please remember that you need to have the required dependencies and the database created to run locally.
 
 ## [Technologies](#table-of-contents)
@@ -47,13 +47,6 @@ Technologies used:
 
 Please reach out to our emails if you would like to make any contributions, but we will not accept any independent contributions.
 
-## [Tests](#table-of-contents)
-
-To run tests, run the following command:<br>
-
-> npm start
-> npm test
-
 ## [Questions](#table-of-contents)
 
 If you have any questions about the repo, open an issue or contact us directly us at our emails: <br>
@@ -62,4 +55,4 @@ If you have any questions about the repo, open an issue or contact us directly u
 [mayfieldmel@gmail.com](mailto:mayfieldmel@gmail.com). <br>
 [rodolforamosd11@gmail.com](mailto:rodolforamosd11@gmail.com). <br>
 
-[![Screen Shot 2022-09-14 at 6 21 53 PM](https://user-images.githubusercontent.com/104585768/190273467-b879a21d-ca2b-44d1-96d1-1938faa98ac3.png)
+[!Screen Shot 2022-09-14 at 6 21 53 PM](https://user-images.githubusercontent.com/104585768/190273467-b879a21d-ca2b-44d1-96d1-1938faa98ac3.png)

@@ -1,6 +1,6 @@
 // create new post
 async function postFormHandler(event) {
-  console.log("submit")
+  console.log("submit");
   event.preventDefault();
 
   const post_text = document.querySelector('textarea[name="post-text"]').value;
@@ -24,7 +24,5 @@ async function postFormHandler(event) {
 }
 
 document
-    .querySelector("#add-post-form")
-    .addEventListener("submit", postFormHandler);
-
-
+  .querySelector("#add-post-form")
+  .addEventListener("submit", postFormHandler);

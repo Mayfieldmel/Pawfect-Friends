@@ -39,28 +39,27 @@ router.get("/", (req, res) => {
 
 router.get("/login", (req, res) => {
   if (req.session.loggedIn) {
-    res.redirect('/profile');
+    res.redirect("/profile");
     return;
   }
-  res.render("login") 
+  res.render("login");
 });
 
 router.get("/signup", (req, res) => {
   if (req.session.loggedIn) {
-    res.redirect('/profile');
+    res.redirect("/profile");
     return;
   }
-  res.render("signup")
+  res.render("signup");
 });
 
 router.get("/friend", withAuthSign, (req, res) => {
   res.render("friend", {
-        loggedIn: req.session.loggedIn,
-    });
+    loggedIn: req.session.loggedIn,
+  });
 });
 
-
-router.get('/post/:id', (req, res) => {
+router.get("/post/:id", (req, res) => {
   Post.findOne({
     where: {
       id: req.params.id,

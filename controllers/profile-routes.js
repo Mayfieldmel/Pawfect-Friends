@@ -1,31 +1,28 @@
 const router = require("express").Router();
 const sequelize = require("../config/connection");
-const { Post, Pet, Comment, Image } = require("../models");
-const { withAuth, withAuthSign } = require("../utils/auth");
+const { Post, Pet, Comment, Image, Imagecomment } = require("../models");
+const { withAuthSign } = require("../utils/auth");
 const sortArray = require("sort-array");
 
 // GET profile/update
 router.get("/update", withAuthSign, async (req, res) => {
-    try {
-        const petData = await Pet.findAll({
-            where: {
-                id: req.session.pet_id
-            },
-            raw: true,
-          })
-          const pet = petData[0]
-        // pass data to template
-        res.render("update", {
-          pet,
-          loggedIn: req.session.loggedIn,
-        });
-    } catch {
-        console.log(err);
-    }
-      
-})
-        
- 
+  try {
+    const petData = await Pet.findAll({
+      where: {
+        id: req.session.pet_id,
+      },
+      raw: true,
+    });
+    const pet = petData[0];
+    // pass data to template
+    res.render("update", {
+      pet,
+      loggedIn: req.session.loggedIn,
+    });
+  } catch {
+    console.log(err);
+  }
+});
 
 // GET profile/add-post
 router.get("/add-post", withAuthSign, (req, res) => {
@@ -33,7 +30,6 @@ router.get("/add-post", withAuthSign, (req, res) => {
     loggedIn: req.session.loggedIn,
   });
 });
-
 
 // PUT /profile/img
 router.put("/img", (req, res) => {
@@ -52,10 +48,10 @@ router.put("/img", (req, res) => {
       res.json(dbPetData);
     })
     .catch((err) => {
-        console.log(err);
-        res.status(500).json(err);
-      });
-    })
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
 
 //   GET /profile/
 router.get("/", withAuthSign, async (req, res) => {
@@ -101,32 +97,32 @@ router.get("/", withAuthSign, async (req, res) => {
           model: Pet,
           attributes: ["pet_name"],
         },
-        // ,
-        // {
-        //     model: Comment,
-        //     attributes: ['id', 'comment_text', 'post_id', 'pet_id', 'created_at'],
-        //     include: {
-        //     model: Pet,
-        //     attributes: ['pet_name']
-        //     }
-        // }
+        {
+          model: Imagecomment,
+          attributes: ["comment_text", "pet_id"],
+        },
       ],
       order: [["created_at", "DESC"]],
       raw: true,
     });
-
-    // console.log(postData[0]['pet.profile_pic']);
-
-    const combinedArr = [...postData.map((post) => ({
+    
+    const combinedArr = [
+      ...postData.map((post) => ({
         ...post,
-        profile_pic: post['pet.profile_pic'],
-        pet_name: post['pet.pet_name']
-    })), ...imgData];
+        profile_pic: post["pet.profile_pic"],
+        pet_name: post["pet.pet_name"],
+      })),
+      ...imgData.map((image) => ({
+        ...image,
+        pet: image["pet.pet_name"],
+        comments: image["imagecomments.id"],
+      })),
+    ];
     const dataArr = sortArray(combinedArr, {
       by: "created_at",
       order: "desc",
-    }); 
-  
+    });
+
     res.render("profile", {
       pets: petData[0],
       dataArr: dataArr,
@@ -135,7 +131,7 @@ router.get("/", withAuthSign, async (req, res) => {
   } catch (err) {
     console.log(err);
   }
-})
+});
 
 router.get("/edit/:id", (req, res) => {
   Post.findByPk(req.params.id, {

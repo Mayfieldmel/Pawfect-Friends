@@ -1,16 +1,22 @@
 const { Model, DataTypes } = require("sequelize");
-
 const sequelize = require("../config/connection");
 
-class Friend extends Model {}
+class Imagecomment extends Model {}
 
-Friend.init(
+Imagecomment.init(
   {
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
       autoIncrement: true,
+    },
+    comment_text: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        len: [1],
+      },
     },
     pet_id: {
       type: DataTypes.INTEGER,
@@ -19,21 +25,20 @@ Friend.init(
         key: "id",
       },
     },
-    friend_id: {
+    image_id: {
       type: DataTypes.INTEGER,
       references: {
-        model: "pet",
+        model: "image",
         key: "id",
       },
     },
   },
   {
     sequelize,
-    timestamps: true,
     freezeTableName: true,
     underscored: true,
-    modelName: "friend",
+    modelName: "imagecomment",
   }
 );
 
-module.exports = Friend;
+module.exports = Imagecomment;

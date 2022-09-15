@@ -1,33 +1,33 @@
 const router = require('express').Router();
 const sequelize = require('../config/connection');
-const { Post, Pet, Comment, Friend, Image } = require('../models');
+const { Post, Pet, Comment, Friend, Image, Imagecomment } = require('../models');
 
 
 
 // GET /img
 router.get("/", (req, res) => {
-    res.render('profile-image', { loggedIn: true });
-  });
- 
-// GET /img/display  
-router.get("/display", (req, res) => {
-    //GET ALL IMAGES
-    Image.findAll({})
-        .then((dbImageData) => res.json(dbImageData))
-        .catch((err) => {
-          console.log(err);
-          res.status(500).json(err);
-        });
-  });
+  res.render("profile-image", { loggedIn: true });
+});
 
-// GET /img/profile/display/1  
+// GET /img/display
+router.get("/display", (req, res) => {
+  //GET ALL IMAGES
+  Image.findAll({})
+    .then((dbImageData) => res.json(dbImageData))
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
+
+// GET /img/profile/display/1
 router.get("/profile/display/:id", (req, res) => {
-    // GET ALL IMAGES FROM ONE PET
-    Image.findALl({
-      where: {
-        pet_id: req.params.id
-      },
-    })
+  // GET ALL IMAGES FROM ONE PET
+  Image.findALl({
+    where: {
+      pet_id: req.params.id,
+    },
+  })
     .then((dbPetData) => {
       if (!dbPetData) {
         res.status(404).json({ message: "No Pet found with this id" });
@@ -41,7 +41,7 @@ router.get("/profile/display/:id", (req, res) => {
     });
 });
 
-// GET /img/1  
+// GET /img/1
 router.get("/:id", (req, res) => {
     // GET ONE IMAGE
     Image.findOne({
@@ -54,7 +54,7 @@ router.get("/:id", (req, res) => {
           attributes: ["pet_name"],
         },
         {
-        model: Comment,
+        model: Imagecomment,
           attributes: ["id", "comment_text", "image_id", "pet_id", "created_at"],
           include: {
             model: Pet,
@@ -69,8 +69,12 @@ router.get("/:id", (req, res) => {
         return;
       }
       // serialize the data
-      const image = dbImageData.get({ plain: true });
-      console.log(image)
+      var image = dbImageData.get({ plain: true });
+      image = dbImageData.map((image) => ({
+        ...image,
+        pet: image["pet.pet_name"],
+        comments: image["imagecomments.id"],
+      })),
       // pass data to template
       res.render("single-image", {
         image,
@@ -83,15 +87,15 @@ router.get("/:id", (req, res) => {
     });
 });
 
-// GET /img/display/1  
+// GET /img/display/1
 router.get("/display/:id", (req, res) => {
-    // GET PROFILE PIC
-    Image.findOne({
-      where: {
-        pet_id: req.params.id,
-        profile_pic: true
-      },
-    })
+  // GET PROFILE PIC
+  Image.findOne({
+    where: {
+      pet_id: req.params.id,
+      profile_pic: true,
+    },
+  })
     .then((dbPetData) => {
       if (!dbPetData) {
         res.status(404).json({ message: "No Pet found with this id" });
@@ -106,25 +110,44 @@ router.get("/display/:id", (req, res) => {
 });
 
 // POST /img
-router.post('/', (req, res) => {
+router.post("/", (req, res) => {
   // CREATE IMAGE
-    Image.create({
-        image: req.body.image,
-        name: req.body.name,
-        type: req.body.type,
-        size: req.body.size,
-        profile_pic: req.body.profile_pic,
-        pet_id: req.session.pet_id
-    })
+  Image.create({
+    image: req.body.image,
+    name: req.body.name,
+    type: req.body.type,
+    size: req.body.size,
+    profile_pic: req.body.profile_pic,
+    pet_id: req.session.pet_id,
+  })
     .then((dbPetData) => {
-        res.json(dbPetData);
+      res.json(dbPetData);
     })
     .catch((err) => {
       console.log(err);
       res.status(500).json(err);
     });
-})
+});
 
-    
+// DELETE /img/1
+router.delete("/:id", (req, res) => {
+  // remove Image
+  Image.destroy({
+    where: {
+      id: req.params.id,
+    },
+  })
+    .then((dbImgData) => {
+      if (!dbImgData) {
+        res.status(404).json({ message: "No image found with this id" });
+        return;
+      }
+      res.json(dbImgData);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
 
-  module.exports = router; 
+module.exports = router;

@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { Post, Pet, Comment, Image } = require("../models");
+const { Post, Pet, Comment, Image, Imagecomment } = require("../models");
 const sortArray = require("sort-array");
 // const withAuth = require("../utils/auth");
 
@@ -35,32 +35,35 @@ router.get("/", async (req, res) => {
           model: Pet,
           attributes: ["pet_name"],
         },
-        // ,
-        // {
-        //     model: Comment,
-        //     attributes: ['id', 'comment_text', 'post_id', 'pet_id', 'created_at'],
-        //     include: {
-        //     model: Pet,
-        //     attributes: ['pet_name']
-        //     }
-        // }
+        {
+          model: Imagecomment,
+          attributes: ["id", "comment_text"],
+          include: {
+            model: Pet,
+            attributes: ["pet_name"]
+          }
+        }
       ],
       order: [["created_at", "DESC"]],
       raw: true,
     });
-
-    // console.log(postData[0]['pet.profile_pic']);
-
-    const combinedArr = [...postData.map((post) => ({
+    const combinedArr = [
+      ...postData.map((post) => ({
         ...post,
-        profile_pic: post['pet.profile_pic'],
-        pet_name: post['pet.pet_name']
-    })), ...imgData];
+        profile_pic: post["pet.profile_pic"],
+        pet_name: post["pet.pet_name"],
+      })),
+      ...imgData.map((image) => ({
+        ...image,
+        pet: image["pet.pet_name"],
+        comments: image["imagecomments.id"],
+      })),
+    ];
     const dataArr = sortArray(combinedArr, {
       by: "created_at",
       order: "desc",
-    }); 
-  
+    });
+
     res.render("dashboard", {
       dataArr: dataArr,
       loggedIn: true,
@@ -68,5 +71,5 @@ router.get("/", async (req, res) => {
   } catch (err) {
     console.log(err);
   }
-})
+});
 module.exports = router;

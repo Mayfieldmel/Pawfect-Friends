@@ -1,19 +1,19 @@
-const {Model, DataTypes} = require('sequelize');
-const sequelize = require('../config/connection');
+const { Model, DataTypes } = require("sequelize");
+const sequelize = require("../config/connection");
 
 class Image extends Model {}
 
-Image.init( 
+Image.init(
   {
     id: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        primaryKey: true,
-        autoIncrement: true
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey: true,
+      autoIncrement: true,
     },
     image: {
-        type: DataTypes.TEXT,
-      },
+      type: DataTypes.TEXT,
+    },
     type: {
       type: DataTypes.STRING,
     },
@@ -23,10 +23,6 @@ Image.init(
     size: {
       type: DataTypes.INTEGER,
     },
-    // profile_pic: {
-    //   type: DataTypes.BOOLEAN,
-    //   defaultValue: false,
-    // },
     pet_id: {
       type: DataTypes.INTEGER,
     },
@@ -35,9 +31,8 @@ Image.init(
     sequelize,
     freezeTableName: true,
     underscored: true,
-    modelName: 'image'
+    modelName: "image",
   }
-)
-
+);
 
 module.exports = Image;
