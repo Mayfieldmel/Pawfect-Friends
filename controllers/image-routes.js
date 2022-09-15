@@ -53,14 +53,14 @@ router.get("/:id", (req, res) => {
           model: Pet,
           attributes: ["pet_name"],
         },
-        {
-        model: Imagecomment,
-          attributes: ["id", "comment_text", "image_id", "pet_id", "created_at"],
-          include: {
-            model: Pet,
-            attributes: ["pet_name"],
-          }
-        }
+        // {
+        // model: Imagecomment,
+        //   attributes: ["id", "comment_text", "image_id", "pet_id", "created_at"],
+        //   include: {
+        //     model: Pet,
+        //     attributes: ["pet_name"],
+        //   }
+        // }
       ]
     })
     .then((dbImageData) => {
