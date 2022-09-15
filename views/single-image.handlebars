@@ -11,7 +11,7 @@
         </nav>
 </div>
 
-<form class="comment-form column box is-10 is-offset-1">
+<form class="image-comment-form column box is-10 is-offset-1">
   <div>
     <textarea class="input textarea" name="comment-body" rows="3" placeholder="Type a comment here"></textarea>
   </div>
@@ -23,7 +23,7 @@
 </form>
 {{/if}}
 
-{{> comments image.comments}}
+{{> image-comments image.imagecomments}}
 
 {{#if loggedIn}}
 <script src="/javascript/image-comment.js"></script>
