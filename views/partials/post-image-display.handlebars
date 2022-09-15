@@ -3,6 +3,8 @@
     <div class="box margin-bottom">
         <img src={{image}} />
         <nav class="level is-mobile right-btn">
+            <p class="margin-right" ><strong>{{pet}}</strong> <small>| {{format_date created_at}}</small> <small>|
+                            {{comments.length}} {{format_plural "comment" comments.length}}</small></p>
             <div class="level-left">
                 <a href="/img/{{id}}" class="level-item" aria-label="reply">
                     <span class="icon is-small">
@@ -27,7 +29,6 @@
                     {{/if}}
                 </figure>
             </div>
-            <div>{{pet.pet_name}}</div>
             <div class="media-content">
                 <div class="content">
                     <p>

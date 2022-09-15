@@ -47,14 +47,17 @@ router.get("/", async (req, res) => {
       order: [["created_at", "DESC"]],
       raw: true,
     });
-    
     const combinedArr = [
       ...postData.map((post) => ({
         ...post,
         profile_pic: post["pet.profile_pic"],
         pet_name: post["pet.pet_name"],
       })),
-      ...imgData,
+      ...imgData.map((image) => ({
+        ...image,
+        pet: image["pet.pet_name"],
+        comments: image["imagecomments.id"],
+      })),
     ];
     const dataArr = sortArray(combinedArr, {
       by: "created_at",

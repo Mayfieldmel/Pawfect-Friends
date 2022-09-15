@@ -99,32 +99,24 @@ router.get("/", withAuthSign, async (req, res) => {
         },
         {
           model: Imagecomment,
-          attributes: [
-            "id",
-            "comment_text",
-            "image_id",
-            "pet_id",
-            "created_at",
-          ],
-          include: {
-            model: Pet,
-            attributes: ["pet_name"],
-          },
+          attributes: ["comment_text", "pet_id"],
         },
       ],
       order: [["created_at", "DESC"]],
       raw: true,
     });
-
-    console.log(imgData);
-
+    
     const combinedArr = [
       ...postData.map((post) => ({
         ...post,
         profile_pic: post["pet.profile_pic"],
         pet_name: post["pet.pet_name"],
       })),
-      ...imgData,
+      ...imgData.map((image) => ({
+        ...image,
+        pet: image["pet.pet_name"],
+        comments: image["imagecomments.id"],
+      })),
     ];
     const dataArr = sortArray(combinedArr, {
       by: "created_at",
