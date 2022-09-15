@@ -60,7 +60,6 @@ async function saveImg(event) {
     });
     if (response.ok) {
       console.log("success");
-      console.log(response.json())
       document.location.replace('/profile/update');
     } else {
       alert(response.statusText);

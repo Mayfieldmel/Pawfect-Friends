@@ -53,8 +53,6 @@ async function saveImg(event) {
 }
 
 
-
-
 function imgModal(event) {
   openModal();
   document.querySelector("#exit").addEventListener("click", closeModal);

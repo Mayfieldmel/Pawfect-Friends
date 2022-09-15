@@ -3,13 +3,9 @@
     <a href="/img/{{image.id}}" class="post-info-links">
         <img src={{image.image}} />
     </a>
-    <nav class="level is-mobile right-btn">
+    <nav id="delete-image" class="level is-mobile right-btn">
             <div class="level-left">
-            <a class="level-item" aria-label="reply">
-                <span class="icon is-small">
-                <i class="fas fa-reply" aria-hidden="true"></i>
-                </span>
-            </a>
+            <button class="button is-danger">Delete</button>
             </div>
         </nav>
 </div>
@@ -30,4 +26,6 @@
 
 {{#if loggedIn}}
 <script src="/javascript/image-comment.js"></script>
+<script src="/javascript/delete-image.js"></script>
 {{/if}}
+
