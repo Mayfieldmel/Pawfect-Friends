@@ -15,12 +15,6 @@
 <body>
   <div class="wrapper">
 
-    <header>
-      {{!-- <div class="logo">
-        <img src="/images/Pawfect-long.png" class="top-img" alt="Pawfect logo" />
-      </div> --}}
-    </header>
-
     <nav class="navbar" role="navigation" aria-label="main navigation">
       <div class="navbar-brand">
         <a class="navbar-item" href="/">
@@ -36,8 +30,6 @@
 
   <div id="navbarBasic" class="navbar-menu">
     <div class="navbar-start">
-      {{!-- individual posts --}}
-      {{!-- <a class="navbar-item" href="/profile">Profile</a> --}}
 
       {{#if loggedIn}} 
           <a class="navbar-item" href="/profile">Profile</a>
@@ -50,10 +42,6 @@
           <a class="navbar-item hide" href="/friend">Friends</a>
           </a>
            {{/if}}
-
-      {{!-- view all posts --}}
-      {{!-- <a class="navbar-item" href="/dashboard">Dashboard</a>
-      <a class="navbar-item" href="/friend">Friends</a> --}}
 
           <div class="navbar-item has-dropdown is-hoverable">
             <a class="navbar-link bone">
@@ -83,7 +71,7 @@
     <footer class="footer has-background-grey-lighter py-3">
       <div class="content has-text-centered is-size-7">
         <p>
-          <strong>Pawfect Friends, </strong> The only <em>real</em> social network for pets. </br> Designed by Melissa, Morgan,
+          <strong>Pawfect Friends, </strong> The social network for pets. </br> Designed by Melissa, Morgan,
           Rodolfo & Brian, 2022 </a>
         </p>
         <p><a href="https://github.com/Mayfieldmel/Pawfect-Friends" target="_blank"> <i class="fa fa-github is-size-5"
@@ -97,7 +85,5 @@
 {{#if loggedIn}}
 <script src="/javascript/logout.js"></script>
 {{/if}}
-{{!--
-<script src="/javascript/profile.js"></script> --}}
 
 </html>

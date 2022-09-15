@@ -1,6 +1,6 @@
-const { Model, DataTypes } = require('sequelize');
+const { Model, DataTypes } = require("sequelize");
 
-const sequelize = require('../config/connection');
+const sequelize = require("../config/connection");
 
 class Friend extends Model {}
 
@@ -10,29 +10,29 @@ Friend.init(
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
-      autoIncrement: true
+      autoIncrement: true,
     },
     pet_id: {
       type: DataTypes.INTEGER,
       references: {
         model: "pet",
-        key: "id"
-      }
+        key: "id",
+      },
     },
     friend_id: {
       type: DataTypes.INTEGER,
       references: {
         model: "pet",
-        key: "id"
-      }
-    }
+        key: "id",
+      },
+    },
   },
   {
     sequelize,
     timestamps: true,
     freezeTableName: true,
     underscored: true,
-    modelName: 'friend',
+    modelName: "friend",
   }
 );
 

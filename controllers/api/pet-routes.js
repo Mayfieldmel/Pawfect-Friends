@@ -2,12 +2,11 @@ const router = require("express").Router();
 const { Pet, Post, Comment, Friend } = require("../../models");
 // const withAuth = require("../../utils/auth");
 
-
 // GET api/pets
 router.get("/", (req, res) => {
   // get all Pets
   Pet.findAll({
-    attributes: { exclude: ["password"] }
+    attributes: { exclude: ["password"] },
   })
     .then((dbPetData) => res.json(dbPetData))
     .catch((err) => {
@@ -27,7 +26,7 @@ router.get("/:id", (req, res) => {
     include: [
       {
         model: Friend,
-        as: 'follows'
+        as: "follows",
       },
       {
         model: Post,
@@ -72,7 +71,7 @@ router.post("/", (req, res) => {
         req.session.loggedIn = true;
 
         res.json(dbPetData);
-       });
+      });
     })
     .catch((err) => {
       console.log(err);
@@ -147,18 +146,18 @@ router.put("/", (req, res) => {
 
 // // PUT api/pets/friend/1
 router.put("/friend/:id", (req, res) => {
-    // edit pet info
-    Pet.update(req.body, {
-      where: {
-        id: req.params.id,
-      },
-    })
+  // edit pet info
+  Pet.update(req.body, {
+    where: {
+      id: req.params.id,
+    },
+  })
     .then((pet) => {
       // find all associated friends from Friend
       return Friend.findAll({ where: { pet_id: req.params.id } });
     })
     .then((friendsIds) => {
-      console.log(friendsIds)
+      console.log(friendsIds);
       // get list of current friend_ids
       const friendIds = friendsIds.map(({ friend_id }) => friend_id);
       // create filtered list of new friend_ids
@@ -167,29 +166,22 @@ router.put("/friend/:id", (req, res) => {
         .map((friend_id) => {
           return {
             pet_id: req.params.id,
-            friend_id
+            friend_id,
           };
         });
-      // // figure out which ones to remove
-      // const friendsToRemove = friendsIds
-      //   .filter(({ friend_id }) => !req.body.friends.includes(friend_id))
-      //   .map(({ id }) => id);
-  
       // run both actions
-      console.log("new", newFriends)
-      // return Promise.all([
-        // Friend.destroy({ where: { id: friendsToRemove } }),
-        return Friend.bulkCreate(newFriends);
-      // ]);
+      console.log("new", newFriends);
+      return Friend.bulkCreate(newFriends);
     })
     .then((updatedFriends) => {
-      console.log(updatedFriends)
-      res.json(updatedFriends)})
+      console.log(updatedFriends);
+      res.json(updatedFriends);
+    })
     .catch((err) => {
       // console.log(err);
       res.status(400).json(err);
     });
-  });
+});
 
 // DELETE api/pets/1
 router.delete("/:id", (req, res) => {

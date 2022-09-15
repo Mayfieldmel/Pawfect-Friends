@@ -1,5 +1,5 @@
 async function editFormHandler(event) {
-    event.preventDefault();
+  event.preventDefault();
 
   const post_text = document
     .querySelector('input[name="post-text"]')
