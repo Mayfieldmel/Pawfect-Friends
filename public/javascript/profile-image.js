@@ -19,7 +19,6 @@ async function saveImg(event) {
   event.preventDefault();
   if (imageInput.files) {
     const profile_pic = reader.result;
-    console.log(profile_pic)
     const response = await fetch('/profile/img', {
       method: "PUT",
       body: JSON.stringify({

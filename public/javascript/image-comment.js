@@ -7,7 +7,6 @@ async function imageCommentFormHandler(event) {
     ];
   
     if (comment_text) {
-        console.log("this is comment_text if", comment_text);
         const response = await fetch('/api/imagecomments', {
           method: 'POST',
           body: JSON.stringify({

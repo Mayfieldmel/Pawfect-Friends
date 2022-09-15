@@ -1,6 +1,7 @@
 const imageInput = document.querySelector("#input-files");
 const previewImage = document.querySelector("#preview-images");
 const submitImage = document.querySelector("#upload-image");
+var imgModalEl = document.querySelector("#imgModal");
 const reader = new FileReader();
  
 async function displayImg(event) {
@@ -39,18 +40,22 @@ async function saveImg(event) {
     });
     if (response.ok) {
       console.log("success");
-      document.location.replace('/profile/add-post');
+      closeModal();
+      let icon = document.querySelector("#success-icon");
+      let message = document.querySelector("#success-message");
+      icon.classList.remove("hide");
+      message.classList.remove("hide");
+      closeModal();
     } else {
-      alert(response.statusText);
+      console.log(error);
     }
   }
 }
 
-var imgModalEl = document.querySelector("#imgModal");
+
 
 
 function imgModal(event) {
-  console.log("click");
   openModal();
   document.querySelector("#exit").addEventListener("click", closeModal);
   document.querySelector("#end").addEventListener("click", closeModal);
