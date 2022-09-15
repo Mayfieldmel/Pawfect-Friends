@@ -29,3 +29,9 @@
 .bone:hover .fa-paw {
     display: inline;
 }
+
+@media screen and (max-width: 1200px) {
+  .image-comment {
+      padding-bottom: 5px;
+  }
+}

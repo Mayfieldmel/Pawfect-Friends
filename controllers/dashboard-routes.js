@@ -35,14 +35,14 @@ router.get("/", async (req, res) => {
           model: Pet,
           attributes: ["pet_name"],
         },
-        {
-          model: Imagecomment,
-          attributes: ["id", "comment_text"],
-          include: {
-            model: Pet,
-            attributes: ["pet_name"]
-          }
-        }
+        // {
+        //   model: Imagecomment,
+        //   attributes: ["id", "comment_text"],
+        //   include: {
+        //     model: Pet,
+        //     attributes: ["pet_name"]
+        //   }
+        // }
       ],
       order: [["created_at", "DESC"]],
       raw: true,
