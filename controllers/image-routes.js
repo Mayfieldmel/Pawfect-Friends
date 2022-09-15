@@ -1,13 +1,8 @@
-const router = require("express").Router();
-const sequelize = require("../config/connection");
-const {
-  Post,
-  Pet,
-  Comment,
-  Friend,
-  Image,
-  Imagecomment,
-} = require("../models");
+const router = require('express').Router();
+const sequelize = require('../config/connection');
+const { Post, Pet, Comment, Friend, Image, Imagecomment } = require('../models');
+
+
 
 // GET /img
 router.get("/", (req, res) => {
@@ -48,26 +43,26 @@ router.get("/profile/display/:id", (req, res) => {
 
 // GET /img/1
 router.get("/:id", (req, res) => {
-  // GET ONE IMAGE
-  Image.findOne({
-    where: {
-      id: req.params.id,
-    },
-    include: [
-      {
-        model: Pet,
-        attributes: ["pet_name"],
+    // GET ONE IMAGE
+    Image.findOne({
+      where: {
+        id: req.params.id
       },
-      {
-        model: Imagecomment,
-        attributes: ["id", "comment_text", "image_id", "pet_id", "created_at"],
-        include: {
+      include: [
+        {
           model: Pet,
           attributes: ["pet_name"],
         },
-      },
-    ],
-  })
+        {
+        model: Imagecomment,
+          attributes: ["id", "comment_text", "image_id", "pet_id", "created_at"],
+          include: {
+            model: Pet,
+            attributes: ["pet_name"],
+          }
+        }
+      ]
+    })
     .then((dbImageData) => {
       if (!dbImageData) {
         res.status(404).json({ message: "No image found with this id" });
