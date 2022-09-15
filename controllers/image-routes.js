@@ -53,14 +53,14 @@ router.get("/:id", (req, res) => {
           model: Pet,
           attributes: ["pet_name"],
         },
-        {
-        model: Imagecomment,
-          attributes: ["id", "comment_text", "image_id", "pet_id", "created_at"],
-          include: {
-            model: Pet,
-            attributes: ["pet_name"],
-          }
-        }
+        // {
+        // model: Imagecomment,
+        //   attributes: ["id", "comment_text", "image_id", "pet_id", "created_at"],
+        //   include: {
+        //     model: Pet,
+        //     attributes: ["pet_name"],
+        //   }
+        // }
       ]
     })
     .then((dbImageData) => {
@@ -70,11 +70,11 @@ router.get("/:id", (req, res) => {
       }
       // serialize the data
       var image = dbImageData.get({ plain: true });
-      image = dbImageData.map((image) => ({
-        ...image,
-        pet: image["pet.pet_name"],
-        comments: image["imagecomments.id"],
-      })),
+      // image = dbImageData.map((image) => ({
+      //   ...image,
+      //   pet: image["pet.pet_name"],
+      //   comments: image["imagecomments.id"],
+      // })),
       // pass data to template
       res.render("single-image", {
         image,
