@@ -19,8 +19,7 @@ async function saveImg(event) {
   event.preventDefault();
   if (imageInput.files) {
     const profile_pic = reader.result;
-    console.log(profile_pic)
-    const response = await fetch('/profile/img', {
+    const response = await fetch("/profile/img", {
       method: "PUT",
       body: JSON.stringify({
         profile_pic
@@ -32,7 +31,7 @@ async function saveImg(event) {
     if (response.ok) {
       console.log("success");
       console.log(response.json())
-      document.location.replace('/profile');
+      document.location.replace("/profile");
     } else {
       alert(response.statusText);
     }
@@ -40,11 +39,13 @@ async function saveImg(event) {
 }
 
 
-document.querySelector("#img-files").addEventListener("change", displayImg);
 
-  document
+document.querySelector("#img-files").addEventListener("change", displayImg);
+document
     .querySelector("#profile-img-form")
     .addEventListener("submit", saveImg);
+
+
   
 
 

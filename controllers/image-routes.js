@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const sequelize = require('../config/connection');
-const { Post, Pet, Comment, Friend, Image } = require('../models');
+const { Post, Pet, Comment, Friend, Image, Imagecomment } = require('../models');
 
 
 
@@ -54,7 +54,7 @@ router.get("/:id", (req, res) => {
           attributes: ["pet_name"],
         },
         {
-        model: Comment,
+        model: Imagecomment,
           attributes: ["id", "comment_text", "image_id", "pet_id", "created_at"],
           include: {
             model: Pet,
@@ -70,7 +70,6 @@ router.get("/:id", (req, res) => {
       }
       // serialize the data
       const image = dbImageData.get({ plain: true });
-      console.log(image)
       // pass data to template
       res.render("single-image", {
         image,
@@ -124,6 +123,27 @@ router.post('/', (req, res) => {
       res.status(500).json(err);
     });
 })
+
+// DELETE /img/1
+router.delete("/:id", (req, res) => {
+  // remove Image 
+  Image.destroy({
+    where: {
+      id: req.params.id,
+    },
+  })
+    .then((dbImgData) => {
+      if (!dbImgData) {
+        res.status(404).json({ message: "No image found with this id" });
+        return;
+      }
+      res.json(dbImgData);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
 
     
 

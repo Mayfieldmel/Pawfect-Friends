@@ -11,7 +11,6 @@ This app will be a pet social media site that allows users to post images, follo
 - [Usage](#usage)
 - [Technologies](#technologies)
 - [Contributing](#contribute)
-- [Tests](#tests)
 - [Questions](#questions)
 
 ## [Installation](#table-of-contents)
@@ -46,13 +45,6 @@ Technologies used:
 ## [Contributing](#table-of-contents)
 
 Please reach out to our emails if you would like to make any contributions, but we will not accept any independent contributions.
-
-## [Tests](#table-of-contents)
-
-To run tests, run the following command:<br>
-
-> npm start
-> npm test
 
 ## [Questions](#table-of-contents)
 
