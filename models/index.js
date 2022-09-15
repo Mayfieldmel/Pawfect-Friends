@@ -49,4 +49,4 @@ Pet.hasMany(Image, {
 
 
 
-module.exports = { Pet, Post, Comment, Image, Imagecomment };
+module.exports = { Pet, Post, Comment, Image};
