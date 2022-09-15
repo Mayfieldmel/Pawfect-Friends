@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const sequelize = require('../config/connection');
-const { Post, Pet, Comment, Friend, Image, Imagecomment } = require('../models');
+const { Post, Pet, Comment, Friend, Image } = require('../models');
 
 
 
@@ -54,7 +54,7 @@ router.get("/:id", (req, res) => {
           attributes: ["pet_name"],
         },
         {
-        model: Imagecomment,
+        model: Comment,
           attributes: ["id", "comment_text", "image_id", "pet_id", "created_at"],
           include: {
             model: Pet,

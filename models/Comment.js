@@ -32,13 +32,13 @@ Comment.init(
         key: 'id'
       }
     },
-    // image_id: {
-    //   type: DataTypes.INTEGER,
-    //   references: {
-    //     model: 'image',
-    //     key: 'id'
-    //   }
-    // }
+    image_id: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'image',
+        key: 'id'
+      }
+    }
   },
   {
     sequelize,
