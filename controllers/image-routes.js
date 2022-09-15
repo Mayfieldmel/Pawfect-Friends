@@ -74,7 +74,12 @@ router.get("/:id", (req, res) => {
         return;
       }
       // serialize the data
-      const image = dbImageData.get({ plain: true });
+      var image = dbImageData.get({ plain: true });
+      image = dbImageData.map((image) => ({
+        ...image,
+        pet: image["pet.pet_name"],
+        comments: image["imagecomments.id"],
+      })),
       // pass data to template
       res.render("single-image", {
         image,

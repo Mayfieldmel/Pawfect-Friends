@@ -1,8 +1,9 @@
 {{!-- import post-info --}}
 <div class="box margin-bottom">
-    <a href="/img/{{image.id}}" class="post-info-links">
+    {{!-- <p class="margin-right"><strong>{{pet}}</strong> <small>| {{format_date created_at}}</small> <small>|
+                {{comments.length}} {{format_plural "comment" comments.length}}</small></p> --}}
         <img src={{image.image}} />
-    </a>
+  
     <nav id="delete-image" class="level is-mobile right-btn">
             <div class="level-left">
             <button class="button is-danger">Delete</button>
