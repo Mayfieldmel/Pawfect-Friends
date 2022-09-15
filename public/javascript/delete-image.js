@@ -11,7 +11,7 @@ async function deleteImg() {
   if (response.ok) {
     document.location.replace('/profile/');
   } else {
-    alert(response.statusText);
+   console.log("error")
   }
 }
   

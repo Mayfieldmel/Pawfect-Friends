@@ -1,13 +1,15 @@
+const imageInput = document.querySelector("#input-files");
+const previewImage = document.querySelector("#preview-images");
+const submitImage = document.querySelector("#upload-image");
+var imgModalEl = document.querySelector("#imgModal");
+const deleteImage = document.querySelector("#delete-profile");
+
 async function updateFormHandler(event) {
     event.preventDefault();
-    console.log(event.target)
     const email = document.querySelector('#newEmail').value.trim();
     const password = document.querySelector('#newPassword').value.trim();
-    
 
-    
     if (email && password) {
-        // const response = await fetch(`/api/pets/${req.session.pet_id}`, {
         const response = await fetch(`/api/pets/`, {
             method: 'put',
             body: JSON.stringify({
@@ -24,12 +26,8 @@ async function updateFormHandler(event) {
     }
   }
   
- document.querySelector('#newProfileUpdates').addEventListener('submit', updateFormHandler);
 
- const imageInput = document.querySelector("#input-files");
-const previewImage = document.querySelector("#preview-images");
-const submitImage = document.querySelector("#upload-image");
-var imgModalEl = document.querySelector("#imgModal");
+//  update profile picture
 const reader = new FileReader();
  
 async function displayImg(event) {
@@ -67,9 +65,7 @@ async function saveImg(event) {
   }
 }
 
-
-
-
+// image modal
 function imgModal(event) {
   console.log("click");
   openModal();
@@ -93,4 +89,37 @@ function closeModal() {
 
 
 
+// delete profile
+async function deleteProfile() {
+  const id = window.location.toString().split('/')[
+    window.location.toString().split('/').length - 1
+  ];
+  console.log(id)
+  const response = await fetch(`api/pets/${id}`, {
+    method: 'DELETE'
+  });
+
+  if (response.ok) {
+    logout()
+    document.location.replace("/");
+  } else {
+    console.log("error")
+  }
+}
+  
+async function logout() {
+  const response = await fetch('/api/pets/logout', {
+    method: 'post',
+    headers: { 'Content-Type': 'application/json' }
+  });
+
+  if (response.ok) {
+    document.location.replace('/');
+  } else {
+    alert(response.statusText);
+  }
+}
+
+document.querySelector('#newProfileUpdates').addEventListener('submit', updateFormHandler);
+deleteImage.addEventListener("click", deleteProfile)
 document.querySelector("#add-img-btn").addEventListener("click", imgModal);
