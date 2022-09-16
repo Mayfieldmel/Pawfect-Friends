@@ -101,6 +101,7 @@ router.get("/", withAuthSign, async (req, res) => {
           model: Pet,
           attributes: ["pet_name"],
         },
+<<<<<<< HEAD
         // ,
         // {
         //     model: Comment,
@@ -110,6 +111,12 @@ router.get("/", withAuthSign, async (req, res) => {
         //     attributes: ['pet_name']
         //     }
         // }
+=======
+        // {
+        //   model: Imagecomment,
+        //   attributes: ["comment_text", "pet_id"],
+        // },
+>>>>>>> 9005e25c23fb0bc6f27fb48fa3e309fbce6fef69
       ],
       order: [["created_at", "DESC"]],
       raw: true,
