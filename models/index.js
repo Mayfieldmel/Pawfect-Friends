@@ -62,4 +62,4 @@ Image.hasMany(Imagecomment, {
   onDelete: 'SET NULL'
 })
 
-module.exports = { Pet, Post, Comment, Image};
+module.exports = { Pet, Post, Comment, Image, Imagecomment};

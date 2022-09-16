@@ -1,7 +1,5 @@
 {{!-- import post-info --}}
 <div class="box margin-bottom">
-    {{!-- <p class="margin-right"><strong>{{pet}}</strong> <small>| {{format_date created_at}}</small> <small>|
-                {{comments.length}} {{format_plural "comment" comments.length}}</small></p> --}}
         <img src={{image.image}} />
   
     <nav id="delete-image" class="level is-mobile right-btn">
@@ -11,7 +9,7 @@
         </nav>
 </div>
 
-<form class="comment-form column box is-10 is-offset-1">
+<form class="image-comment-form column box is-10 is-offset-1">
   <div>
     <textarea class="input textarea" name="comment-body" rows="3" placeholder="Type a comment here"></textarea>
   </div>
@@ -23,7 +21,7 @@
 </form>
 {{/if}}
 
-{{> comments image.comments}}
+{{> image-comments image.imagecomments}}
 
 {{#if loggedIn}}
 <script src="/javascript/image-comment.js"></script>
