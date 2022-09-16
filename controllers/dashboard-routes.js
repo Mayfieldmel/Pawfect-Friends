@@ -52,11 +52,12 @@ router.get("/", async (req, res) => {
         ...post,
         profile_pic: post["pet.profile_pic"],
         pet_name: post["pet.pet_name"],
+        comments: post["pet.pet_name"],
       })),
       ...imgData.map((image) => ({
         ...image,
         pet: image["pet.pet_name"],
-        comments: image["imagecomments.id"],
+        // comments: image["imagecomments.id"],
       })),
     ];
     const dataArr = sortArray(combinedArr, {
