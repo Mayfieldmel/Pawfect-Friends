@@ -55,4 +55,4 @@ If you have any questions about the repo, open an issue or contact us directly u
 [mayfieldmel@gmail.com](mailto:mayfieldmel@gmail.com). <br>
 [rodolforamosd11@gmail.com](mailto:rodolforamosd11@gmail.com). <br>
 
-[!Screen Shot 2022-09-14 at 6 21 53 PM](https://user-images.githubusercontent.com/104585768/190273467-b879a21d-ca2b-44d1-96d1-1938faa98ac3.png)
+![Screen Shot 2022-09-14 at 6 21 53 PM](https://user-images.githubusercontent.com/104585768/190273467-b879a21d-ca2b-44d1-96d1-1938faa98ac3.png)
