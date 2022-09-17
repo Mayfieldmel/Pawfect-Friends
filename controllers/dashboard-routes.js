@@ -57,7 +57,7 @@ router.get("/", async (req, res) => {
       ...imgData.map((image) => ({
         ...image,
         pet: image["pet.pet_name"],
-        imagecomments: image["imagecomments.id"],
+        imagecomments: image["imagecomment.id"],
       })),
     ];
     const dataArr = sortArray(combinedArr, {
