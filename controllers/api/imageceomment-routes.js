@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const { Imagecomment } = require("../../models");
-const withAuth = require("../../utils/auth");
+const withAuthSign = require("../../utils/auth");
 
 router.get("/", (req, res) => {
   Imagecomment.findAll()
