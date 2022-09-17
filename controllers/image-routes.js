@@ -72,11 +72,11 @@ router.get("/:id", (req, res) => {
       const image = dbImageData.get({ plain: true });
       console.log(image)
 
-      image = dbImageData.map((image) => ({
-        ...image,
-        pet: image["pet.pet_name"],
-        imagecomments: image["imagecomments.id"],
-      })),
+      // image = dbImageData.map((image) => ({
+      //   ...image,
+      //   pet: image["pet.pet_name"],
+      //   imagecomments: image["imagecomments.id"],
+      // })),
       // pass data to template
       res.render("single-image", {
         image,

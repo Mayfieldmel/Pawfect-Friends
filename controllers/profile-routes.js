@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const sequelize = require("../config/connection");
-const { Post, Pet, Comment, Image } = require("../models");
+const { Post, Pet, Comment, Image, Imagecomment } = require("../models");
 const { withAuth, withAuthSign } = require("../utils/auth");
 const sortArray = require("sort-array");
 
@@ -110,19 +110,18 @@ router.get("/", withAuthSign, async (req, res) => {
       raw: true,
     });
 
-    // console.log(postData[0]['pet.profile_pic']);
 
     const combinedArr = [...postData.map((post) => ({
         ...post,
         profile_pic: post["pet.profile_pic"],
         pet_name: post["pet.pet_name"],
         comments: post["comment.id"],
-      })),
-      ...imgData.map((image) => ({
-        ...image,
-        pet: image["pet.pet_name"],
-        comments: image["imagecomment.id"],
-      })),
+      })), ...imgData
+      // ...imgData.map((image) => ({
+      //   ...image,
+      //   pet: image["pet.pet_name"],
+      //   comments: image["imagecomment.id"],
+      // })),
     ];
     const dataArr = sortArray(combinedArr, {
       by: "created_at",

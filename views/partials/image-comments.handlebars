@@ -1,0 +1,20 @@
+<div class="comments box mx-auto">
+  {{#each this}}
+  <section class="comment box media message is-primary">
+    <div class="media-content">
+      <div class="meta content">
+        <p>
+          <strong>
+            {{pet.pet_name}}
+            said on {{format_date created_at}}
+          </strong>
+        </p>
+        <div class="text message-body">
+          {{comment_text}}
+        </div>
+        <br>
+      </div>
+    </div>
+  </section>
+  {{/each}}
+</div>
