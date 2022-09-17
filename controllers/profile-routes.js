@@ -109,19 +109,19 @@ router.get("/", withAuthSign, async (req, res) => {
       order: [["created_at", "DESC"]],
       raw: true,
     });
-
+console.log(imgData)
 
     const combinedArr = [...postData.map((post) => ({
         ...post,
         profile_pic: post["pet.profile_pic"],
         pet_name: post["pet.pet_name"],
         comments: post["comment.id"],
-      })), ...imgData
-      // ...imgData.map((image) => ({
-      //   ...image,
-      //   pet: image["pet.pet_name"],
-      //   comments: image["imagecomment.id"],
-      // })),
+      })), 
+      ...imgData.map((image) => ({
+        ...image,
+        petname: image["pet.pet_name"],
+        comments: image["imagecomment.id"],
+      })),
     ];
     const dataArr = sortArray(combinedArr, {
       by: "created_at",

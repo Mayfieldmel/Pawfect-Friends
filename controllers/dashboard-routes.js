@@ -37,7 +37,6 @@ router.get("/", async (req, res) => {
         },
         {
           model: Imagecomment,
-          attributes: ["id", "comment_text"],
           include: {
             model: Pet,
             attributes: ["pet_name"]
@@ -47,19 +46,20 @@ router.get("/", async (req, res) => {
       order: [["created_at", "DESC"]],
       raw: true,
     });
+    console.log(postData[0])
     const combinedArr = [
       ...postData.map((post) => ({
         ...post,
         profile_pic: post["pet.profile_pic"],
         pet_name: post["pet.pet_name"],
-        comments: post["pet.pet_name"],
+        comments: post["pet.comments"],
       })),
       ...imgData
-      // .map((image) => ({
-      //   ...image,
-      //   pet: image["pet.pet_name"],
-      //   imagecomments: image["imagecomment.id"],
-      // })),
+      .map((image) => ({
+        ...image,
+        pet: image["pet.pet_name"],
+        imagecomments: image["imagecomment"],
+      })),
     ];
     const dataArr = sortArray(combinedArr, {
       by: "created_at",

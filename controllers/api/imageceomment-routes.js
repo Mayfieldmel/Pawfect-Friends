@@ -2,6 +2,7 @@ const router = require("express").Router();
 const { Imagecomment } = require("../../models");
 const withAuthSign = require("../../utils/auth");
 
+// GET api/imagecomment
 router.get("/", (req, res) => {
   Imagecomment.findAll()
     .then((dbImageCommentData) => res.json(dbImageCommentData))
@@ -11,8 +12,8 @@ router.get("/", (req, res) => {
     });
 });
 
+// POST api/imagecomment
 router.post("/", (req, res) => {
-  if (req.session) {
     Imagecomment.create({
       comment_text: req.body.comment_text,
       image_id: req.body.image_id,
@@ -23,9 +24,10 @@ router.post("/", (req, res) => {
         console.log(err);
         res.status(400).json(err);
       });
-  }
 });
 
+
+// DELETE api/imagecomment/1
 router.delete("/:id", (req, res) => {
   Imagecomment.destroy({
     where: {
