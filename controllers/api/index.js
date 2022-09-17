@@ -8,6 +8,6 @@ const ImageCommentRoutes = require('./imageceomment-routes');
 router.use("/pets", petRoutes);
 router.use("/posts", postRoutes);
 router.use('/comments', commentRoutes);
-// router.use('/imagecomments', ImageCommentRoutes);
+router.use('/imagecomments', ImageCommentRoutes);
 
 module.exports = router;
