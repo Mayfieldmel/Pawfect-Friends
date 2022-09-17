@@ -97,10 +97,10 @@ router.get("/", withAuthSign, async (req, res) => {
           model: Pet,
           attributes: ["pet_name"],
         },
-        {
-          model: Imagecomment,
-          attributes: ["comment_text", "pet_id"],
-        },
+        // {
+        //   model: Imagecomment,
+        //   attributes: ["comment_text", "pet_id"],
+        // },
       ],
       order: [["created_at", "DESC"]],
       raw: true,

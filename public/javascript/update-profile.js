@@ -114,7 +114,12 @@ async function logout() {
   }
 }
 
+function cancel(event) {
+  document.location.replace("/profile")
+}
+
 document
   .querySelector("#newProfileUpdates")
   .addEventListener("submit", updateFormHandler);
 document.querySelector("#add-img-btn").addEventListener("click", imgModal);
+document.querySelector("#update-cancel-btn").addEventListener("click", cancel)
