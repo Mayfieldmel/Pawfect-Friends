@@ -29,7 +29,6 @@ router.get("/", async (req, res) => {
       raw: true,
     });
 
-    console.log("this is post data", postData);
     postData = postData.filter((value, index, self) =>
     index === self.findIndex((t) => (
       t.id === value.id))
