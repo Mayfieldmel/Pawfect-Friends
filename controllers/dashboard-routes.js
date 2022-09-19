@@ -9,7 +9,7 @@ router.get("/", async (req, res) => {
   console.log("======================");
   // get all posts & images for dashboard
   try {
-    const postData = await Post.findAll({
+    let postData = await Post.findAll({
       attributes: ["id", "post_text", "created_at"],
       include: [
         {
@@ -28,6 +28,12 @@ router.get("/", async (req, res) => {
       order: [["created_at", "DESC"]],
       raw: true,
     });
+
+    postData = postData.filter((value, index, self) =>
+    index === self.findIndex((t) => (
+      t.id === value.id))
+    );
+    
     const imgData = await Image.findAll({
       attributes: ["id", "image", "created_at"],
       include: [

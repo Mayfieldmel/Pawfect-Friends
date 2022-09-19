@@ -65,7 +65,7 @@ router.get("/", withAuthSign, async (req, res) => {
       },
       raw: true,
     });
-    const postData = await Post.findAll({
+    let postData = await Post.findAll({
       where: {
         pet_id: req.session.pet_id,
       },
@@ -86,7 +86,13 @@ router.get("/", withAuthSign, async (req, res) => {
       ],
       order: [["created_at", "DESC"]],
       raw: true,
-    });
+    })
+    
+    postData = postData.filter((value, index, self) =>
+    index === self.findIndex((t) => (
+      t.id === value.id))
+    );
+
     const imgData = await Image.findAll({
       where: {
         pet_id: req.session.pet_id,
